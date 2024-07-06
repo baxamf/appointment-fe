@@ -14,6 +14,12 @@ export class StorageService {
     return localStorage.getItem(StorageKey.ACCESS_TOKEN) || null;
   }
 
+  public static getBearerToken() {
+    const token = this.getAccessToken();
+
+    return token ? `Bearer ${token}` : "";
+  }
+
   public static removeAccessToken() {
     localStorage.removeItem(StorageKey.ACCESS_TOKEN);
   }

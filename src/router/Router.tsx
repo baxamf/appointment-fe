@@ -4,7 +4,7 @@ import AdminRoutes from "./routes/admin-routes";
 import PublicRoutes from "./routes/public-routes";
 import StaffRoutes from "./routes/staff-routes";
 
-const Login = lazy(() => import("../pages/Login"));
+const Login = lazy(() => import("../features/auth/pages/Login"));
 const ErrorPage = lazy(() => import("../pages/Error"));
 
 export default function Router() {
