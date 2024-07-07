@@ -2,7 +2,7 @@ import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 import RouteGuard from "../RouteGuard";
 import AdminLayout from "../../layouts/AdminLayout";
-import { UserRole } from "../../common/types";
+import { UserRole } from "../../api/__generated__/graphql";
 
 const AdminServices = lazy(
   () => import("../../features/admin/admin-services/AdminServices")
@@ -15,7 +15,7 @@ export default function AdminRoutes(): RouteObject[] {
   return [
     {
       element: (
-        <RouteGuard role={UserRole.ADMIN}>
+        <RouteGuard role={UserRole.Admin}>
           <AdminLayout />
         </RouteGuard>
       ),

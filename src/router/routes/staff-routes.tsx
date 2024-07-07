@@ -1,8 +1,8 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 import RouteGuard from "../RouteGuard";
-import { UserRole } from "../../common/types";
 import StaffLayout from "../../layouts/StaffLayout";
+import { UserRole } from "../../api/__generated__/graphql";
 
 const StaffServices = lazy(
   () => import("../../features/staff/staff-services/StaffServices")
@@ -13,7 +13,7 @@ export default function StaffRoutes(): RouteObject[] {
   return [
     {
       element: (
-        <RouteGuard role={UserRole.STAFF}>
+        <RouteGuard role={UserRole.Staff}>
           <StaffLayout />
         </RouteGuard>
       ),

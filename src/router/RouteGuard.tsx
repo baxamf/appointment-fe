@@ -1,10 +1,10 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useUser } from "../store/hooks/useUser";
-import { UserRole } from "../common/types";
+import { UserRole } from "../api/__generated__/graphql";
 
 interface IRouteGuard {
   children: JSX.Element;
-  role: keyof typeof UserRole;
+  role: UserRole;
 }
 
 export default function RouteGuard({ children, role }: IRouteGuard) {

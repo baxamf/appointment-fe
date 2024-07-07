@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Form, Input, FormProps } from "antd";
-import { LoginInput } from "../../../__generated__/graphql";
 import { useLoginUser } from "../hooks/useLoginUser";
+import { LoginInput } from "../../../api/__generated__/graphql";
 
 export default function Login() {
   const { loginUser, loginError, loginLoading } = useLoginUser();

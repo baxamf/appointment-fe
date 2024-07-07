@@ -1,35 +1,35 @@
 import { useMutation } from "@apollo/client";
-import { LoginInput, UserRole } from "../../../__generated__/graphql";
-import { LOGIN, LoginResponse, LoginVariables } from "../graphql";
+import { LOGIN } from "../graphql";
 import { StorageService } from "../../../store/StorageService";
 import { useSetUser } from "../../../store/hooks/useSetUser";
 import { useNavigate } from "react-router-dom";
+import { LoginInput, UserRole } from "../../../api/__generated__/graphql";
 
 export const useLoginUser = () => {
   const setUser = useSetUser();
   const navigate = useNavigate();
 
-  const [login, { loading: loginLoading, error: loginError }] = useMutation<
-    LoginResponse,
-    LoginVariables
-  >(LOGIN, {
-    onCompleted({ login }) {
-      StorageService.setAccessToken(login.accessToken);
+  const [login, { loading: loginLoading, error: loginError }] = useMutation(
+    LOGIN,
+    {
+      onCompleted({ login }) {
+        StorageService.setAccessToken(login.accessToken);
 
-      switch (login.user.role) {
-        case UserRole.Admin:
-          navigate("/admin");
-          break;
-        case UserRole.Staff:
-          navigate("/staff");
-          break;
-        default:
-          navigate("/");
-      }
+        switch (login.user.role) {
+          case UserRole.Admin:
+            navigate("/admin");
+            break;
+          case UserRole.Staff:
+            navigate("/staff");
+            break;
+          default:
+            navigate("/");
+        }
 
-      setUser(login.user);
-    },
-  });
+        setUser(login.user);
+      },
+    }
+  );
 
   const loginUser = async (loginInput: LoginInput) => {
     await login({

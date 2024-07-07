@@ -1,12 +1,12 @@
-import { gql } from "@apollo/client";
-import { LoginInput, UserResponse } from "../../__generated__/graphql";
+import { gql } from "../../api/__generated__";
+import { LoginInput, UserResponse } from "../../api/__generated__/graphql";
 
 export type LoginResponse = {
   login: { accessToken: string; user: Pick<UserResponse, "role"> };
 };
 export type LoginVariables = { loginInput: LoginInput };
 
-export const LOGIN = gql`
+export const LOGIN = gql(`
   mutation Login($loginInput: LoginInput!) {
     login(loginInput: $loginInput) {
       accessToken
@@ -15,4 +15,4 @@ export const LOGIN = gql`
       }
     }
   }
-`;
+`);

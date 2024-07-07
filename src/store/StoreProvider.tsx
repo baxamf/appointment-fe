@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StorageService } from "./StorageService";
-import { UserRole } from "../__generated__/graphql";
+import { UserRole } from "../api/__generated__/graphql";
 
 export type TUser = {
   role: UserRole;

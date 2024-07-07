@@ -9,17 +9,15 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { StorageService } from "../store/StorageService";
-import { gql } from "@apollo/client";
-import { Auth } from "../__generated__/graphql";
-import { GraphQLError } from "graphql";
+import { gql } from "./__generated__";
 
-export const GET_REFRESH = gql`
+export const REFRESH = gql(`
   query Refresh {
     refresh {
       accessToken
     }
   }
-`;
+`);
 
 const httpLink = new HttpLink({ uri: import.meta.env.VITE_API_URL });
 
@@ -33,29 +31,24 @@ const authLink = setContext((_, { headers }) => ({
 const errorLink = onError(({ graphQLErrors, operation, forward }) => {
   if (graphQLErrors) {
     for (const err of graphQLErrors) {
+      console.log(err);
       switch (err.extensions.code) {
         case "UNAUTHENTICATED": {
           const token = StorageService.getAccessToken();
+          const isRefreshOperation = operation.operationName === "Refresh";
 
-          if (!token) {
-            window.location.replace("/login");
-            break;
+          if (!token || isRefreshOperation) {
+            apolloClient.clearStore();
+            // window.location.href = "/login";
+            return;
           }
-
-          if (operation.operationName === "Refresh") return;
 
           const observable = new Observable<FetchResult>((observer) => {
             (async () => {
               try {
                 await refreshToken();
 
-                const subscriber = {
-                  next: observer.next.bind(observer),
-                  error: observer.error.bind(observer),
-                  complete: observer.complete.bind(observer),
-                };
-
-                forward(operation).subscribe(subscriber);
+                forward(operation).subscribe(observer);
               } catch (err) {
                 observer.error(err);
               }
@@ -64,6 +57,9 @@ const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 
           return observable;
         }
+        default:
+          console.log(err);
+          break;
       }
     }
   }
@@ -75,20 +71,12 @@ const apolloClient = new ApolloClient({
 });
 
 const refreshToken = async () => {
-  try {
-    const { data } = await apolloClient.query<Auth>({
-      query: GET_REFRESH,
-    });
+  const { data } = await apolloClient.query({
+    query: REFRESH,
+  });
 
-    if (!data?.accessToken) {
-      throw new GraphQLError("No access token");
-    }
-
-    StorageService.setAccessToken(data.accessToken);
-  } catch (error) {
-    StorageService.removeAccessToken();
-
-    throw error;
+  if (data?.refresh.accessToken) {
+    StorageService.setAccessToken(data.refresh.accessToken);
   }
 };
 
