@@ -1,16 +1,19 @@
+import { Layout } from "antd";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import PublicHeader from "../common/components/headers/PublicHeader";
+import PublicFooter from "../common/components/footers/PublicFooter";
 
 export default function PublicLayout() {
   return (
-    <>
-      <div>Header</div>
-      <main>
+    <Layout className="container">
+      <PublicHeader />
+      <Layout.Content>
         <Suspense fallback={<h1>Loading</h1>}>
           <Outlet />
         </Suspense>
-      </main>
-      <div>Footer</div>
-    </>
+      </Layout.Content>
+      <PublicFooter />
+    </Layout>
   );
 }

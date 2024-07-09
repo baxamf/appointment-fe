@@ -1,23 +1,16 @@
 import { useLazyQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
 import { GET_ME } from "../graphql";
+import { Button, Typography } from "antd";
 
 export default function HomePage() {
-  const [getMe, { data, loading, error }] = useLazyQuery(GET_ME);
-  console.log("data", data);
+  const [getMe, { loading, error }] = useLazyQuery(GET_ME);
 
   if (loading) return <h1>Loading</h1>;
   return (
     <div>
-      <h1>HomePage</h1>
+      <Typography.Title level={1}>HomePage</Typography.Title>
       {error && <h1>{error.message}</h1>}
-      <Link
-        style={{ border: "1px solid white", padding: "10px 20px" }}
-        to="/login"
-      >
-        Login
-      </Link>
-      <button onClick={() => getMe()}>Get me</button>
+      <Button onClick={() => getMe()}>Get me</Button>
     </div>
   );
 }

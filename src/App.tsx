@@ -1,27 +1,12 @@
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import router from "./router/Router";
-import { ConfigProvider, theme } from "antd";
+import { ConfigProvider } from "antd";
+import { darkTheme } from "./theme/antConfig";
 
 function App() {
   return (
-    <ConfigProvider
-      theme={{
-        components: {
-          Input: {
-            fontSize: 16,
-            lineHeight: 2,
-            paddingBlock: 5,
-          },
-        },
-        algorithm: theme.darkAlgorithm,
-        token: {
-          colorPrimary: "#854d0e",
-          borderRadius: 3,
-          fontFamily: "Inter",
-        },
-      }}
-    >
+    <ConfigProvider theme={darkTheme}>
       <RouterProvider router={router()} />
     </ConfigProvider>
   );

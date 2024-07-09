@@ -23,15 +23,18 @@ export default function LoginForm() {
         style={{
           display: "flex",
           flexDirection: "column",
-          width: 400,
         }}
         initialValues={formik.initialValues}
         onSubmitCapture={formik.handleSubmit}
         autoComplete="off"
         layout="vertical"
       >
-        <Form.Item<LoginInput> label="email">
+        <Form.Item<LoginInput>
+          label="email"
+          validateStatus={formik.errors.email && "error"}
+        >
           <Input
+            formNoValidate={!!formik.errors.email}
             name="email"
             value={formik.values.email}
             onBlur={formik.handleBlur}
@@ -40,7 +43,10 @@ export default function LoginForm() {
           <ErrorMessage name="email" />
         </Form.Item>
 
-        <Form.Item<LoginInput> label="password">
+        <Form.Item<LoginInput>
+          label="password"
+          validateStatus={formik.errors.password && "error"}
+        >
           <Input.Password
             name="password"
             value={formik.values.password}
@@ -63,7 +69,7 @@ export default function LoginForm() {
         </Form.Item>
 
         {loginError && (
-          <Typography.Title level={3}>{loginError.message}</Typography.Title>
+          <Typography.Title level={4}>{loginError.message}</Typography.Title>
         )}
 
         <Button

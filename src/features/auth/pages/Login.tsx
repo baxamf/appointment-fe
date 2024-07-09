@@ -1,12 +1,14 @@
-import { Typography } from "antd";
+import { Flex, Layout, Typography } from "antd";
 import LoginForm from "../components/LoginForm";
 
 export default function Login() {
   return (
-    <>
-      <Typography.Title level={1}>Sign up</Typography.Title>
+    <Layout className="container" style={{ justifyContent: "center" }}>
+      <Flex vertical style={{ width: 300 }}>
+        <Typography.Title level={1}>Sign in</Typography.Title>
 
-      <LoginForm />
-    </>
+        <LoginForm />
+      </Flex>
+    </Layout>
   );
 }
