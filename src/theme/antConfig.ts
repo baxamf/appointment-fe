@@ -2,6 +2,11 @@ import { ThemeConfig, theme } from "antd";
 
 export const darkTheme: ThemeConfig = {
   components: {
+    Typography: {
+      fontSizeHeading1: 54,
+      fontWeightStrong: 900,
+      titleMarginBottom: 0,
+    },
     Input: {
       fontSize: 16,
       lineHeight: 2,
@@ -9,6 +14,7 @@ export const darkTheme: ThemeConfig = {
     },
     Menu: {
       fontSize: 20,
+      itemHeight: 60,
       itemBg: "#0C0C0C",
     },
     Button: {
@@ -18,6 +24,7 @@ export const darkTheme: ThemeConfig = {
     },
     Layout: {
       headerBg: "#0C0C0C",
+      headerPadding: 0,
     },
     Form: {
       itemMarginBottom: 0,
@@ -25,13 +32,14 @@ export const darkTheme: ThemeConfig = {
   },
   algorithm: theme.darkAlgorithm,
   token: {
+    fontSize: 16,
+    fontFamily: "Inter",
     colorText: "#EEEEEE",
     colorTextBase: "#fff",
     colorLink: "#EEEEEE",
-    borderRadius: 3,
     colorBgBase: "#0C0C0C",
     colorBgContainer: "#0C0C0C",
     colorPrimary: "#9B3922",
-    fontFamily: "Inter",
+    borderRadius: 3,
   },
 };

@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from "formik";
 import { LoginInput } from "../../../api/__generated__/graphql";
-import { Button, Form, Input, Typography } from "antd";
+import { Alert, Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useLoginUser } from "../hooks/useLoginUser";
 import { loginValidationSchema } from "../utils/formik/login-validation-schema";
@@ -15,7 +15,8 @@ export default function LoginForm() {
     onSubmit: async (values) => loginUser(values),
   });
 
-  const isError = !!Object.keys(formik.errors).length;
+  const submitButtonDisabled =
+    !!Object.keys(formik.errors).length || loginLoading;
 
   const navigate = useNavigate();
 
@@ -65,15 +66,13 @@ export default function LoginForm() {
             size="large"
             type="primary"
             htmlType="submit"
-            disabled={loginLoading || isError}
+            disabled={submitButtonDisabled}
           >
             Submit
           </Button>
         </Form.Item>
 
-        {loginError && (
-          <Typography.Title level={4}>{loginError.message}</Typography.Title>
-        )}
+        {loginError && <Alert message={loginError.message} type="error" />}
 
         <Button
           style={{ paddingBlock: 24 }}

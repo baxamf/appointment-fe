@@ -1,17 +1,32 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { useUser } from "../store/hooks/useUser";
-import { Layout, Typography } from "antd";
+import { Layout } from "antd";
 import Loading from "../common/components/loading/Loading";
+import AdminHeader from "../common/components/headers/AdminHeader";
+import AdminNav from "../common/components/nav/AdminNav";
 
 export default function AdminLayout() {
-  const user = useUser();
   return (
-    <Layout className="container">
-      <Typography.Title level={1}>Admin Layout {user?.role}</Typography.Title>
-      <Suspense fallback={<Loading />}>
-        <Outlet />
-      </Suspense>
+    <Layout
+      className="container"
+      style={{
+        flexWrap: "wrap",
+        placeItems: "flex-start",
+        alignContent: "flex-start",
+        gap: 20,
+      }}
+    >
+      <AdminHeader />
+
+      <Layout.Sider>
+        <AdminNav />
+      </Layout.Sider>
+
+      <Layout.Content>
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
+      </Layout.Content>
     </Layout>
   );
 }

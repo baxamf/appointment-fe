@@ -9,11 +9,13 @@ export default function PublicLayout() {
   return (
     <Layout className="container">
       <PublicHeader />
-      <Layout.Content style={{ display: "flex", placeItems: "center" }}>
+
+      <Layout.Content style={{ display: "flex" }}>
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
       </Layout.Content>
+
       <PublicFooter />
     </Layout>
   );
