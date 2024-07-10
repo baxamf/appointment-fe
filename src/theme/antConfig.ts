@@ -8,18 +8,25 @@ export const darkTheme: ThemeConfig = {
       paddingBlock: 5,
     },
     Menu: {
+      fontSize: 20,
       itemBg: "#0C0C0C",
     },
     Button: {
       fontWeight: "bold",
+      paddingBlock: 20,
+      paddingInline: 40,
     },
     Layout: {
       headerBg: "#0C0C0C",
+    },
+    Form: {
+      itemMarginBottom: 0,
     },
   },
   algorithm: theme.darkAlgorithm,
   token: {
     colorText: "#EEEEEE",
+    colorTextBase: "#fff",
     colorLink: "#EEEEEE",
     borderRadius: 3,
     colorBgBase: "#0C0C0C",

@@ -1,11 +1,12 @@
 import { Suspense } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../common/components/loading/Loading";
 
 export default function ErrorPage() {
   const navigate = useNavigate();
 
   return (
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<Loading />}>
       <div>
         <h1>Error</h1>
         <Link

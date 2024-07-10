@@ -1,9 +1,10 @@
+#root {
+  flex: 1
+}
+
 .container {
-  width: 100vw;
   min-height: 100vh;
   margin: 0 auto;
   text-align: center;
   place-items: center;
 }
-
-

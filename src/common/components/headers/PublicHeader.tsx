@@ -12,6 +12,10 @@ const items: MenuItem[] = [
     key: "service",
   },
   {
+    label: <Link to="artists">Artists</Link>,
+    key: "artists",
+  },
+  {
     label: <Link to="about">About</Link>,
     key: "about",
   },

@@ -1,9 +1,10 @@
-import { ErrorMessage, FormikProvider, useFormik } from "formik";
+import { FormikProvider, useFormik } from "formik";
 import { LoginInput } from "../../../api/__generated__/graphql";
 import { Button, Form, Input, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useLoginUser } from "../hooks/useLoginUser";
 import { loginValidationSchema } from "../utils/formik/login-validation-schema";
+import FormErrorMessage from "../../../common/components/errors/FormErrorMessage";
 
 export default function LoginForm() {
   const { loginUser, loginError, loginLoading } = useLoginUser();
@@ -14,6 +15,8 @@ export default function LoginForm() {
     onSubmit: async (values) => loginUser(values),
   });
 
+  const isError = !!Object.keys(formik.errors).length;
+
   const navigate = useNavigate();
 
   return (
@@ -23,6 +26,7 @@ export default function LoginForm() {
         style={{
           display: "flex",
           flexDirection: "column",
+          gap: 20,
         }}
         initialValues={formik.initialValues}
         onSubmitCapture={formik.handleSubmit}
@@ -34,13 +38,12 @@ export default function LoginForm() {
           validateStatus={formik.errors.email && "error"}
         >
           <Input
-            formNoValidate={!!formik.errors.email}
             name="email"
             value={formik.values.email}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
-          <ErrorMessage name="email" />
+          <FormErrorMessage name="email" />
         </Form.Item>
 
         <Form.Item<LoginInput>
@@ -53,7 +56,7 @@ export default function LoginForm() {
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
-          <ErrorMessage name="password" />
+          <FormErrorMessage name="password" />
         </Form.Item>
 
         <Form.Item>
@@ -62,7 +65,7 @@ export default function LoginForm() {
             size="large"
             type="primary"
             htmlType="submit"
-            disabled={loginLoading}
+            disabled={loginLoading || isError}
           >
             Submit
           </Button>
