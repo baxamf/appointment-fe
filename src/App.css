@@ -9,3 +9,13 @@
   text-align: center;
   place-items: center;
 }
+
+.noise {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  z-index: 10;
+  pointer-events: none;
+}

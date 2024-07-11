@@ -11,7 +11,7 @@ export default function PublicHeader() {
         alignItems: "center",
       }}
     >
-      <ButtonLink>AppLogo</ButtonLink>
+      <ButtonLink style={{ paddingLeft: 0 }}>AppLogo</ButtonLink>
 
       <PublicNav />
 
