@@ -1,5 +1,5 @@
 import { Flex, Typography } from "antd";
-import ButtonLink from "../../../../common/components/buttons/ButtonLink";
+import ButtonCTA from "../../../../common/components/buttons/ButtonCTA";
 
 export default function HomePage() {
   return (
@@ -25,13 +25,7 @@ export default function HomePage() {
           Discover Your Perfect Piece or Book Your Appointment Now!
         </Typography.Title>
 
-        <ButtonLink
-          url="/appointment"
-          type="primary"
-          style={{ maxWidth: 300, alignSelf: "center" }}
-        >
-          Make an appointment
-        </ButtonLink>
+        <ButtonCTA />
       </Flex>
     </Flex>
   );

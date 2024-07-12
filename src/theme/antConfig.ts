@@ -7,6 +7,12 @@ export const darkTheme: ThemeConfig = {
       fontWeightStrong: 900,
       titleMarginBottom: 0,
     },
+    Divider: {
+      colorText: "rgba(72, 30, 20, 1)",
+      colorBgBase: "rgb(72, 30, 20)",
+      fontSize: 14,
+      algorithm: true,
+    },
     Input: {
       fontSize: 16,
       lineHeight: 2,
@@ -40,6 +46,7 @@ export const darkTheme: ThemeConfig = {
     colorBgBase: "#0C0C0C",
     colorBgContainer: "#0C0C0C",
     colorPrimary: "#9B3922",
+    colorBorderSecondary: "rgba(72, 30, 20, .3)",
     borderRadius: 3,
   },
 };

@@ -1,28 +1,33 @@
 import { Menu, MenuProps } from "antd";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelectedNavKeys } from "../../hooks/useSelectedNavKeys";
+import { RoutePaths } from "../../../router/enums";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
 const items: MenuItem[] = [
   {
-    label: <Link to="services">Services</Link>,
-    key: "/admin/services",
+    label: <Link to={RoutePaths.ADMIN_SERVICES}>Services</Link>,
+    key: RoutePaths.ADMIN_SERVICES,
   },
   {
-    label: <Link to="staff">Staff</Link>,
-    key: "/admin/staff",
+    label: <Link to={RoutePaths.ADMIN_STAFF}>Staff</Link>,
+    key: RoutePaths.ADMIN_STAFF,
   },
 ];
 
 export default function AdminNav() {
-  const location = useLocation();
+  const selectedKeys = useSelectedNavKeys(RoutePaths);
 
   return (
     <Menu
       mode="inline"
       items={items}
-      selectedKeys={[location.pathname]}
-      style={{ textAlign: "right", fontWeight: "bold" }}
+      selectedKeys={selectedKeys}
+      style={{
+        textAlign: "right",
+        fontWeight: "bold",
+      }}
     />
   );
 }

@@ -7,6 +7,7 @@ export default function PublicHeader() {
     <Header
       style={{
         display: "flex",
+        gap: 20,
         width: "100%",
         alignItems: "center",
       }}

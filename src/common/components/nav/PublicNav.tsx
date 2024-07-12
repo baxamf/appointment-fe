@@ -1,25 +1,31 @@
 import { Menu, MenuProps } from "antd";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelectedNavKeys } from "../../hooks/useSelectedNavKeys";
+import { RoutePaths } from "../../../router/enums";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
 const items: MenuItem[] = [
   {
-    label: <Link to="services">Services</Link>,
-    key: "/services",
+    label: <Link to={RoutePaths.SERVICES}>Services</Link>,
+    key: RoutePaths.SERVICES,
   },
   {
-    label: <Link to="artists">Artists</Link>,
-    key: "/artists",
+    label: <Link to={RoutePaths.ARTISTS}>Artists</Link>,
+    key: RoutePaths.ARTISTS,
   },
   {
-    label: <Link to="about">About</Link>,
-    key: "/about",
+    label: <Link to={RoutePaths.ABOUT}>About</Link>,
+    key: RoutePaths.ABOUT,
+  },
+  {
+    label: <Link to={RoutePaths.APPOINTMENT}>Appointment</Link>,
+    key: RoutePaths.APPOINTMENT,
   },
 ];
 
 export default function PublicNav() {
-  const location = useLocation();
+  const selectedKeys = useSelectedNavKeys(RoutePaths);
 
   return (
     <Menu
@@ -31,7 +37,7 @@ export default function PublicNav() {
         gap: 10,
       }}
       mode="horizontal"
-      selectedKeys={[location.pathname]}
+      selectedKeys={selectedKeys}
       items={items}
     />
   );

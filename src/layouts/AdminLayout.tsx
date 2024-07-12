@@ -18,7 +18,7 @@ export default function AdminLayout() {
     >
       <AdminHeader />
 
-      <Layout.Sider>
+      <Layout.Sider style={{ position: "sticky", top: "calc(2vh + 84px)" }}>
         <AdminNav />
       </Layout.Sider>
 
