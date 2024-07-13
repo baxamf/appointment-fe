@@ -1,23 +1,43 @@
-import { Suspense } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { PropsWithChildren, Suspense } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeftOutlined, HomeFilled } from "@ant-design/icons";
 import Loading from "../common/components/loading/Loading";
+import { Button, Flex, Layout, Typography } from "antd";
+import ButtonLink from "../common/components/buttons/ButtonLink";
 
-export default function ErrorPage() {
+type ErrorPageProps = {
+  message: string;
+} & PropsWithChildren;
+
+export default function ErrorPage({ message, ...props }: ErrorPageProps) {
   const navigate = useNavigate();
 
   return (
     <Suspense fallback={<Loading />}>
-      <div>
-        <h1>Error</h1>
-        <Link
-          style={{ border: "1px solid white", padding: "10px 20px" }}
-          to="/"
-        >
-          Home
-        </Link>
+      <Layout
+        {...props}
+        style={{
+          height: "100vh",
+          width: "100%",
+          placeContent: "center",
+          textAlign: "center",
+          gap: "5vh",
+        }}
+      >
+        <Typography.Title type="secondary" level={2}>
+          {message}
+        </Typography.Title>
 
-        <button onClick={() => navigate(-1)}>Back</button>
-      </div>
+        <Flex gap="5vh" justify="center">
+          <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>
+            Back
+          </Button>
+
+          <ButtonLink icon={<HomeFilled />} type="default">
+            Home
+          </ButtonLink>
+        </Flex>
+      </Layout>
     </Suspense>
   );
 }

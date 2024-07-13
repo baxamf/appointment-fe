@@ -10,13 +10,15 @@ export default function AdminServicesList() {
 
   if (adminServicesLoading) return <Loading />;
 
-  if (adminServicesError) return <ErrorPage />;
+  if (adminServicesError)
+    return <ErrorPage message={adminServicesError.message} />;
 
-  return (
-    <Flex gap="2vw" wrap>
-      {adminServices?.map((service) => (
-        <AdminServicesListItem key={service.id} service={service} />
-      ))}
-    </Flex>
-  );
+  if (adminServices)
+    return (
+      <Flex gap="2vw" wrap>
+        {adminServices?.map((service) => (
+          <AdminServicesListItem key={service.id} service={service} />
+        ))}
+      </Flex>
+    );
 }

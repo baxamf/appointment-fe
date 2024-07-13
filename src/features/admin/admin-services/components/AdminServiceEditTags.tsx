@@ -17,10 +17,10 @@ export default function AdminServiceEditTags() {
 
   if (tagsError) return <Alert type="error" message={tagsError.message} />;
 
-  return (
-    <Flex wrap gap="2vh">
-      {!!tags?.length &&
-        tags.map<React.ReactNode>((tag) => {
+  if (tags)
+    return (
+      <Flex wrap gap="2vh">
+        {tags.map<React.ReactNode>((tag) => {
           if (edit.inputTagId === tag.id) {
             return (
               <Input
@@ -53,27 +53,27 @@ export default function AdminServiceEditTags() {
           );
         })}
 
-      {create.visible ? (
-        <Input
-          ref={create.ref}
-          value={create.value}
-          onChange={create.change}
-          onBlur={create.confirm}
-          onPressEnter={create.confirm}
-        />
-      ) : (
-        <Tag
-          style={{
-            padding: "10px 20px",
-            background: token.colorBgContainer,
-            borderStyle: "dashed",
-          }}
-          icon={<PlusOutlined />}
-          onClick={create.show}
-        >
-          New Tag
-        </Tag>
-      )}
-    </Flex>
-  );
+        {create.visible ? (
+          <Input
+            ref={create.ref}
+            value={create.value}
+            onChange={create.change}
+            onBlur={create.confirm}
+            onPressEnter={create.confirm}
+          />
+        ) : (
+          <Tag
+            style={{
+              padding: "10px 20px",
+              background: token.colorBgContainer,
+              borderStyle: "dashed",
+            }}
+            icon={<PlusOutlined />}
+            onClick={create.show}
+          >
+            New Tag
+          </Tag>
+        )}
+      </Flex>
+    );
 }

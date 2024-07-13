@@ -22,10 +22,10 @@ export default function Router() {
       ),
     },
     {
-      path: "*",
+      path: "/*",
       element: (
         <Suspense fallback={<Loading />}>
-          <ErrorPage />
+          <ErrorPage message="Something goes wrong" />
         </Suspense>
       ),
     },

@@ -7,9 +7,8 @@ import { useUpdateCompanyService } from "../hooks/useUpdateCompanyService";
 import FormErrorMessage from "../../../../common/components/errors/FormErrorMessage";
 import { Form, Alert, Button, Input, Image } from "antd";
 
-type AdminServiceEditFormProps = Partial<
-  GetAdminCompanyServiceQuery["getCompanyService"]
->;
+type AdminServiceEditFormProps =
+  GetAdminCompanyServiceQuery["getCompanyService"];
 
 export default function AdminServiceEditForm({
   title,
@@ -21,9 +20,9 @@ export default function AdminServiceEditForm({
 
   const formik = useFormik<UpdateCompanyServiceInput>({
     initialValues: {
-      title: title,
-      description: description,
-      image: image,
+      title,
+      description,
+      image,
     },
     onSubmit: updateCompanyService,
   });

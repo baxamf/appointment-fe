@@ -9,7 +9,6 @@ export const GET_ADMIN_COMPANY_SERVICES = gql(`
             image
             order
             tags {
-                id
                 title
             }
         }
