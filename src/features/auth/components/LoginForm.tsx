@@ -12,11 +12,8 @@ export default function LoginForm() {
   const formik = useFormik<LoginInput>({
     initialValues: { email: "test@mail.com", password: "password" },
     validationSchema: loginValidationSchema,
-    onSubmit: async (values) => loginUser(values),
+    onSubmit: loginUser,
   });
-
-  const submitButtonDisabled =
-    !!Object.keys(formik.errors).length || loginLoading;
 
   const navigate = useNavigate();
 
@@ -66,7 +63,7 @@ export default function LoginForm() {
             size="large"
             type="primary"
             htmlType="submit"
-            disabled={submitButtonDisabled}
+            disabled={!formik.isValid || loginLoading}
           >
             Submit
           </Button>

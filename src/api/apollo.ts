@@ -68,11 +68,17 @@ const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink, httpLink]),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "cache-and-network",
+    },
+  },
 });
 
 const refreshToken = async () => {
   const { data } = await apolloClient.query({
     query: REFRESH,
+    fetchPolicy: "no-cache",
   });
 
   if (data?.refresh.accessToken) {

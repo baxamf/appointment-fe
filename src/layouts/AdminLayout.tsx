@@ -13,16 +13,16 @@ export default function AdminLayout() {
         flexWrap: "wrap",
         placeItems: "flex-start",
         alignContent: "flex-start",
-        gap: 20,
+        gap: "2vw",
       }}
     >
       <AdminHeader />
 
-      <Layout.Sider style={{ position: "sticky", top: "calc(2vh + 84px)" }}>
+      <Layout.Sider style={{ position: "sticky", top: "calc(2vw + 84px)" }}>
         <AdminNav />
       </Layout.Sider>
 
-      <Layout.Content>
+      <Layout.Content style={{ marginLeft: "2vw" }}>
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>

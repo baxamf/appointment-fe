@@ -42,7 +42,7 @@ export default function AdminServicesListItem({
           src={service.image}
           preview={false}
           width="100%"
-          style={{ objectFit: "cover", aspectRatio: "4/3" }}
+          style={{ objectFit: "cover", aspectRatio: "16/10" }}
         />
       </div>
     </Card>

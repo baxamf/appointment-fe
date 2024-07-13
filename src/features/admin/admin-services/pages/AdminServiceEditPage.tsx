@@ -1,7 +1,10 @@
-import { useParams } from "react-router-dom";
+import { Flex } from "antd";
+import AdminServiceEdit from "../components/AdminServiceEdit";
 
 export default function AdminServiceEditPage() {
-  const { adminServiceId } = useParams();
-
-  return <h1>AdminServiceEditPage {adminServiceId}</h1>;
+  return (
+    <Flex gap="2vw" wrap>
+      <AdminServiceEdit />
+    </Flex>
+  );
 }

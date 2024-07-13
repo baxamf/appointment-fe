@@ -8,7 +8,7 @@ export const darkTheme: ThemeConfig = {
       titleMarginBottom: 0,
     },
     Divider: {
-      colorText: "rgba(72, 30, 20, 1)",
+      colorText: "rgb(72, 30, 20)",
       colorBgBase: "rgb(72, 30, 20)",
       fontSize: 14,
       algorithm: true,
@@ -17,6 +17,12 @@ export const darkTheme: ThemeConfig = {
       fontSize: 16,
       lineHeight: 2,
       paddingBlock: 5,
+    },
+    Tag: {
+      defaultBg: "rgba(72, 30, 20, .5)",
+      colorBorder: "rgb(72, 30, 20)",
+      fontSize: 20,
+      algorithm: true,
     },
     Menu: {
       fontSize: 20,
@@ -34,6 +40,7 @@ export const darkTheme: ThemeConfig = {
     },
     Form: {
       itemMarginBottom: 0,
+      labelColor: "rgb(72, 30, 20)",
     },
   },
   algorithm: theme.darkAlgorithm,
