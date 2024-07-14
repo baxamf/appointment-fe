@@ -5,13 +5,13 @@ export default function HomePage() {
   return (
     <Flex vertical justify="space-evenly">
       <Flex vertical gap={20}>
-        <Typography.Title level={1}>
+        <Typography.Title level={1} style={{ zIndex: 1 }}>
           Elevate Your Look: Exquisite Tattoos & Piercings by Experts
         </Typography.Title>
 
         <Typography.Paragraph
           type="secondary"
-          style={{ fontSize: 20, paddingInline: "25%" }}
+          style={{ fontSize: 20, paddingInline: "25%", zIndex: 1 }}
         >
           We specialize in creating unique and eye-catching body art for all
           personalities. Our skilled artists create personalized body art that
@@ -20,7 +20,7 @@ export default function HomePage() {
         </Typography.Paragraph>
       </Flex>
 
-      <Flex vertical gap={20}>
+      <Flex vertical gap={20} style={{ zIndex: 1 }}>
         <Typography.Title level={4}>
           Discover Your Perfect Piece or Book Your Appointment Now!
         </Typography.Title>

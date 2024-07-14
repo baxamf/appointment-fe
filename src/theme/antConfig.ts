@@ -27,7 +27,8 @@ export const darkTheme: ThemeConfig = {
     Menu: {
       fontSize: 20,
       itemHeight: 60,
-      itemBg: "#0C0C0C",
+      itemBg: "transparent",
+      colorBgBase: "transparent",
     },
     Button: {
       fontWeight: "bold",
@@ -35,8 +36,10 @@ export const darkTheme: ThemeConfig = {
       paddingInline: 40,
     },
     Layout: {
-      headerBg: "#0C0C0C",
+      headerBg: "transparent",
       headerPadding: 0,
+      footerBg: "transparent",
+      siderBg: "transparent",
     },
     Form: {
       itemMarginBottom: 0,

@@ -10,6 +10,8 @@ export default function PublicHeader() {
         gap: 20,
         width: "100%",
         alignItems: "center",
+        zIndex: 1,
+        backgroundColor: "transparent",
       }}
     >
       <ButtonLink style={{ paddingLeft: 0 }}>AppLogo</ButtonLink>
