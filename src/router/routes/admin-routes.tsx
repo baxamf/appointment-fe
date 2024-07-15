@@ -7,8 +7,8 @@ import { UserRole } from "../../api/__generated__/graphql";
 const AdminServices = lazy(
   () => import("../../features/admin/admin-services/AdminServices")
 );
-const AdminStaffs = lazy(
-  () => import("../../features/admin/admin-staffs/AdminStaffs")
+const AdminStaff = lazy(
+  () => import("../../features/admin/admin-staff/AdminStaff")
 );
 
 export default function AdminRoutes(): RouteObject[] {
@@ -27,7 +27,7 @@ export default function AdminRoutes(): RouteObject[] {
         },
         {
           path: "staff/*",
-          element: <AdminStaffs />,
+          element: <AdminStaff />,
         },
       ],
     },

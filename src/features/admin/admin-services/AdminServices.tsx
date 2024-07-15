@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import AdminServiceCreatePage from "./pages/AdminServiceCreatePage";
 import AdminServiceEditPage from "./pages/AdminServiceEditPage";
-import AdminServicesPage from "./pages/AdminServicesListPage";
+import AdminServicesPage from "./pages/AdminServicesPage";
 
 export default function AdminServices() {
   return (

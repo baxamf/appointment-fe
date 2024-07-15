@@ -6,6 +6,8 @@ export const darkTheme: ThemeConfig = {
       fontSizeHeading1: 54,
       fontWeightStrong: 900,
       titleMarginBottom: 0,
+      titleMarginTop: 0,
+      colorLink: "#481E14",
     },
     Divider: {
       colorText: "rgb(72, 30, 20)",
@@ -51,6 +53,7 @@ export const darkTheme: ThemeConfig = {
     fontSize: 16,
     fontFamily: "Inter",
     colorText: "#EEEEEE",
+    colorTextSecondary: "#481E14",
     colorTextBase: "#fff",
     colorLink: "#EEEEEE",
     colorBgBase: "#0C0C0C",

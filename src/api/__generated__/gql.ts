@@ -21,6 +21,8 @@ const documents = {
     "\n    mutation CreateServiceTag(\n        $createServiceTagInput: CreateServiceTagInput!\n        $companyServiceId: Int\n    ) {\n        createServiceTag(\n            createServiceTagInput: $createServiceTagInput\n            companyServiceId: $companyServiceId\n        ) {\n            id\n        }\n    }   \n": types.CreateServiceTagDocument,
     "\n    mutation UpdateServiceTag(\n        $serviceTagId: Int!\n        $updateServiceTagInput: UpdateServiceTagInput!\n    ) {\n        updateServiceTag(\n            serviceTagId: $serviceTagId\n            updateServiceTagInput: $updateServiceTagInput\n        ) {\n            id\n        }\n    }\n": types.UpdateServiceTagDocument,
     "\n    mutation RemoveServiceTag($serviceTagId: Int!) {\n        removeServiceTag(serviceTagId: $serviceTagId) {\n            id\n        }\n    }    \n": types.RemoveServiceTagDocument,
+    "\n    query GetAdminStaff {\n        getStaff {\n            id\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    }\n": types.GetAdminStaffDocument,
+    "\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n": types.GetAdminStaffInfoDocument,
     "\n  mutation Login($loginInput: LoginInput!) {\n    login(loginInput: $loginInput) {\n      accessToken\n      user {\n        role\n      }\n    }\n  }\n": types.LoginDocument,
     "\n    query GetMe {\n        getMe {\n            id\n            email\n            role\n            createdAt\n        }\n    }\n": types.GetMeDocument,
 };
@@ -71,6 +73,14 @@ export function gql(source: "\n    mutation UpdateServiceTag(\n        $serviceT
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n    mutation RemoveServiceTag($serviceTagId: Int!) {\n        removeServiceTag(serviceTagId: $serviceTagId) {\n            id\n        }\n    }    \n"): (typeof documents)["\n    mutation RemoveServiceTag($serviceTagId: Int!) {\n        removeServiceTag(serviceTagId: $serviceTagId) {\n            id\n        }\n    }    \n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    query GetAdminStaff {\n        getStaff {\n            id\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    }\n"): (typeof documents)["\n    query GetAdminStaff {\n        getStaff {\n            id\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n"): (typeof documents)["\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
