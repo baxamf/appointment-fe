@@ -23,6 +23,7 @@ export default function AdminStaffInfo() {
           <Flex style={{ flex: "1 0 20vw" }}>
             <Image
               src={profile?.avatar || ""}
+              fallback="https://images.pexels.com/photos/4459231/pexels-photo-4459231.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               style={{
                 objectFit: "cover",
                 aspectRatio: "1/1",

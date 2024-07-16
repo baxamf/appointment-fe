@@ -23,6 +23,7 @@ const documents = {
     "\n    mutation RemoveServiceTag($serviceTagId: Int!) {\n        removeServiceTag(serviceTagId: $serviceTagId) {\n            id\n        }\n    }    \n": types.RemoveServiceTagDocument,
     "\n    query GetAdminStaff {\n        getStaff {\n            id\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    }\n": types.GetAdminStaffDocument,
     "\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n": types.GetAdminStaffInfoDocument,
+    "\n    mutation CreateStaff(\n        $createUserInput: CreateUserInput!\n        $createUserProfileInput: CreateUserProfileInput!\n    ) {\n        createUser(\n            createUserInput: $createUserInput\n            createUserProfileInput: $createUserProfileInput\n        ) {\n            id\n        }\n    }    \n": types.CreateStaffDocument,
     "\n  mutation Login($loginInput: LoginInput!) {\n    login(loginInput: $loginInput) {\n      accessToken\n      user {\n        role\n      }\n    }\n  }\n": types.LoginDocument,
     "\n    query GetMe {\n        getMe {\n            id\n            email\n            role\n            createdAt\n        }\n    }\n": types.GetMeDocument,
 };
@@ -81,6 +82,10 @@ export function gql(source: "\n    query GetAdminStaff {\n        getStaff {\n  
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n"): (typeof documents)["\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    mutation CreateStaff(\n        $createUserInput: CreateUserInput!\n        $createUserProfileInput: CreateUserProfileInput!\n    ) {\n        createUser(\n            createUserInput: $createUserInput\n            createUserProfileInput: $createUserProfileInput\n        ) {\n            id\n        }\n    }    \n"): (typeof documents)["\n    mutation CreateStaff(\n        $createUserInput: CreateUserInput!\n        $createUserProfileInput: CreateUserProfileInput!\n    ) {\n        createUser(\n            createUserInput: $createUserInput\n            createUserProfileInput: $createUserProfileInput\n        ) {\n            id\n        }\n    }    \n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

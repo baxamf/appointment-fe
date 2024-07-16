@@ -1,4 +1,4 @@
-import { Card, CardProps } from "antd";
+import { Card, CardProps, Flex } from "antd";
 import { PropsWithChildren } from "react";
 
 type AdminStaffListCard = PropsWithChildren & CardProps;
@@ -12,21 +12,16 @@ export default function AdminStaffListCard({
     <Card
       hoverable
       style={{
-        flex: "0 0 32vw",
+        flex: "1 0 32vw",
         padding: "2vh 5vw",
         textAlign: "left",
         ...style,
       }}
-      styles={{
-        body: {
-          display: "flex",
-          flexDirection: "column",
-          gap: "2vh",
-        },
-      }}
       {...props}
     >
-      {children}
+      <Flex vertical gap="4vh">
+        {children}
+      </Flex>
     </Card>
   );
 }

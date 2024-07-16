@@ -39,3 +39,17 @@ export const GET_ADMIN_STAFF_INFO = gql(`
         }
     } 
 `);
+
+export const CREATE_STAFF = gql(`
+    mutation CreateStaff(
+        $createUserInput: CreateUserInput!
+        $createUserProfileInput: CreateUserProfileInput!
+    ) {
+        createUser(
+            createUserInput: $createUserInput
+            createUserProfileInput: $createUserProfileInput
+        ) {
+            id
+        }
+    }    
+`);
