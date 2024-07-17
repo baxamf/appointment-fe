@@ -17,7 +17,7 @@ export default function AdminServicesList() {
     return (
       <Flex gap="2vw" wrap>
         {adminServices?.map((service) => (
-          <AdminServicesListItem key={service.id} service={service} />
+          <AdminServicesListItem key={service.id} {...service} />
         ))}
       </Flex>
     );

@@ -4,16 +4,7 @@ import ButtonLink from "../buttons/ButtonLink";
 
 export default function PublicHeader() {
   return (
-    <Header
-      style={{
-        display: "flex",
-        gap: 20,
-        width: "100%",
-        alignItems: "center",
-        zIndex: 1,
-        backgroundColor: "transparent",
-      }}
-    >
+    <Header className="header">
       <ButtonLink style={{ paddingLeft: 0 }}>AppLogo</ButtonLink>
 
       <PublicNav />

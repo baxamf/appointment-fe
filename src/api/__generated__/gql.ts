@@ -25,7 +25,8 @@ const documents = {
     "\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n": types.GetAdminStaffInfoDocument,
     "\n    mutation CreateStaff(\n        $createUserInput: CreateUserInput!\n        $createUserProfileInput: CreateUserProfileInput!\n    ) {\n        createUser(\n            createUserInput: $createUserInput\n            createUserProfileInput: $createUserProfileInput\n        ) {\n            id\n        }\n    }    \n": types.CreateStaffDocument,
     "\n  mutation Login($loginInput: LoginInput!) {\n    login(loginInput: $loginInput) {\n      accessToken\n      user {\n        role\n      }\n    }\n  }\n": types.LoginDocument,
-    "\n    query GetMe {\n        getMe {\n            id\n            email\n            role\n            createdAt\n        }\n    }\n": types.GetMeDocument,
+    "\n    query GetMyStaffServices {\n        getMyStaffServices {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n            }\n        }\n    }\n": types.GetMyStaffServicesDocument,
+    "\n    query GetMyStaffService($staffServiceId: Int!) {\n        getStaffService(staffServiceId: $staffServiceId) {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n                description\n                image\n            }\n        }\n    }\n": types.GetMyStaffServiceDocument,
 };
 
 /**
@@ -93,7 +94,11 @@ export function gql(source: "\n  mutation Login($loginInput: LoginInput!) {\n   
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query GetMe {\n        getMe {\n            id\n            email\n            role\n            createdAt\n        }\n    }\n"): (typeof documents)["\n    query GetMe {\n        getMe {\n            id\n            email\n            role\n            createdAt\n        }\n    }\n"];
+export function gql(source: "\n    query GetMyStaffServices {\n        getMyStaffServices {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n            }\n        }\n    }\n"): (typeof documents)["\n    query GetMyStaffServices {\n        getMyStaffServices {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n            }\n        }\n    }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    query GetMyStaffService($staffServiceId: Int!) {\n        getStaffService(staffServiceId: $staffServiceId) {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n                description\n                image\n            }\n        }\n    }\n"): (typeof documents)["\n    query GetMyStaffService($staffServiceId: Int!) {\n        getStaffService(staffServiceId: $staffServiceId) {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n                description\n                image\n            }\n        }\n    }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

@@ -1,13 +1,16 @@
 import { lazy } from "react";
-import { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 import RouteGuard from "../RouteGuard";
 import StaffLayout from "../../layouts/StaffLayout";
 import { UserRole } from "../../api/__generated__/graphql";
+import { RoutePaths } from "../enums";
 
 const StaffServices = lazy(
   () => import("../../features/staff/staff-services/StaffServices")
 );
-const Schedule = lazy(() => import("../../features/staff/schedule/Schedule"));
+const StaffSchedulePage = lazy(
+  () => import("../../features/staff/schedule/pages/StaffSchedulePage")
+);
 
 export default function StaffRoutes(): RouteObject[] {
   return [
@@ -17,15 +20,19 @@ export default function StaffRoutes(): RouteObject[] {
           <StaffLayout />
         </RouteGuard>
       ),
-      path: "staff/",
+      path: "staff/*",
       children: [
         {
           index: true,
-          element: <Schedule />,
+          element: <Navigate to={RoutePaths.STAFF_SERVICES} />,
         },
         {
-          path: "service/*",
+          path: "services/*",
           element: <StaffServices />,
+        },
+        {
+          path: "schedule/*",
+          element: <StaffSchedulePage />,
         },
       ],
     },

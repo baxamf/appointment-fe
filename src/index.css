@@ -61,3 +61,7 @@ img {
   display: block;
 }
 
+*::selection {
+  background-color:#481E14;
+}
+

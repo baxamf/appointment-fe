@@ -7,15 +7,10 @@ export default function AdminHeader() {
   const user = useUser();
 
   return (
-    <Header
-      style={{
-        width: "100%",
-        display: "flex",
-        gap: "2%",
-        alignItems: "center",
-      }}
-    >
-      <ButtonLink style={{ marginRight: "auto" }}>AppLogo</ButtonLink>
+    <Header className="header">
+      <ButtonLink style={{ marginRight: "auto", paddingLeft: 0 }}>
+        AppLogo
+      </ButtonLink>
 
       <Typography.Title level={4}>{user?.role}</Typography.Title>
 

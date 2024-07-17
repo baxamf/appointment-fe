@@ -10,7 +10,7 @@ export default function LoginForm() {
   const { loginUser, loginError, loginLoading } = useLoginUser();
 
   const formik = useFormik<LoginInput>({
-    initialValues: { email: "test@mail.com", password: "password" },
+    initialValues: { email: "", password: "" },
     validationSchema: loginValidationSchema,
     onSubmit: loginUser,
   });

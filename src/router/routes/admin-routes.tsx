@@ -1,8 +1,9 @@
 import { lazy } from "react";
-import { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 import RouteGuard from "../RouteGuard";
 import AdminLayout from "../../layouts/AdminLayout";
 import { UserRole } from "../../api/__generated__/graphql";
+import { RoutePaths } from "../enums";
 
 const AdminServices = lazy(
   () => import("../../features/admin/admin-services/AdminServices")
@@ -19,8 +20,12 @@ export default function AdminRoutes(): RouteObject[] {
           <AdminLayout />
         </RouteGuard>
       ),
-      path: "admin/",
+      path: "admin/*",
       children: [
+        {
+          index: true,
+          element: <Navigate to={RoutePaths.ADMIN_SERVICES} />,
+        },
         {
           path: "services/*",
           element: <AdminServices />,

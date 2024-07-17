@@ -1,50 +1,47 @@
-import { Card, Divider, Typography, Image } from "antd";
+import { Card, Divider, Typography, Image, Flex } from "antd";
 import { GetAdminCompanyServicesQuery } from "../../../../api/__generated__/graphql";
 import { useNavigateToDetail } from "../../../../common/hooks/useNavigateToDetail";
 
-type AdminServicesListItemProps = {
-  service: GetAdminCompanyServicesQuery["getCompanyServices"][0];
-};
+type AdminServicesListItemProps =
+  GetAdminCompanyServicesQuery["getCompanyServices"][0];
 
 export default function AdminServicesListItem({
-  service,
+  id,
+  title,
+  description,
+  image,
 }: AdminServicesListItemProps) {
-  const { navigateToDetail } = useNavigateToDetail(service.id);
+  const { navigateToDetail } = useNavigateToDetail(id);
 
   return (
     <Card
       hoverable
       onClick={navigateToDetail}
       style={{ flex: "1 0 32vw", padding: "2vh 5vw" }}
-      styles={{
-        body: {
-          display: "flex",
-          flexDirection: "column",
-          gap: "2vh",
-        },
-      }}
     >
-      <div>
-        <Divider>service title</Divider>
-        <Typography.Title level={2}>{service.title}</Typography.Title>
-      </div>
+      <Flex vertical gap="2vh">
+        <div>
+          <Divider>service title</Divider>
+          <Typography.Title level={2}>{title}</Typography.Title>
+        </div>
 
-      <div>
-        <Divider>service description</Divider>
-        <Typography.Paragraph type="secondary">
-          {service.description}
-        </Typography.Paragraph>
-      </div>
+        <div>
+          <Divider>service description</Divider>
+          <Typography.Paragraph type="secondary">
+            {description}
+          </Typography.Paragraph>
+        </div>
 
-      <div>
-        <Divider>service Image</Divider>
-        <Image
-          src={service.image}
-          preview={false}
-          width="100%"
-          style={{ objectFit: "cover", aspectRatio: "16/10" }}
-        />
-      </div>
+        <div>
+          <Divider>service Image</Divider>
+          <Image
+            src={image}
+            preview={false}
+            width="100%"
+            style={{ objectFit: "cover", aspectRatio: "16/10" }}
+          />
+        </div>
+      </Flex>
     </Card>
   );
 }
