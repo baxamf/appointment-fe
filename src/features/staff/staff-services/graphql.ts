@@ -33,3 +33,21 @@ export const GET_MY_STAFF_SERVICE = gql(`
         }
     }
 `);
+
+export const UPDATE_MY_STAFF_SERVICE = gql(`
+    mutation UpdateMyStaffService(
+        $staffServiceId: Int!
+        $updateStaffServiceInput: UpdateStaffServiceInput!
+    ) {
+        updateStaffService(
+            staffServiceId: $staffServiceId
+            updateStaffServiceInput: $updateStaffServiceInput
+        ) {
+            title
+            description
+            image
+            price
+            duration
+        }
+    }
+`);

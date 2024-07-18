@@ -6,6 +6,7 @@ import {
   InMemoryCache,
   Observable,
 } from "@apollo/client";
+import { removeTypenameFromVariables } from "@apollo/client/link/remove-typename";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { StorageService } from "../store/StorageService";
@@ -19,11 +20,14 @@ export const REFRESH = gql(`
   }
 `);
 
+const removeTypenameLink = removeTypenameFromVariables();
+
 const httpLink = new HttpLink({ uri: import.meta.env.VITE_API_URL });
 
 const authLink = setContext((_, { headers }) => ({
   headers: {
     ...headers,
+    "Apollo-Require-Preflight": true,
     authorization: StorageService.getBearerToken(),
   },
 }));
@@ -66,7 +70,7 @@ const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 });
 
 const apolloClient = new ApolloClient({
-  link: ApolloLink.from([errorLink, authLink, httpLink]),
+  link: ApolloLink.from([errorLink, authLink, removeTypenameLink, httpLink]),
   cache: new InMemoryCache(),
   defaultOptions: {
     watchQuery: {

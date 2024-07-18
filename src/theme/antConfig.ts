@@ -19,6 +19,7 @@ export const darkTheme: ThemeConfig = {
       fontSize: 16,
       lineHeight: 2,
       paddingBlock: 5,
+      colorBgContainer: "transparent",
     },
     Tag: {
       defaultBg: "rgba(72, 30, 20, .5)",

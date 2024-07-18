@@ -23,7 +23,7 @@ export default function StaffServiceListItem({
       onClick={navigateToDetail}
       style={{ flex: 1, padding: "2vh 5vw" }}
     >
-      <Flex gap="4vh" wrap>
+      <Flex gap="4vw" wrap>
         <div style={{ width: "100%" }}>
           <Divider>main service title</Divider>
           <Typography.Title
@@ -34,7 +34,7 @@ export default function StaffServiceListItem({
           </Typography.Title>
         </div>
 
-        <Flex gap="4vh" vertical flex="1 0 25vw" wrap>
+        <Flex gap="4vh" vertical flex="1 0 24vw" wrap>
           <div style={{ flex: "1 0" }}>
             <Divider>title</Divider>
             <Typography.Title level={3}>{title}</Typography.Title>
@@ -46,7 +46,7 @@ export default function StaffServiceListItem({
           </div>
         </Flex>
 
-        <div style={{ flex: "1 0 25vw" }}>
+        <div style={{ flex: "1 0 24vw" }}>
           <Divider>image</Divider>
           {!!image && (
             <Image
@@ -58,13 +58,13 @@ export default function StaffServiceListItem({
           )}
         </div>
 
-        <Flex gap="4vh" flex="1 1 25vw" wrap>
-          <div style={{ flex: "1 0 25vw" }}>
+        <Flex gap="4vw" flex="1 1 25vw" wrap>
+          <div style={{ flex: "1 0 20vw" }}>
             <Divider>duration</Divider>
             <Typography.Title level={4}>{duration} min</Typography.Title>
           </div>
 
-          <div style={{ flex: "1 0 25vw" }}>
+          <div style={{ flex: "1 0 20vw" }}>
             <Divider>price</Divider>
             <Typography.Title level={4}>${price}</Typography.Title>
           </div>

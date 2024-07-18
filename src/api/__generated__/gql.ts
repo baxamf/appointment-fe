@@ -27,6 +27,7 @@ const documents = {
     "\n  mutation Login($loginInput: LoginInput!) {\n    login(loginInput: $loginInput) {\n      accessToken\n      user {\n        role\n      }\n    }\n  }\n": types.LoginDocument,
     "\n    query GetMyStaffServices {\n        getMyStaffServices {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n            }\n        }\n    }\n": types.GetMyStaffServicesDocument,
     "\n    query GetMyStaffService($staffServiceId: Int!) {\n        getStaffService(staffServiceId: $staffServiceId) {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n                description\n                image\n            }\n        }\n    }\n": types.GetMyStaffServiceDocument,
+    "\n    mutation UpdateMyStaffService(\n        $staffServiceId: Int!\n        $updateStaffServiceInput: UpdateStaffServiceInput!\n    ) {\n        updateStaffService(\n            staffServiceId: $staffServiceId\n            updateStaffServiceInput: $updateStaffServiceInput\n        ) {\n            title\n            description\n            image\n            price\n            duration\n        }\n    }\n": types.UpdateMyStaffServiceDocument,
 };
 
 /**
@@ -99,6 +100,10 @@ export function gql(source: "\n    query GetMyStaffServices {\n        getMyStaf
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n    query GetMyStaffService($staffServiceId: Int!) {\n        getStaffService(staffServiceId: $staffServiceId) {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n                description\n                image\n            }\n        }\n    }\n"): (typeof documents)["\n    query GetMyStaffService($staffServiceId: Int!) {\n        getStaffService(staffServiceId: $staffServiceId) {\n            id\n            title\n            description\n            image\n            price\n            duration\n            service {\n                title\n                description\n                image\n            }\n        }\n    }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    mutation UpdateMyStaffService(\n        $staffServiceId: Int!\n        $updateStaffServiceInput: UpdateStaffServiceInput!\n    ) {\n        updateStaffService(\n            staffServiceId: $staffServiceId\n            updateStaffServiceInput: $updateStaffServiceInput\n        ) {\n            title\n            description\n            image\n            price\n            duration\n        }\n    }\n"): (typeof documents)["\n    mutation UpdateMyStaffService(\n        $staffServiceId: Int!\n        $updateStaffServiceInput: UpdateStaffServiceInput!\n    ) {\n        updateStaffService(\n            staffServiceId: $staffServiceId\n            updateStaffServiceInput: $updateStaffServiceInput\n        ) {\n            title\n            description\n            image\n            price\n            duration\n        }\n    }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

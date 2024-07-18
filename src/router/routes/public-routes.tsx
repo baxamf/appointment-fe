@@ -1,8 +1,8 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 import PublicLayout from "../../layouts/PublicLayout";
+import Home from "../../features/public/home/Home";
 
-const Home = lazy(() => import("../../features/public/home/Home"));
 const About = lazy(() => import("../../features/public/about/About"));
 const Services = lazy(() => import("../../features/public/services/Services"));
 const Artists = lazy(() => import("../../features/public/artists/Artists"));
