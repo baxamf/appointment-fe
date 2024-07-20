@@ -1,4 +1,4 @@
-import { Image, Typography } from "antd";
+import { Image, theme, Typography } from "antd";
 import { GetAdminStaffQuery } from "../../../../api/__generated__/graphql";
 import { useNavigateToDetail } from "../../../../common/hooks/useNavigateToDetail";
 import AdminStaffListCard from "../ui/AdminStaffListCard";
@@ -10,6 +10,7 @@ export default function AdminStaffListItem({
   profile,
 }: AdminStaffListItemProps) {
   const { navigateToDetail } = useNavigateToDetail(id);
+  const { token } = theme.useToken();
 
   return (
     <AdminStaffListCard onClick={navigateToDetail}>
@@ -18,12 +19,21 @@ export default function AdminStaffListItem({
         fallback="https://images.pexels.com/photos/4459231/pexels-photo-4459231.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         preview={false}
         width="100%"
-        style={{ objectFit: "cover", aspectRatio: "1/1" }}
+        style={{ objectFit: "cover", aspectRatio: "3/4" }}
       />
 
-      <Typography.Title title="123123" level={2}>
+      <Typography.Title level={4}>
         {[profile?.firstName, profile?.lastName].join(" ")}
+        {!!profile?.nickName && (
+          <div
+            style={{ color: token.colorTextSecondary }}
+          >{`«${profile.nickName}»`}</div>
+        )}
       </Typography.Title>
+
+      <Typography.Text type="secondary">
+        {profile?.specialization}
+      </Typography.Text>
     </AdminStaffListCard>
   );
 }

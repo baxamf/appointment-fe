@@ -15,11 +15,11 @@ export default function AdminStaffList() {
   if (adminStaff)
     return (
       <Flex gap="2vw" wrap>
-        <AddStaffListCard />
-
         {adminStaff.map((staff) => (
           <AdminStaffListItem key={staff.id} {...staff} />
         ))}
+
+        <AddStaffListCard />
       </Flex>
     );
 }

@@ -3,6 +3,7 @@ import Loading from "../../../../common/components/loading/Loading";
 import ErrorPage from "../../../../pages/Error";
 import { useGetMyStaffServices } from "../hooks/useGetMyStaffServices";
 import StaffServiceListItem from "./StaffServiceListItem";
+import AddStaffServiceCard from "./ui/AddStaffServiceCard";
 
 export default function StaffServicesList() {
   const { staffServices, staffServicesLoading, staffServicesError } =
@@ -15,10 +16,12 @@ export default function StaffServicesList() {
 
   if (staffServices)
     return (
-      <Flex gap="2vw" wrap>
+      <Flex gap="6vw" vertical wrap>
         {staffServices.map((service) => (
           <StaffServiceListItem key={service.id} {...service} />
         ))}
+
+        <AddStaffServiceCard />
       </Flex>
     );
 }

@@ -63,7 +63,7 @@ export default function LoginForm() {
             size="large"
             type="primary"
             htmlType="submit"
-            disabled={!formik.isValid || loginLoading}
+            disabled={!formik.isValid || loginLoading || !formik.dirty}
           >
             Submit
           </Button>

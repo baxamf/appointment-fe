@@ -21,6 +21,11 @@ export const darkTheme: ThemeConfig = {
       paddingBlock: 5,
       colorBgContainer: "transparent",
     },
+    Select: {
+      fontSize: 16,
+      optionPadding: "2vh",
+      colorBgContainer: "transparent",
+    },
     Tag: {
       defaultBg: "rgba(72, 30, 20, .5)",
       colorBorder: "rgb(72, 30, 20)",
@@ -35,6 +40,7 @@ export const darkTheme: ThemeConfig = {
     },
     Button: {
       fontWeight: "bold",
+      colorBgContainer: "transparent",
       paddingBlock: 20,
       paddingInline: 40,
     },
@@ -49,7 +55,6 @@ export const darkTheme: ThemeConfig = {
       labelColor: "rgb(72, 30, 20)",
     },
   },
-  algorithm: theme.darkAlgorithm,
   token: {
     fontSize: 16,
     fontFamily: "Inter",
@@ -63,4 +68,5 @@ export const darkTheme: ThemeConfig = {
     colorBorderSecondary: "rgba(72, 30, 20, .3)",
     borderRadius: 3,
   },
+  algorithm: theme.darkAlgorithm,
 };

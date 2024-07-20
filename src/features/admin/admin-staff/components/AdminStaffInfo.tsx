@@ -26,7 +26,7 @@ export default function AdminStaffInfo() {
               fallback="https://images.pexels.com/photos/4459231/pexels-photo-4459231.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               style={{
                 objectFit: "cover",
-                aspectRatio: "1/1",
+                aspectRatio: "3/4",
               }}
             />
           </Flex>
@@ -34,7 +34,18 @@ export default function AdminStaffInfo() {
           <Flex vertical gap="2vh" style={{ flex: "1 0 25vw" }}>
             <Typography.Title level={2}>
               {[profile.firstName, profile.lastName].join(" ")}
+              {!!profile?.nickName && (
+                <span
+                  style={{ color: token.colorTextSecondary }}
+                >{` «${profile.nickName}»`}</span>
+              )}
             </Typography.Title>
+
+            <Typography.Text
+              style={{ fontWeight: "bold", color: token.colorTextSecondary }}
+            >
+              {profile.specialization}
+            </Typography.Text>
 
             <Typography.Paragraph type="secondary">
               {profile.bio}

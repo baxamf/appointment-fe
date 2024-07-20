@@ -20,7 +20,7 @@ export default function AdminServicesListItem({
       style={{ flex: "1 0 32vw", padding: "2vh 5vw" }}
     >
       <Flex vertical gap="2vh">
-        <div>
+        <div style={{ flex: "1 0 17vh" }}>
           <Divider>service title</Divider>
           <Typography.Title level={2}>{title}</Typography.Title>
         </div>

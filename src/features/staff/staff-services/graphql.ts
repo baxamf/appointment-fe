@@ -20,16 +20,12 @@ export const GET_MY_STAFF_SERVICE = gql(`
     query GetMyStaffService($staffServiceId: Int!) {
         getStaffService(staffServiceId: $staffServiceId) {
             id
+            serviceId
             title
             description
             image
             price
             duration
-            service {
-                title
-                description
-                image
-            }
         }
     }
 `);
@@ -43,6 +39,7 @@ export const UPDATE_MY_STAFF_SERVICE = gql(`
             staffServiceId: $staffServiceId
             updateStaffServiceInput: $updateStaffServiceInput
         ) {
+            serviceId
             title
             description
             image
@@ -50,4 +47,25 @@ export const UPDATE_MY_STAFF_SERVICE = gql(`
             duration
         }
     }
+`);
+
+export const GET_COMPANY_SERVICES_FOR_STAFF_SERVICE_CREATE = gql(`
+    query GetCompanyServicesForStaffServiceCreate {
+        getCompanyServices {
+            id
+            title
+            description
+            image
+        }
+    }
+`);
+
+export const CREATE_STAFF_SERVICE = gql(`
+    mutation CreateStaffService(
+        $createStaffServiceInput: CreateStaffServiceInput!
+    ) {
+        createStaffService(createStaffServiceInput: $createStaffServiceInput) {
+            id
+        }
+    }    
 `);

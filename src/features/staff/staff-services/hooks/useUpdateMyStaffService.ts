@@ -7,9 +7,7 @@ import { FormikHelpers } from "formik";
 export function useUpdateMyStaffService() {
   const { staffServiceId } = useParams();
 
-  const [update, { loading: updateLoading, error: updateError }] = useMutation(
-    UPDATE_MY_STAFF_SERVICE
-  );
+  const [update, { loading, error }] = useMutation(UPDATE_MY_STAFF_SERVICE);
 
   const updateMyStaffService = async (
     updateStaffServiceInput: UpdateStaffServiceInput,
@@ -27,5 +25,10 @@ export function useUpdateMyStaffService() {
     }
   };
 
-  return { updateMyStaffService, updateLoading, updateError };
+  return {
+    updateMyStaffService,
+    error: !!error,
+    errorMessage: error?.message,
+    submitDisabled: loading,
+  };
 }

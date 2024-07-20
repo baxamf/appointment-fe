@@ -7,6 +7,8 @@ export const GET_ADMIN_STAFF = gql(`
             profile {
                 firstName
                 lastName
+                nickName
+                specialization
                 phone
                 avatar
             }
@@ -27,6 +29,8 @@ export const GET_ADMIN_STAFF_INFO = gql(`
             profile {
                 firstName
                 lastName
+                nickName
+                specialization
                 phone
                 avatar
                 bio

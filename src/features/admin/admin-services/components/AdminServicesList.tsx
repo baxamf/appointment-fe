@@ -3,6 +3,7 @@ import Loading from "../../../../common/components/loading/Loading";
 import ErrorPage from "../../../../pages/Error";
 import { useGetAdminCompanyServices } from "../hooks/useGetAdminCompanyServices";
 import AdminServicesListItem from "./AdminServicesListItem";
+import AddAdminServiceCard from "./ui/AddAdminServiceCard";
 
 export default function AdminServicesList() {
   const { adminServices, adminServicesError, adminServicesLoading } =
@@ -19,6 +20,8 @@ export default function AdminServicesList() {
         {adminServices?.map((service) => (
           <AdminServicesListItem key={service.id} {...service} />
         ))}
+
+        <AddAdminServiceCard />
       </Flex>
     );
 }

@@ -1,11 +1,11 @@
 import { FormikProvider, useFormik } from "formik";
 import {
+  CreateStaffServiceInput,
   GetCompanyServicesForStaffServiceCreateQuery,
-  GetMyStaffServiceQuery,
-  UpdateStaffServiceInput,
 } from "../../../../api/__generated__/graphql";
-import { useUpdateMyStaffService } from "../hooks/useUpdateMyStaffService";
-import StaffServiceForm from "./ui/StaffServiceForm";
+import { useCreateStaffService } from "../hooks/useCreateStaffService";
+import { createStaffServiceValidationSchema } from "../utils/formik/create-staff-service-validation-schema";
+import StaffServiceForm, { StaffServiceFormProps } from "./ui/StaffServiceForm";
 import { DefaultOptionType } from "antd/es/select";
 import { Typography } from "antd";
 import StaffServiceParentService from "./StaffServiceParentService";
@@ -17,20 +17,37 @@ type StaffServiceEditFormProps = {
     GetCompanyServicesForStaffServiceCreateQuery["getCompanyServices"],
     "__typename"
   >;
-  staffService: Omit<GetMyStaffServiceQuery["getStaffService"], "__typename">;
   options: DefaultOptionType[];
 };
 
-export default function StaffServiceEditForm({
-  staffService,
-  options,
+export default function StaffServiceCreateForm({
   companyServices,
+  options,
 }: StaffServiceEditFormProps) {
-  const { updateMyStaffService, ...formProps } = useUpdateMyStaffService();
+  const {
+    createStaffService,
+    createStaffServiceLoading,
+    createStaffServiceError,
+  } = useCreateStaffService();
 
-  const formik = useFormik<UpdateStaffServiceInput>({
-    initialValues: staffService,
-    onSubmit: updateMyStaffService,
+  const formProps: StaffServiceFormProps = {
+    options,
+    error: !!createStaffServiceError,
+    errorMessage: createStaffServiceError?.message,
+    submitDisabled: createStaffServiceLoading,
+  };
+
+  const formik = useFormik<CreateStaffServiceInput>({
+    validationSchema: createStaffServiceValidationSchema,
+    initialValues: {
+      title: "",
+      description: "",
+      image: "",
+      price: 0,
+      duration: 60,
+      serviceId: options[0].value as number,
+    },
+    onSubmit: createStaffService,
   });
 
   const companyService = useMemo(
@@ -56,10 +73,10 @@ export default function StaffServiceEditForm({
           style={{ marginBottom: "2vh" }}
           level={2}
         >
-          Staff Service
+          Staff service
         </Typography.Title>
 
-        <StaffServiceForm {...{ ...formProps, options }} />
+        <StaffServiceForm {...formProps} />
       </StaffServiceFormLayout>
     </FormikProvider>
   );
