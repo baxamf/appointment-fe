@@ -12,7 +12,7 @@ export default function AdminStaffListCard({
     <Card
       hoverable
       style={{
-        flex: "0 0 max(20vw, 400px)",
+        flex: "0 0 max(20vw, 300px)",
         padding: "2vh 2vw",
         textAlign: "left",
         ...style,

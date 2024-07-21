@@ -14,7 +14,7 @@ export default function AddStaffServiceCard() {
       style={{
         minHeight: "25vh",
         placeContent: "center",
-        border: `2px dashed ${token.colorTextSecondary}`,
+        border: `1px dashed ${token.colorTextSecondary}`,
         borderStyle: "dashed",
       }}
     >

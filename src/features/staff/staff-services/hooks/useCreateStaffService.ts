@@ -21,7 +21,8 @@ export function useCreateStaffService() {
 
   return {
     createStaffService,
-    createStaffServiceLoading: loading,
-    createStaffServiceError: error,
+    error: !!error,
+    errorMessage: error?.message,
+    submitDisabled: loading,
   };
 }

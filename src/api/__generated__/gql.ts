@@ -16,6 +16,7 @@ const documents = {
     "\n  query Refresh {\n    refresh {\n      accessToken\n    }\n  }\n": types.RefreshDocument,
     "\n    query GetAdminCompanyServices {\n        getCompanyServices {\n            id\n            title\n            description\n            image\n            order\n            tags {\n                title\n            }\n        }\n    }\n": types.GetAdminCompanyServicesDocument,
     "\n    query GetAdminCompanyService($companyServiceId: Int!) {\n        getCompanyService(companyServiceId: $companyServiceId) {\n            id\n            title\n            description\n            image\n            order\n        }\n    }    \n": types.GetAdminCompanyServiceDocument,
+    "\n    mutation CreateCompanyService(\n        $createCompanyServiceInput: CreateCompanyServiceInput!\n    ) {\n        createCompanyService(createCompanyServiceInput: $createCompanyServiceInput) {\n            id\n        }\n    }    \n": types.CreateCompanyServiceDocument,
     "\n    mutation UpdateCompanyService(\n        $companyServiceId: Int!\n        $updateCompanyServiceInput: UpdateCompanyServiceInput!\n    ) {\n        updateCompanyService(\n            updateCompanyServiceInput: $updateCompanyServiceInput\n            companyServiceId: $companyServiceId\n        ) {\n            id\n            title\n            description\n            image\n            order\n        }\n    }   \n": types.UpdateCompanyServiceDocument,
     "\n    query GetCompanyServiceTags($companyServiceId: Int!) {\n        getCompanyServiceTags(companyServiceId: $companyServiceId) {\n            id\n            title\n        }\n    }    \n": types.GetCompanyServiceTagsDocument,
     "\n    mutation CreateServiceTag(\n        $createServiceTagInput: CreateServiceTagInput!\n        $companyServiceId: Int\n    ) {\n        createServiceTag(\n            createServiceTagInput: $createServiceTagInput\n            companyServiceId: $companyServiceId\n        ) {\n            id\n        }\n    }   \n": types.CreateServiceTagDocument,
@@ -58,6 +59,10 @@ export function gql(source: "\n    query GetAdminCompanyServices {\n        getC
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n    query GetAdminCompanyService($companyServiceId: Int!) {\n        getCompanyService(companyServiceId: $companyServiceId) {\n            id\n            title\n            description\n            image\n            order\n        }\n    }    \n"): (typeof documents)["\n    query GetAdminCompanyService($companyServiceId: Int!) {\n        getCompanyService(companyServiceId: $companyServiceId) {\n            id\n            title\n            description\n            image\n            order\n        }\n    }    \n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    mutation CreateCompanyService(\n        $createCompanyServiceInput: CreateCompanyServiceInput!\n    ) {\n        createCompanyService(createCompanyServiceInput: $createCompanyServiceInput) {\n            id\n        }\n    }    \n"): (typeof documents)["\n    mutation CreateCompanyService(\n        $createCompanyServiceInput: CreateCompanyServiceInput!\n    ) {\n        createCompanyService(createCompanyServiceInput: $createCompanyServiceInput) {\n            id\n        }\n    }    \n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

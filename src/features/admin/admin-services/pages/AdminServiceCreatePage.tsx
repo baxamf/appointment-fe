@@ -1,3 +1,5 @@
+import AdminServiceCreate from "../components/AdminServiceCreate";
+
 export default function AdminServiceCreatePage() {
-  return <h1>AdminServiceCreatePage</h1>;
+  return <AdminServiceCreate />;
 }

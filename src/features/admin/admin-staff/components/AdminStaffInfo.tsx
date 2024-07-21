@@ -36,7 +36,9 @@ export default function AdminStaffInfo() {
               {[profile.firstName, profile.lastName].join(" ")}
               {!!profile?.nickName && (
                 <span
-                  style={{ color: token.colorTextSecondary }}
+                  style={{
+                    color: token.colorTextSecondary,
+                  }}
                 >{` «${profile.nickName}»`}</span>
               )}
             </Typography.Title>

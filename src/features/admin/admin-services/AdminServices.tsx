@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import AdminServiceCreatePage from "./pages/AdminServiceCreatePage";
-import AdminServiceEditPage from "./pages/AdminServiceEditPage";
+import AdminServiceDetailPage from "./pages/AdminServiceDetailPage";
 import AdminServicesPage from "./pages/AdminServicesPage";
 
 export default function AdminServices() {
@@ -8,7 +8,7 @@ export default function AdminServices() {
     <Routes>
       <Route index element={<AdminServicesPage />} />
       <Route path="create" element={<AdminServiceCreatePage />} />
-      <Route path=":companyServiceId" element={<AdminServiceEditPage />} />
+      <Route path=":companyServiceId" element={<AdminServiceDetailPage />} />
     </Routes>
   );
 }

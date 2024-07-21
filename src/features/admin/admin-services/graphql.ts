@@ -27,6 +27,16 @@ export const GET_ADMIN_COMPANY_SERVICE = gql(`
     }    
 `);
 
+export const CREATE_COMPANY_SERVICE = gql(`
+    mutation CreateCompanyService(
+        $createCompanyServiceInput: CreateCompanyServiceInput!
+    ) {
+        createCompanyService(createCompanyServiceInput: $createCompanyServiceInput) {
+            id
+        }
+    }    
+`);
+
 export const UPDATE_COMPANY_SERVICE = gql(`
     mutation UpdateCompanyService(
         $companyServiceId: Int!

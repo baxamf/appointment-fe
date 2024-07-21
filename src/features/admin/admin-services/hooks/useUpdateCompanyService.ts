@@ -3,15 +3,14 @@ import { UPDATE_COMPANY_SERVICE } from "../graphql";
 import { useParams } from "react-router-dom";
 import { UpdateCompanyServiceInput } from "../../../../api/__generated__/graphql";
 import { FormikHelpers } from "formik";
+import { FormMutationHookReturnType } from "../../../../common/types/form";
 
-export function useUpdateCompanyService() {
+export function useUpdateCompanyService(): FormMutationHookReturnType<UpdateCompanyServiceInput> {
   const { companyServiceId } = useParams();
 
-  const [update, { loading: updateLoading, error: updateError }] = useMutation(
-    UPDATE_COMPANY_SERVICE
-  );
+  const [update, { loading, error }] = useMutation(UPDATE_COMPANY_SERVICE);
 
-  const updateCompanyService = async (
+  const submitFormHandler = async (
     updateCompanyServiceInput: UpdateCompanyServiceInput,
     actions: FormikHelpers<UpdateCompanyServiceInput>
   ) => {
@@ -29,5 +28,10 @@ export function useUpdateCompanyService() {
     }
   };
 
-  return { updateCompanyService, updateLoading, updateError };
+  return {
+    submitFormHandler,
+    error: !!error,
+    errorMessage: error?.message,
+    submitDisabled: loading,
+  };
 }

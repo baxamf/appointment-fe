@@ -5,7 +5,7 @@ import {
 } from "../../../../api/__generated__/graphql";
 import { useCreateStaffService } from "../hooks/useCreateStaffService";
 import { createStaffServiceValidationSchema } from "../utils/formik/create-staff-service-validation-schema";
-import StaffServiceForm, { StaffServiceFormProps } from "./ui/StaffServiceForm";
+import StaffServiceForm from "./ui/StaffServiceForm";
 import { DefaultOptionType } from "antd/es/select";
 import { Typography } from "antd";
 import StaffServiceParentService from "./StaffServiceParentService";
@@ -24,18 +24,7 @@ export default function StaffServiceCreateForm({
   companyServices,
   options,
 }: StaffServiceEditFormProps) {
-  const {
-    createStaffService,
-    createStaffServiceLoading,
-    createStaffServiceError,
-  } = useCreateStaffService();
-
-  const formProps: StaffServiceFormProps = {
-    options,
-    error: !!createStaffServiceError,
-    errorMessage: createStaffServiceError?.message,
-    submitDisabled: createStaffServiceLoading,
-  };
+  const { createStaffService, ...formProps } = useCreateStaffService();
 
   const formik = useFormik<CreateStaffServiceInput>({
     validationSchema: createStaffServiceValidationSchema,
@@ -76,7 +65,7 @@ export default function StaffServiceCreateForm({
           Staff service
         </Typography.Title>
 
-        <StaffServiceForm {...formProps} />
+        <StaffServiceForm {...{ ...formProps, options }} />
       </StaffServiceFormLayout>
     </FormikProvider>
   );

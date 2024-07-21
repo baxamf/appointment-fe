@@ -24,6 +24,7 @@ export default function AdminServiceEditTags() {
           if (edit.inputTagId === tag.id) {
             return (
               <Input
+                style={{ width: "max-content" }}
                 ref={edit.ref}
                 key={tag.id}
                 value={edit.value}
@@ -55,6 +56,7 @@ export default function AdminServiceEditTags() {
 
         {create.visible ? (
           <Input
+            style={{ width: "max-content" }}
             ref={create.ref}
             value={create.value}
             onChange={create.change}

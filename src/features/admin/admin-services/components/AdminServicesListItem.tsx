@@ -17,22 +17,20 @@ export default function AdminServicesListItem({
     <Card
       hoverable
       onClick={navigateToDetail}
-      style={{ flex: "1 0 32vw", padding: "2vh 5vw" }}
+      style={{ padding: "2vh 5vw", textAlign: "left" }}
     >
-      <Flex vertical gap="2vh">
-        <div style={{ flex: "1 0 17vh" }}>
+      <Flex gap="4vw" wrap>
+        <div style={{ flex: "2 0 25vw" }}>
           <Divider>service title</Divider>
           <Typography.Title level={2}>{title}</Typography.Title>
-        </div>
 
-        <div>
           <Divider>service description</Divider>
           <Typography.Paragraph type="secondary">
             {description}
           </Typography.Paragraph>
         </div>
 
-        <div>
+        <div style={{ flex: "1 0 20vw" }}>
           <Divider>service Image</Divider>
           <Image
             src={image}

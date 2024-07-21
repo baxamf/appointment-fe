@@ -13,7 +13,7 @@ export default function AddStaffListCard() {
       onClick={() => navigate(RoutePaths.ADMIN_CREATE_STAFF)}
       style={{
         placeContent: "center",
-        border: `2px dashed ${token.colorTextSecondary}`,
+        border: `1px dashed ${token.colorTextSecondary}`,
         borderStyle: "dashed",
       }}
     >

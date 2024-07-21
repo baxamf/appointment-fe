@@ -16,7 +16,7 @@ import {
 import FormErrorMessage from "../../../../../common/components/errors/FormErrorMessage";
 import { DefaultOptionType } from "antd/es/select";
 
-export type StaffServiceFormProps = {
+type StaffServiceFormProps = {
   options: DefaultOptionType[];
   error: boolean;
   errorMessage?: string;
@@ -155,7 +155,7 @@ export default function StaffServiceForm({
         )}
       </Flex>
 
-      <Form.Item style={{ flex: "0 0 50vw" }}>
+      <Form.Item style={{ flex: "1 0 40vw" }}>
         <Button
           style={{ paddingBlock: "24px" }}
           type="primary"
