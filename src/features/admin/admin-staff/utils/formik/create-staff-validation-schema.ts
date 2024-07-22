@@ -14,5 +14,6 @@ export const createStaffValidationSchema = yup.object({
   createUserProfileInput: yup.object({
     firstName: yup.string().required("First name is required"),
     phone: yup.string().required("Phone number is required"),
+    specialization: yup.string().required("Specialization is required"),
   }),
 });

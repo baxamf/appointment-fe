@@ -13,10 +13,9 @@ export default function AdminStaffCreateForm() {
     validationSchema: createStaffValidationSchema,
     initialValues: {
       createUserInput: { email: "", password: "" },
-      createUserProfileInput: { firstName: "", phone: "" },
+      createUserProfileInput: { firstName: "", phone: "", specialization: "" },
     },
     onSubmit: createStaff,
-    validateOnMount: true,
   });
 
   return (
@@ -38,6 +37,7 @@ export default function AdminStaffCreateForm() {
           validateStatus={formik.errors.createUserInput?.email && "error"}
         >
           <Input
+            required
             name="createUserInput.email"
             value={formik.values.createUserInput.email || ""}
             onBlur={formik.handleBlur}
@@ -80,6 +80,24 @@ export default function AdminStaffCreateForm() {
         </Form.Item>
 
         <Form.Item<CreateStaffMutationVariables>
+          label="specialization"
+          validateStatus={
+            formik.errors.createUserProfileInput?.specialization && "error"
+          }
+        >
+          <Input.TextArea
+            name="createUserProfileInput.specialization"
+            spellCheck="false"
+            autoSize={true}
+            value={formik.values.createUserProfileInput.specialization || ""}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+          />
+
+          <FormErrorMessage name="createUserProfileInput.specialization" />
+        </Form.Item>
+
+        <Form.Item<CreateStaffMutationVariables>
           label="password"
           validateStatus={formik.errors.createUserInput?.password && "error"}
         >
@@ -98,7 +116,7 @@ export default function AdminStaffCreateForm() {
             size="large"
             type="primary"
             htmlType="submit"
-            disabled={createStaffLoading || !formik.isValid}
+            disabled={createStaffLoading || !formik.isValid || !formik.dirty}
           >
             Add new staff
           </Button>
