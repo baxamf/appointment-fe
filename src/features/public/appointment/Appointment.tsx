@@ -1,3 +1,5 @@
+import MakeAppointment from "./components/MakeAppointment";
+
 export default function Appointment() {
-  return <h1>Appointment</h1>;
+  return <MakeAppointment />;
 }

@@ -61,7 +61,6 @@ export type CompanyService = {
 };
 
 export type CreateAppointmentInput = {
-  customerId: Scalars['Int']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   images?: InputMaybe<Array<Scalars['String']['input']>>;
   staffId: Scalars['Int']['input'];
@@ -115,6 +114,20 @@ export type CreateUserSocialInput = {
   title: Scalars['String']['input'];
 };
 
+export type CustomerDataInput = {
+  email: Scalars['String']['input'];
+  firstName: Scalars['String']['input'];
+  phone: Scalars['String']['input'];
+};
+
+export type GetStaffInput = {
+  serviceId?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type GetStaffServicesInput = {
+  serviceId?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type LoginInput = {
   /** user email */
   email: Scalars['String']['input'];
@@ -160,6 +173,7 @@ export type MutationCancelAppointmentArgs = {
 
 export type MutationCreateAppointmentArgs = {
   createAppointmentInput: CreateAppointmentInput;
+  customerDataInput: CustomerDataInput;
 };
 
 
@@ -288,6 +302,11 @@ export type QueryGetCompanyServiceTagsArgs = {
 };
 
 
+export type QueryGetStaffArgs = {
+  getStaffInput?: InputMaybe<GetStaffInput>;
+};
+
+
 export type QueryGetStaffAppointmentsArgs = {
   staffUserId: Scalars['Int']['input'];
 };
@@ -295,6 +314,11 @@ export type QueryGetStaffAppointmentsArgs = {
 
 export type QueryGetStaffServiceArgs = {
   staffServiceId: Scalars['Int']['input'];
+};
+
+
+export type QueryGetStaffServicesArgs = {
+  getStaffServicesInput?: InputMaybe<GetStaffServicesInput>;
 };
 
 
@@ -325,7 +349,6 @@ export type StaffService = {
 };
 
 export type UpdateAppointmentInput = {
-  customerId?: InputMaybe<Scalars['Int']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['Int']['input'];
   images?: InputMaybe<Array<Scalars['String']['input']>>;
@@ -502,6 +525,33 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', accessToken: string, user: { __typename?: 'UserResponse', role: UserRole } } };
 
+export type CreateAppointmentMutationVariables = Exact<{
+  createAppointmentInput: CreateAppointmentInput;
+  customerDataInput: CustomerDataInput;
+}>;
+
+
+export type CreateAppointmentMutation = { __typename?: 'Mutation', createAppointment: { __typename?: 'Appointment', id: number, targetTime: any } };
+
+export type GetStaffForAppointmentQueryVariables = Exact<{
+  getStaffInput?: InputMaybe<GetStaffInput>;
+}>;
+
+
+export type GetStaffForAppointmentQuery = { __typename?: 'Query', getStaff: Array<{ __typename?: 'UserResponse', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, specialization?: string | null, phone: string, avatar?: string | null, bio?: string | null } | null }> };
+
+export type GetStaffServicesForAppointmentQueryVariables = Exact<{
+  getStaffServicesInput?: InputMaybe<GetStaffServicesInput>;
+}>;
+
+
+export type GetStaffServicesForAppointmentQuery = { __typename?: 'Query', getStaffServices: Array<{ __typename?: 'StaffService', id: number, title?: string | null, description?: string | null, image?: string | null, price?: number | null, duration: number, user: { __typename?: 'UserResponse', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, phone: string, avatar?: string | null } | null } }> };
+
+export type GetPublicCompanyServicesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPublicCompanyServicesQuery = { __typename?: 'Query', getCompanyServices: Array<{ __typename?: 'CompanyService', id: number, title: string, description: string, image: string, order: number, tags?: Array<{ __typename?: 'ServiceTag', title: string }> | null }> };
+
 export type GetMyStaffServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -548,6 +598,10 @@ export const GetAdminStaffDocument = {"kind":"Document","definitions":[{"kind":"
 export const GetAdminStaffInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAdminStaffInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staffId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staffId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"nickName"}},{"kind":"Field","name":{"kind":"Name","value":"specialization"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}}]}},{"kind":"Field","name":{"kind":"Name","value":"socials"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}}]}}]}}]} as unknown as DocumentNode<GetAdminStaffInfoQuery, GetAdminStaffInfoQueryVariables>;
 export const CreateStaffDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateStaff"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createUserInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createUserProfileInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserProfileInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createUserInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createUserInput"}}},{"kind":"Argument","name":{"kind":"Name","value":"createUserProfileInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createUserProfileInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateStaffMutation, CreateStaffMutationVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"role"}}]}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
+export const CreateAppointmentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateAppointment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createAppointmentInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateAppointmentInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customerDataInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerDataInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createAppointment"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createAppointmentInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createAppointmentInput"}}},{"kind":"Argument","name":{"kind":"Name","value":"customerDataInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customerDataInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"targetTime"}}]}}]}}]} as unknown as DocumentNode<CreateAppointmentMutation, CreateAppointmentMutationVariables>;
+export const GetStaffForAppointmentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetStaffForAppointment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getStaffInput"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"GetStaffInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStaff"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getStaffInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getStaffInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"nickName"}},{"kind":"Field","name":{"kind":"Name","value":"specialization"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}}]}}]}}]}}]} as unknown as DocumentNode<GetStaffForAppointmentQuery, GetStaffForAppointmentQueryVariables>;
+export const GetStaffServicesForAppointmentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetStaffServicesForAppointment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getStaffServicesInput"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"GetStaffServicesInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStaffServices"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getStaffServicesInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getStaffServicesInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"nickName"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetStaffServicesForAppointmentQuery, GetStaffServicesForAppointmentQueryVariables>;
+export const GetPublicCompanyServicesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPublicCompanyServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCompanyServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"order"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<GetPublicCompanyServicesQuery, GetPublicCompanyServicesQueryVariables>;
 export const GetMyStaffServicesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMyStaffServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getMyStaffServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}},{"kind":"Field","name":{"kind":"Name","value":"service"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<GetMyStaffServicesQuery, GetMyStaffServicesQueryVariables>;
 export const GetMyStaffServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMyStaffService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStaffService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"staffServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"serviceId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}}]}}]}}]} as unknown as DocumentNode<GetMyStaffServiceQuery, GetMyStaffServiceQueryVariables>;
 export const UpdateMyStaffServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateMyStaffService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateStaffServiceInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateStaffServiceInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateStaffService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"staffServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"updateStaffServiceInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateStaffServiceInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"serviceId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}}]}}]}}]} as unknown as DocumentNode<UpdateMyStaffServiceMutation, UpdateMyStaffServiceMutationVariables>;

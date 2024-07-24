@@ -10,12 +10,19 @@ export const darkTheme: ThemeConfig = {
       colorLink: "#481E14",
     },
     Divider: {
+      margin: 0,
       colorText: "rgb(72, 30, 20)",
       colorBgBase: "rgb(72, 30, 20)",
       fontSize: 14,
       algorithm: true,
     },
     Input: {
+      fontSize: 16,
+      lineHeight: 2,
+      paddingBlock: 5,
+      colorBgContainer: "transparent",
+    },
+    DatePicker: {
       fontSize: 16,
       lineHeight: 2,
       paddingBlock: 5,
