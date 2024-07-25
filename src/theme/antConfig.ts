@@ -27,6 +27,8 @@ export const darkTheme: ThemeConfig = {
       lineHeight: 2,
       paddingBlock: 5,
       colorBgContainer: "transparent",
+      cellHeight: 40,
+      cellWidth: 50,
     },
     Select: {
       fontSize: 16,

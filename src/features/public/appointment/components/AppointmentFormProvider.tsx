@@ -6,9 +6,10 @@ import {
   appointmentInitialValues,
   appointmentValidationSchema,
 } from "../utils/formik/appointment-formik-values";
+import ErrorPage from "../../../../pages/Error";
 
 export default function AppointmentFormProvider() {
-  const { onSubmit } = useCreateAppointment();
+  const { onSubmit, errorMessage } = useCreateAppointment();
 
   return (
     <Formik
@@ -16,7 +17,10 @@ export default function AppointmentFormProvider() {
       validationSchema={appointmentValidationSchema}
       onSubmit={onSubmit}
     >
-      <AppointmentForm />
+      <>
+        <AppointmentForm />
+        {errorMessage && <ErrorPage message={errorMessage} />}
+      </>
     </Formik>
   );
 }

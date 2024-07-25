@@ -24,7 +24,7 @@ export default function StaffRoutes(): RouteObject[] {
       children: [
         {
           index: true,
-          element: <Navigate to={RoutePaths.STAFF_SERVICES} />,
+          element: <Navigate to={RoutePaths.STAFF_SCHEDULE} />,
         },
         {
           path: "services/*",

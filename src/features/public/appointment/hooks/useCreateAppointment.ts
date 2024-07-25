@@ -6,11 +6,10 @@ export function useCreateAppointment() {
   const [create, { error, loading }] = useMutation(CREATE_APPOINTMENT);
 
   const onSubmit = async (variables: CreateAppointmentMutationVariables) => {
-    
     await create({
       variables,
     });
   };
 
-  return { onSubmit, loading, ErrorMessage: error?.message };
+  return { onSubmit, loading, errorMessage: error?.message };
 }

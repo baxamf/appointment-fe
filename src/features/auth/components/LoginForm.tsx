@@ -24,7 +24,7 @@ export default function LoginForm() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: 20,
+          gap: "2vh",
         }}
         initialValues={formik.initialValues}
         onSubmitCapture={formik.handleSubmit}
@@ -57,7 +57,7 @@ export default function LoginForm() {
           <FormErrorMessage name="password" />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item style={{ marginTop: 32 }}>
           <Button
             style={{ width: "100%", paddingBlock: "24px" }}
             size="large"

@@ -24,7 +24,7 @@ export default function ErrorPage({ message, ...props }: ErrorPageProps) {
           gap: "5vh",
         }}
       >
-        <Typography.Title type="secondary" level={2}>
+        <Typography.Title type="secondary" level={4}>
           {message}
         </Typography.Title>
 

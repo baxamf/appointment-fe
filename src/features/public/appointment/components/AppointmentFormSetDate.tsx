@@ -88,7 +88,9 @@ export default function AppointmentFormSetDate() {
 
       <Form.Item<CreateAppointmentMutationVariables>
         label="description"
-        validateStatus={formik.errors.customerDataInput?.phone && "error"}
+        validateStatus={
+          formik.errors.createAppointmentInput?.description && "error"
+        }
       >
         <Input.TextArea
           name="createAppointmentInput.description"

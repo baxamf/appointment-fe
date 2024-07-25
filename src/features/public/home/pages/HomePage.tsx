@@ -6,7 +6,7 @@ export default function HomePage() {
     <Flex vertical justify="space-evenly">
       <Flex vertical gap={20}>
         <Typography.Title level={1} style={{ zIndex: 1 }}>
-          Elevate Your Look: Exquisite Tattoos & Piercings by Experts
+          Elevate Your Look: Exquisite Tattoos by Experts
         </Typography.Title>
 
         <Typography.Paragraph
