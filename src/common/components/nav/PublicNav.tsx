@@ -29,13 +29,7 @@ export default function PublicNav() {
 
   return (
     <Menu
-      style={{
-        flex: 1,
-        border: "none",
-        fontWeight: "bold",
-        justifyContent: "center",
-        gap: 10,
-      }}
+      className="flex-1 border-none font-bold justify-center gap-4"
       mode="horizontal"
       selectedKeys={selectedKeys}
       items={items}

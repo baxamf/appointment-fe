@@ -1,4 +1,4 @@
-import { Button, Flex, Image, theme, Typography } from "antd";
+import { Button, Flex, Image, Typography } from "antd";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 import { GetStaffServicesForAppointmentQuery } from "../../../../../api/__generated__/graphql";
 
@@ -16,42 +16,24 @@ export default function AppointmentFormArtistScreen({
   user,
   ...service
 }: AppointmentFormArtistScreenProps) {
-  const { token } = theme.useToken();
-
   return (
     <Flex
-      gap="4vw"
-      style={{
-        padding: "6vh 4vw",
-      }}
-      wrap
+      className="gap-[5vw] flex-wrap justify-center px-10 py-20"
       onWheel={onWheel}
     >
       <div>
         <Image
           src={user.profile?.avatar || ""}
           height="60vh"
-          style={{ objectFit: "cover" }}
+          className="object-cover"
         />
       </div>
 
-      <Flex
-        vertical
-        gap="2vh"
-        style={{
-          flex: "0 0 40vw",
-          textAlign: "left",
-          alignSelf: "stretch",
-        }}
-      >
+      <Flex className="flex-col gap-[2vh] flex-1 basis-[400px] text-left">
         <Typography.Title level={2}>
           {[user.profile?.firstName, user.profile?.lastName].join(" ")}
           {!!user.profile?.nickName && (
-            <span
-              style={{
-                color: token.colorTextSecondary,
-              }}
-            >{` «${user.profile.nickName}»`}</span>
+            <span className="text-secondary">{` «${user.profile.nickName}»`}</span>
           )}
         </Typography.Title>
 
@@ -59,21 +41,10 @@ export default function AppointmentFormArtistScreen({
           {service.description}
         </Typography.Paragraph>
 
-        <Flex
-          gap="2vh"
-          style={{
-            flex: "1 0",
-            flexWrap: "wrap",
-            alignContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
+        <Flex className="gap-[2vh] flex-wrap items-center text-center">
           <Typography.Title
             type="secondary"
-            style={{
-              flex: "1 0 100%",
-            }}
+            className="flex-1 basis-full"
             level={4}
           >
             {service.title}
@@ -83,37 +54,26 @@ export default function AppointmentFormArtistScreen({
             <Image
               src={service.image || ""}
               height="20vh"
-              style={{ objectFit: "cover" }}
+              className="object-cover"
             />
           </div>
 
-          <div
-            style={{
-              flex: "1",
-            }}
-          >
+          <div className="flex-1">
             <Typography.Title level={4}>
               {service.duration + "min"}
             </Typography.Title>
           </div>
 
-          <div
-            style={{
-              flex: "1",
-            }}
-          >
+          <div className="flex-1">
             <Typography.Title level={4}>{"$" + service.price}</Typography.Title>
           </div>
         </Flex>
 
-        <Flex gap="2vw" justify="center">
+        <Flex className="gap-[2vw] justify-center mt-auto">
           <Button
             type="text"
             icon={<CaretLeftOutlined />}
             iconPosition="start"
-            style={{
-              width: "max-content",
-            }}
             onClick={resetMainService}
           >
             Choose other service
@@ -123,7 +83,6 @@ export default function AppointmentFormArtistScreen({
             type="primary"
             icon={<CaretRightOutlined />}
             iconPosition="end"
-            style={{ maxWidth: "max-content" }}
             onClick={() => setArtist(user.id, service.id)}
           >
             Select time

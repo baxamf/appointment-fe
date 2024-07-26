@@ -21,11 +21,7 @@ export default function LoginForm() {
     <FormikProvider value={formik}>
       <Form
         name="basic"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "2vh",
-        }}
+        className="flex flex-col gap-5"
         initialValues={formik.initialValues}
         onSubmitCapture={formik.handleSubmit}
         autoComplete="off"
@@ -57,9 +53,9 @@ export default function LoginForm() {
           <FormErrorMessage name="password" />
         </Form.Item>
 
-        <Form.Item style={{ marginTop: 32 }}>
+        <Form.Item className="mt-8">
           <Button
-            style={{ width: "100%", paddingBlock: "24px" }}
+            className="w-full"
             size="large"
             type="primary"
             htmlType="submit"
@@ -71,11 +67,7 @@ export default function LoginForm() {
 
         {loginError && <Alert message={loginError.message} type="error" />}
 
-        <Button
-          style={{ paddingBlock: 24 }}
-          size="large"
-          onClick={() => navigate("/")}
-        >
+        <Button size="large" onClick={() => navigate("/")}>
           Home
         </Button>
       </Form>

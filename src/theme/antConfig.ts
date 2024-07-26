@@ -50,8 +50,10 @@ export const darkTheme: ThemeConfig = {
     Button: {
       fontWeight: "bold",
       colorBgContainer: "transparent",
-      paddingBlock: 20,
+      paddingBlock: 24,
       paddingInline: 40,
+      paddingBlockLG: 24,
+      paddingInlineLG: 40,
     },
     Layout: {
       headerBg: "transparent",

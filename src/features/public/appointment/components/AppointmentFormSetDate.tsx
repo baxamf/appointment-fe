@@ -10,12 +10,7 @@ export default function AppointmentFormSetDate() {
 
   return (
     <Form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "2vh",
-        minWidth: "20vw",
-      }}
+      className="grid gap-[2vh] min-w-[400px]"
       initialValues={formik.initialValues}
       onSubmitCapture={formik.handleSubmit}
       autoComplete="off"
@@ -28,7 +23,7 @@ export default function AppointmentFormSetDate() {
         }
       >
         <DatePicker
-          style={{ width: "100%" }}
+          className="w-full"
           minDate={dayjs(new Date())}
           showTime
           name="createAppointmentInput.targetTime"
@@ -47,7 +42,6 @@ export default function AppointmentFormSetDate() {
         validateStatus={formik.errors.customerDataInput?.email && "error"}
       >
         <Input
-          //   required
           name="customerDataInput.email"
           id="customerDataInput.email"
           value={formik.values.customerDataInput.email || ""}
@@ -108,7 +102,7 @@ export default function AppointmentFormSetDate() {
         type="text"
         icon={<CaretLeftOutlined />}
         iconPosition="start"
-        style={{ maxWidth: "max-content" }}
+        className="w-max"
         onClick={() => formik.resetForm()}
       >
         Choose another artist
@@ -116,7 +110,7 @@ export default function AppointmentFormSetDate() {
 
       <Form.Item>
         <Button
-          style={{ padding: "24px", marginTop: "4vh" }}
+          className="mt-5"
           size="large"
           type="primary"
           htmlType="submit"

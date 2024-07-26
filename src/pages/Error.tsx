@@ -16,19 +16,13 @@ export default function ErrorPage({ message, ...props }: ErrorPageProps) {
     <Suspense fallback={<Loading />}>
       <Layout
         {...props}
-        style={{
-          height: "100vh",
-          width: "100%",
-          placeContent: "center",
-          textAlign: "center",
-          gap: "5vh",
-        }}
+        className="w-screen h-full place-content-center gap-6 bg-transparent"
       >
         <Typography.Title type="secondary" level={4}>
           {message}
         </Typography.Title>
 
-        <Flex gap="5vh" justify="center">
+        <Flex className="place-content-center gap-6">
           <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>
             Back
           </Button>

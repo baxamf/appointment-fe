@@ -8,7 +8,7 @@ export default function AppointmentForm() {
   const { view } = useAppointmentFormControls();
 
   return (
-    <Flex style={{ alignItems: "center" }}>
+    <Flex className="w-full items-center justify-center">
       {view.showMainServicesScreen && <AppointmentFormSetMainService />}
       {view.showArtistsScreen && <AppointmentFormSetArtist />}
       {view.showDateInfoScreen && <AppointmentFormSetDate />}

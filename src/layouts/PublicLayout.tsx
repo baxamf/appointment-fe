@@ -9,16 +9,14 @@ import blobBg from "../assets/svg/blobBg.svg";
 export default function PublicLayout() {
   return (
     <Layout
-      className="container"
+      className={`w-screen min-h-screen px-[10vw] text-center bg-cover`}
       style={{
         backgroundImage: `url(${blobBg})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
       }}
     >
       <PublicHeader />
 
-      <Layout.Content style={{ display: "flex" }}>
+      <Layout.Content className="grid">
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>

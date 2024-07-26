@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 type AppointmentContext = {
   serviceId: number | null;
-  setService: (serviceId: number) => void;
-  resetService: () => void;
+  setMainService: (serviceId: number) => void;
+  resetMainService: () => void;
 };
 
 export const AppointmentContext = React.createContext<AppointmentContext>(
@@ -19,8 +19,8 @@ export default function AppointmentProvider({
 
   const context = {
     serviceId,
-    setService: setServiceId,
-    resetService: () => setServiceId(null),
+    setMainService: setServiceId,
+    resetMainService: () => setServiceId(null),
   };
 
   return (

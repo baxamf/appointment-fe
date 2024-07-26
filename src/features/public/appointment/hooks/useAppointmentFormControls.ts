@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { AppointmentContext } from "../context/AppointmentProvider";
 
 export function useAppointmentFormControls() {
-  const { serviceId, resetService } = useContext(AppointmentContext);
+  const { serviceId, setMainService, resetMainService } =
+    useContext(AppointmentContext);
   const formik = useFormikContext<CreateAppointmentMutationVariables>();
 
   const setArtist = (staffId: number, staffServiceId: number) => {
@@ -17,7 +18,8 @@ export function useAppointmentFormControls() {
 
   return {
     formik,
-    resetMainService: resetService,
+    resetMainService,
+    setMainService,
     setArtist,
     view: {
       showMainServicesScreen: !serviceId,

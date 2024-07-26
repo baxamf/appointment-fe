@@ -3,11 +3,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 export default function Loading() {
   return (
-    <Layout
-      className="container"
-      style={{ display: "flex", justifyContent: "center" }}
-    >
-      <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
+    <Layout className="w-screen h-full justify-center bg-transparent">
+      <Spin indicator={<LoadingOutlined spin />} />
     </Layout>
   );
 }
