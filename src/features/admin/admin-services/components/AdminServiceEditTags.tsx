@@ -19,12 +19,12 @@ export default function AdminServiceEditTags() {
 
   if (tags)
     return (
-      <Flex wrap gap="2vh">
+      <Flex className="flex-wrap gap-[2vh]">
         {tags.map<React.ReactNode>((tag) => {
           if (edit.inputTagId === tag.id) {
             return (
               <Input
-                style={{ width: "max-content" }}
+                className="w-max"
                 ref={edit.ref}
                 key={tag.id}
                 value={edit.value}

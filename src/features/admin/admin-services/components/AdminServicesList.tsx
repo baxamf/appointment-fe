@@ -16,7 +16,7 @@ export default function AdminServicesList() {
 
   if (adminServices)
     return (
-      <Flex gap="4vh" wrap>
+      <Flex className="flex-wrap gap-[4vh]">
         {adminServices?.map((service) => (
           <AdminServicesListItem key={service.id} {...service} />
         ))}

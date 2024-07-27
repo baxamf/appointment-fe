@@ -1,4 +1,4 @@
-import { Card, Flex, Typography, Image, Button } from "antd";
+import { Card, Flex, Typography, Image, Button, Alert } from "antd";
 import { PhoneFilled, ClockCircleFilled } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { GetMyStaffAppointmentsQuery } from "../../../../../api/__generated__/graphql";
@@ -42,6 +42,12 @@ export default function StaffAppointmentCard({
         </Flex>
 
         <Flex className="flex-wrap gap-[2vw] flex-1 basis-[25vw]">
+          {!appointment.images?.length && (
+            <Alert
+              type="info"
+              message="Customer didn't provide example photos"
+            />
+          )}
           {appointment.images?.map((image) => (
             <Image
               src={image}

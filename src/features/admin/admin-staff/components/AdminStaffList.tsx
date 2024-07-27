@@ -1,9 +1,9 @@
 import { Flex } from "antd";
 import Loading from "../../../../common/components/loading/Loading";
 import ErrorPage from "../../../../pages/Error";
-import AdminStaffListItem from "./AdminStaffListItem";
+import AdminStaffListItem from "./ui/AdminStaffListItem";
 import { useGetAdminStaff } from "../hooks/useGetAdminStaff";
-import AddStaffListCard from "../ui/AddStaffListCard";
+import AddStaffListCard from "./ui/AddStaffListCard";
 
 export default function AdminStaffList() {
   const { adminStaff, adminStaffLoading, adminStaffError } = useGetAdminStaff();
@@ -14,7 +14,7 @@ export default function AdminStaffList() {
 
   if (adminStaff)
     return (
-      <Flex gap="2vw" wrap>
+      <Flex className="flex-wrap gap-[2vw]">
         {adminStaff.map((staff) => (
           <AdminStaffListItem key={staff.id} {...staff} />
         ))}

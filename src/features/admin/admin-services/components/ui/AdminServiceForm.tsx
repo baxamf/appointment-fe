@@ -21,17 +21,13 @@ export default function AdminServiceForm({
   return (
     <Form
       name="basic"
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "4vw",
-      }}
+      className="flex flex-wrap gap-x-[4vw] gap-y-[2vh]"
       initialValues={formik.initialValues}
       onSubmitCapture={formik.handleSubmit}
       autoComplete="off"
       layout="vertical"
     >
-      <Flex vertical gap="4vh" style={{ flex: "1 0 25vw" }}>
+      <Flex className="flex-col gap-[2vh] flex-1 basis-[25vw]">
         <Form.Item<CompanyServiceInputType>
           label="title"
           validateStatus={formik.errors.title && "error"}
@@ -51,6 +47,7 @@ export default function AdminServiceForm({
           validateStatus={formik.errors.description && "error"}
         >
           <Input.TextArea
+            className="leading-6"
             name="description"
             autoSize={true}
             value={formik.values.description || ""}
@@ -61,7 +58,7 @@ export default function AdminServiceForm({
         </Form.Item>
       </Flex>
 
-      <Flex vertical gap="4vh" style={{ flex: "1 0 20vw" }}>
+      <Flex className="flex-col gap-[2vh] flex-1 basis-[20vw]">
         <Form.Item<CompanyServiceInputType>
           label="image"
           validateStatus={formik.errors.description && "error"}
@@ -83,14 +80,13 @@ export default function AdminServiceForm({
             src={formik.values.image || ""}
             preview={false}
             width="100%"
-            style={{ objectFit: "cover", aspectRatio: "4/3" }}
+            className="object-cover aspect-[4/3]"
           />
         )}
       </Flex>
 
-      <Form.Item style={{ flex: "1 0 25vw" }}>
+      <Form.Item className="mt-[2vh] flex-1 basis-full">
         <Button
-          style={{ paddingBlock: "24px" }}
           size="large"
           type="primary"
           htmlType="submit"

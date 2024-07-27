@@ -21,12 +21,7 @@ export default function AdminStaffCreateForm() {
   return (
     <FormikProvider value={formik}>
       <Form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "2vh",
-          minWidth: "20vw",
-        }}
+        className="grid gap-[2vh] min-w-[20vw]"
         initialValues={formik.initialValues}
         onSubmitCapture={formik.handleSubmit}
         autoComplete="off"
@@ -112,7 +107,7 @@ export default function AdminStaffCreateForm() {
 
         <Form.Item>
           <Button
-            style={{ paddingBlock: "24px", marginTop: "4vh" }}
+            className="mt-[2vh]"
             size="large"
             type="primary"
             htmlType="submit"

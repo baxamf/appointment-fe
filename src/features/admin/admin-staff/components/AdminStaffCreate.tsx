@@ -3,9 +3,9 @@ import AdminStaffCreateForm from "./AdminStaffCreateForm";
 
 export default function AdminStaffCreate() {
   return (
-    <Flex gap="4vw" wrap>
-      <Card style={{ padding: "4vh 5vw" }}>
-        <Flex wrap vertical gap="2vh">
+    <Flex className="flex-wrap gap-[4vw]">
+      <Card className="px-[4vw] py-[2vh] flex-1">
+        <Flex className="flex-col flex-wrap gap-[4vh]">
           <Typography.Title type="secondary" level={2}>
             Staff details
           </Typography.Title>
@@ -14,15 +14,12 @@ export default function AdminStaffCreate() {
         </Flex>
       </Card>
 
-      <Flex style={{ flex: "1 1 25vw" }}>
+      <Flex className="flex-1 basis-[25vw]">
         <Image
           preview={false}
           height="100%"
           src="https://images.pexels.com/photos/4459231/pexels-photo-4459231.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          style={{
-            objectFit: "cover",
-            aspectRatio: "1/1",
-          }}
+          className="object-cover aspect-[3/4]"
         />
       </Flex>
     </Flex>

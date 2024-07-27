@@ -7,22 +7,14 @@ import AdminNav from "../common/components/nav/AdminNav";
 
 export default function AdminLayout() {
   return (
-    <Layout
-      className="w-screen h-screen"
-      style={{
-        flexWrap: "wrap",
-        placeItems: "flex-start",
-        alignContent: "flex-start",
-        gap: "2vw",
-      }}
-    >
+    <Layout className="w-screen min-h-screen px-[10vw] gap-[2vw] flex-wrap place-items-start content-start">
       <AdminHeader />
 
-      <Layout.Sider style={{ position: "sticky", top: "calc(10vh + 2vw)" }}>
+      <Layout.Sider className="sticky top-[calc(10vh+2vw)]">
         <AdminNav />
       </Layout.Sider>
 
-      <Layout.Content style={{ marginLeft: "2vw" }}>
+      <Layout.Content className="ml-[2vw]">
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>

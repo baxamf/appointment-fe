@@ -16,25 +16,17 @@ export default function AdminServiceEdit() {
 
   if (adminService)
     return (
-      <Flex gap="4vh" wrap>
-        <Card style={{ padding: "2vh 5vw" }}>
-          <Typography.Title
-            type="secondary"
-            style={{ marginBottom: "2vh" }}
-            level={2}
-          >
+      <Flex className="flex-wrap gap-[4vh]">
+        <Card className="px-[4vw] py-[2vh]">
+          <Typography.Title type="secondary" className="mb-[4vh]" level={2}>
             Details
           </Typography.Title>
 
           <AdminServiceEditForm {...adminService} />
         </Card>
 
-        <Card style={{ flex: "1 1 15vw", padding: "2vh 5vw" }}>
-          <Typography.Title
-            type="secondary"
-            style={{ marginBottom: "2vh" }}
-            level={2}
-          >
+        <Card className="px-[4vw] py-[2vh] flex-1 ">
+          <Typography.Title type="secondary" className="mb-[4vh]" level={2}>
             Tags
           </Typography.Title>
 
