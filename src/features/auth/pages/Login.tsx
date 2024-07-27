@@ -5,7 +5,7 @@ import blobBg from "../../../assets/svg/blobBg.svg";
 export default function Login() {
   return (
     <Layout
-      className="min-h-screen grid place-content-center bg-cover bg-no-repeat"
+      className="w-screen min-h-screen grid place-content-center bg-cover bg-no-repeat"
       style={{
         backgroundImage: `url(${blobBg})`,
       }}

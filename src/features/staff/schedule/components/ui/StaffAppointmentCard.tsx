@@ -1,4 +1,4 @@
-import { Card, Flex, Typography, Image, Button, theme } from "antd";
+import { Card, Flex, Typography, Image, Button } from "antd";
 import { PhoneFilled, ClockCircleFilled } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { GetMyStaffAppointmentsQuery } from "../../../../../api/__generated__/graphql";
@@ -11,56 +11,47 @@ export default function StaffAppointmentCard({
   customer,
   ...appointment
 }: StaffAppointmentCardProps) {
-  const { token } = theme.useToken();
   return (
-    <Card style={{ padding: "2vh 2vw" }} key={appointment.id}>
-      <Flex gap="3vw" wrap align="center">
-        <Flex
-          vertical
-          style={{ textAlign: "left", flex: "1 0 20vw", gap: "1vh" }}
-        >
+    <Card className="px-[2vw] py-[2vh]" key={appointment.id}>
+      <Flex className="flex-wrap gap-[3vw] items-center">
+        <Flex className="flex-col flex-1, gap-[1vh] basis-[20vw] text-left">
           <Typography.Title level={4}>
             {appointment.status}
 
-            <span style={{ color: token.colorPrimary }}>
-              <ClockCircleFilled style={{ marginInline: "20px 5px" }} />
+            <span className="text-primary">
+              <ClockCircleFilled className="ml-5 mr-1" />
               {dayjs(appointment.targetTime).format("DD MMMM - HH:mm")}
             </span>
           </Typography.Title>
 
-          <Typography.Title
-            level={5}
-            style={{
-              color: token.colorTextSecondary,
-            }}
-          >
+          <Typography.Title className="text-secondary" level={5}>
             {staffService.title}
           </Typography.Title>
 
-          <Typography.Paragraph style={{ margin: 0 }}>
+          <Typography.Paragraph>
             {[customer.profile?.firstName, customer.profile?.lastName].join(
               " "
             )}
-            <PhoneFilled style={{ marginInline: "10px 5px" }} />
+            <PhoneFilled className="ml-5 mr-1" />
             {customer.profile?.phone}
           </Typography.Paragraph>
 
-          <Typography.Paragraph type="secondary" style={{ margin: 0 }}>
+          <Typography.Text type="secondary">
             {appointment.description}
-          </Typography.Paragraph>
+          </Typography.Text>
         </Flex>
 
-        <Flex gap="2vw" wrap style={{ flex: "1 0 25vw" }}>
+        <Flex className="flex-wrap gap-[2vw] flex-1 basis-[25vw]">
           {appointment.images?.map((image) => (
             <Image
               src={image}
               height="15vh"
-              style={{ objectFit: "cover", aspectRatio: "3/4" }}
+              className="object-cover aspect-[3/4]"
             />
           ))}
         </Flex>
 
-        <Button type="dashed" color="primary">
+        <Button type="dashed" danger>
           Cancel
         </Button>
       </Flex>

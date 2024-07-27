@@ -1,4 +1,4 @@
-import { Card, Divider, Flex, Typography, Image, theme } from "antd";
+import { Card, Divider, Flex, Typography, Image } from "antd";
 import { GetMyStaffServicesQuery } from "../../../../api/__generated__/graphql";
 import { useNavigateToDetail } from "../../../../common/hooks/useNavigateToDetail";
 
@@ -15,56 +15,52 @@ export default function StaffServiceListItem({
   service,
 }: StaffServiceListItemProps) {
   const { navigateToDetail } = useNavigateToDetail(id);
-  const { token } = theme.useToken();
 
   return (
     <Card
       hoverable
       onClick={navigateToDetail}
-      style={{ flex: 1, padding: "2vh 5vw" }}
+      className="flex-1 px-[4vw] py-[2vh] text-center"
     >
-      <Flex gap="4vw" wrap>
-        <div style={{ width: "100%" }}>
+      <Flex className="flex-wrap gap-[4vw]">
+        <div className="basis-full">
           <Divider>main service title</Divider>
-          <Typography.Title
-            style={{ color: `${token.colorTextSecondary}` }}
-            level={4}
-          >
+          <Typography.Title className="text-secondary" level={4}>
             {service.title}
           </Typography.Title>
         </div>
 
-        <Flex gap="4vh" vertical flex="1 0 24vw" wrap>
-          <div style={{ flex: "1 0" }}>
-            <Divider>title</Divider>
+        <Flex className="flex-col flex-wrap gap-[2vh] flex-1 basis-[24vw] text-left">
+          <div>
+            <Divider orientation="left">title</Divider>
             <Typography.Title level={3}>{title}</Typography.Title>
           </div>
 
-          <div style={{ flex: "1 0" }}>
-            <Divider>description</Divider>
+          <div>
+            <Divider orientation="left">description</Divider>
             <Typography.Text type="secondary">{description}</Typography.Text>
           </div>
         </Flex>
 
-        <div style={{ flex: "1 0 24vw" }}>
+        <div className="flex-1 basis-[24vw]">
           <Divider>image</Divider>
           {!!image && (
             <Image
               src={image}
               preview={false}
               width="100%"
-              style={{ objectFit: "cover", aspectRatio: "16/10" }}
+              className="object-cover aspect-[16/10]"
             />
           )}
         </div>
 
-        <Flex gap="4vw" flex="1 1 25vw" wrap>
-          <div style={{ flex: "1 0 20vw" }}>
+        <Flex className="flex-wrap gap-[4vw] flex-1 basis-[24vw]">
+          <div className="flex-1 basis-[20vw]">
             <Divider>duration</Divider>
             <Typography.Title level={4}>{duration} min</Typography.Title>
           </div>
 
-          <div style={{ flex: "1 0 20vw" }}>
+          <div className="flex-1 basis-[20vw]">
             <Divider>price</Divider>
             <Typography.Title level={4}>${price}</Typography.Title>
           </div>

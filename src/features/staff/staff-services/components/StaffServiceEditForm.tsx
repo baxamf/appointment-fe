@@ -7,8 +7,7 @@ import {
 import { useUpdateMyStaffService } from "../hooks/useUpdateMyStaffService";
 import StaffServiceForm from "./ui/StaffServiceForm";
 import { DefaultOptionType } from "antd/es/select";
-import { Typography } from "antd";
-import StaffServiceParentService from "./StaffServiceParentService";
+import StaffServiceParentService from "./ui/StaffServiceParentService";
 import { useMemo } from "react";
 import StaffServiceFormLayout from "./ui/StaffServiceFormLayout";
 
@@ -38,29 +37,14 @@ export default function StaffServiceEditForm({
     [companyServices, formik.values.serviceId]
   );
 
-  return (
-    <FormikProvider value={formik}>
-      <StaffServiceFormLayout>
-        <Typography.Title
-          type="secondary"
-          style={{ marginBottom: "2vh" }}
-          level={2}
-        >
-          Parent Service
-        </Typography.Title>
+  if (companyService)
+    return (
+      <FormikProvider value={formik}>
+        <StaffServiceFormLayout>
+          <StaffServiceParentService {...companyService} />
 
-        {!!companyService && <StaffServiceParentService {...companyService} />}
-
-        <Typography.Title
-          type="secondary"
-          style={{ marginBottom: "2vh" }}
-          level={2}
-        >
-          Staff Service
-        </Typography.Title>
-
-        <StaffServiceForm {...{ ...formProps, options }} />
-      </StaffServiceFormLayout>
-    </FormikProvider>
-  );
+          <StaffServiceForm {...{ ...formProps, options }} />
+        </StaffServiceFormLayout>
+      </FormikProvider>
+    );
 }

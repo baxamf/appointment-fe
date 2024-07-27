@@ -5,8 +5,8 @@ export default function StaffServiceFormLayout({
   children,
 }: PropsWithChildren) {
   return (
-    <Flex wrap gap="4vw">
-      <Card style={{ padding: "2vh 5vw" }}>{children}</Card>
-    </Flex>
+    <Card className="px-[4vw] py-[4vh]">
+      <Flex className="flex-wrap gap-[4vw]">{children}</Flex>
+    </Card>
   );
 }

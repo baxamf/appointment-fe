@@ -7,22 +7,14 @@ import StaffNav from "../common/components/nav/StaffNav";
 
 export default function StaffLayout() {
   return (
-    <Layout
-      className="container"
-      style={{
-        flexWrap: "wrap",
-        placeItems: "flex-start",
-        alignContent: "flex-start",
-        gap: "2vw",
-      }}
-    >
+    <Layout className="w-screen min-h-screen px-[10vw] flex-wrap place-items-start content-start">
       <AdminHeader />
 
-      <Layout.Sider style={{ position: "sticky", top: "calc(10vh + 2vw)" }}>
+      <Layout.Sider style={{ position: "sticky", top: "10vh" }}>
         <StaffNav />
       </Layout.Sider>
 
-      <Layout.Content style={{ marginLeft: "2vw" }}>
+      <Layout.Content className="ml-[4vw]">
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>

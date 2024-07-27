@@ -33,6 +33,7 @@ export default function LoginForm() {
         >
           <Input
             name="email"
+            size="large"
             value={formik.values.email}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}

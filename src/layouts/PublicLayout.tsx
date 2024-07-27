@@ -9,7 +9,7 @@ import blobBg from "../assets/svg/blobBg.svg";
 export default function PublicLayout() {
   return (
     <Layout
-      className={`w-screen min-h-screen px-[10vw] text-center bg-cover`}
+      className="w-screen min-h-screen px-[10vw] text-center bg-cover"
       style={{
         backgroundImage: `url(${blobBg})`,
       }}

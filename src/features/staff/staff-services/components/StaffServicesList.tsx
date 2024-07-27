@@ -16,7 +16,7 @@ export default function StaffServicesList() {
 
   if (staffServices)
     return (
-      <Flex gap="6vw" vertical wrap>
+      <Flex className="flex-col flex-wrap gap-[4vw]">
         {staffServices.map((service) => (
           <StaffServiceListItem key={service.id} {...service} />
         ))}

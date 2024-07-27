@@ -8,7 +8,7 @@ import AdminNav from "../common/components/nav/AdminNav";
 export default function AdminLayout() {
   return (
     <Layout
-      className="container"
+      className="w-screen h-screen"
       style={{
         flexWrap: "wrap",
         placeItems: "flex-start",

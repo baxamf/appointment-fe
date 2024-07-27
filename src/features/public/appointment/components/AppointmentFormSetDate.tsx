@@ -10,7 +10,7 @@ export default function AppointmentFormSetDate() {
 
   return (
     <Form
-      className="grid gap-[2vh] min-w-[400px]"
+      className="grid gap-5 min-w-[400px]"
       initialValues={formik.initialValues}
       onSubmitCapture={formik.handleSubmit}
       autoComplete="off"
@@ -23,8 +23,8 @@ export default function AppointmentFormSetDate() {
         }
       >
         <DatePicker
-          className="w-full"
-          minDate={dayjs(new Date())}
+          className="w-full py-2.5"
+          minDate={dayjs()}
           showTime
           name="createAppointmentInput.targetTime"
           onBlur={() =>
@@ -68,10 +68,9 @@ export default function AppointmentFormSetDate() {
         label="phone"
         validateStatus={formik.errors.customerDataInput?.phone && "error"}
       >
-        <Input.TextArea
+        <Input
           name="customerDataInput.phone"
           spellCheck="false"
-          autoSize={true}
           value={formik.values.customerDataInput.phone || ""}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
@@ -87,6 +86,7 @@ export default function AppointmentFormSetDate() {
         }
       >
         <Input.TextArea
+          className="leading-5"
           name="createAppointmentInput.description"
           spellCheck="false"
           autoSize={true}

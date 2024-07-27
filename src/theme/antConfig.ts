@@ -17,15 +17,12 @@ export const darkTheme: ThemeConfig = {
       algorithm: true,
     },
     Input: {
-      fontSize: 16,
-      lineHeight: 2,
-      paddingBlock: 5,
+      paddingBlock: 10,
+      paddingBlockLG: 12,
+      paddingBlockSM: 12,
       colorBgContainer: "transparent",
     },
     DatePicker: {
-      fontSize: 16,
-      lineHeight: 2,
-      paddingBlock: 5,
       colorBgContainer: "transparent",
       cellHeight: 40,
       cellWidth: 50,
@@ -48,12 +45,12 @@ export const darkTheme: ThemeConfig = {
       colorBgBase: "transparent",
     },
     Button: {
-      fontWeight: "bold",
       colorBgContainer: "transparent",
       paddingBlock: 24,
       paddingInline: 40,
       paddingBlockLG: 24,
       paddingInlineLG: 40,
+      fontWeightStrong: 900,
     },
     Layout: {
       headerBg: "transparent",

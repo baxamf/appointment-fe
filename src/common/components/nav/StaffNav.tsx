@@ -24,10 +24,7 @@ export default function StaffNav() {
       mode="inline"
       items={items}
       selectedKeys={selectedKeys}
-      style={{
-        textAlign: "right",
-        fontWeight: "bold",
-      }}
+      className="text-right font-bold"
     />
   );
 }

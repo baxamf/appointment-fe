@@ -36,7 +36,7 @@ export default function AppointmentFormMainServiceScreen({
         </Typography.Paragraph>
 
         <Button
-          className="w-max mt-auto"
+          className="w-max mt-auto self-center"
           type="primary"
           icon={<CaretRightOutlined />}
           iconPosition="end"

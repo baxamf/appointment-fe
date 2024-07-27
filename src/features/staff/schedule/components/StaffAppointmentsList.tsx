@@ -20,9 +20,10 @@ export default function StaffAppointmentsList() {
 
   if (appointments)
     return (
-      <Flex gap="2vh" vertical>
+      <Flex className="flex-col gap-[2vh]">
         <DatePicker
-          style={{ width: "200px" }}
+          size="large"
+          className="w-48 py-2.5"
           onChange={getAppointments}
           defaultValue={dayjs()}
         />

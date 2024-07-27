@@ -6,7 +6,7 @@ export default function ButtonCTA() {
     <ButtonLink
       url={RoutePaths.APPOINTMENT}
       type="primary"
-      style={{ maxWidth: 300, alignSelf: "center" }}
+      className="max-w-80 mx-auto"
     >
       Make an appointment
     </ButtonLink>

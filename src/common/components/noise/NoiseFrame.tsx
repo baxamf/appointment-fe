@@ -1,6 +1,6 @@
 export default function NoiseFrame() {
   return (
-    <svg className="noise">
+    <svg className="fixed w-screen h-screen mix-blend-overlay z-[10000] pointer-events-none">
       <filter id="noiseFilter">
         <feTurbulence type="fractalNoise" baseFrequency="0 .2" numOctaves="3">
           <animate
