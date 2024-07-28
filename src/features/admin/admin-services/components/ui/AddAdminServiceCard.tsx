@@ -10,7 +10,7 @@ export default function AddAdminServiceCard() {
     <Card
       hoverable
       onClick={() => navigate(RoutePaths.ADMIN_SERVICES_CREATE)}
-      className="grid min-h-[25vh] flex-1 place-content-center border-secondary border-dashed"
+      className="grid min-h-[25vh] flex-1 place-content-center border-secondary border-dashed hover:shadow-3xl hover:border-solid transition"
     >
       <PlusSquareOutlined className="text-secondary text-2xl" />
     </Card>

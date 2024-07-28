@@ -2,6 +2,7 @@ import { Typography } from "antd";
 import { Header } from "antd/es/layout/layout";
 import ButtonLink from "../buttons/ButtonLink";
 import { useUser } from "../../../store/hooks/useUser";
+import ButtonLogout from "../buttons/ButtonLogout";
 
 export default function AdminHeader() {
   const user = useUser();
@@ -13,6 +14,8 @@ export default function AdminHeader() {
       <Typography.Title level={4}>{user?.role}</Typography.Title>
 
       <ButtonLink type="default">Main portal</ButtonLink>
+
+      <ButtonLogout />
     </Header>
   );
 }

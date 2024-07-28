@@ -10,7 +10,7 @@ export default function AddStaffListCard() {
     <Card
       hoverable
       onClick={() => navigate(RoutePaths.ADMIN_CREATE_STAFF)}
-      className="grid flex-1 basis-[max(20vw,300px)] place-content-center border-secondary border-dashed"
+      className="grid flex-1 basis-[max(20vw,300px)] place-content-center border-secondary border-dashed hover:shadow-3xl hover:border-solid transition"
     >
       <PlusSquareOutlined className="text-secondary text-2xl" />
     </Card>

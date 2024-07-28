@@ -17,7 +17,7 @@ export default function AdminServicesListItem({
     <Card
       hoverable
       onClick={navigateToDetail}
-      className="px-[4vw] py-[2vh] text-left"
+      className="px-[4vw] py-[2vh] text-left hover:shadow-3xl transition"
     >
       <Flex className="flex-wrap gap-x-[4vw] ">
         <div className="flex-grow-[2] basis-[25vw] ">
@@ -32,7 +32,7 @@ export default function AdminServicesListItem({
           </Typography.Paragraph>
         </div>
 
-        <div className="flex-1 basis-[20vw]">
+        <div className="flex-1 basis-[20vw] relative">
           <Divider>service Image</Divider>
           <Image
             src={image}

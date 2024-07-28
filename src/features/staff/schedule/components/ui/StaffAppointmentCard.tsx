@@ -12,7 +12,7 @@ export default function StaffAppointmentCard({
   ...appointment
 }: StaffAppointmentCardProps) {
   return (
-    <Card className="px-[2vw] py-[2vh]" key={appointment.id}>
+    <Card className="px-[2vw] py-[2vh]">
       <Flex className="flex-wrap gap-[3vw] items-center">
         <Flex className="flex-col flex-1, gap-[1vh] basis-[20vw] text-left">
           <Typography.Title level={4}>
@@ -48,8 +48,9 @@ export default function StaffAppointmentCard({
               message="Customer didn't provide example photos"
             />
           )}
-          {appointment.images?.map((image) => (
+          {appointment.images?.map((image, idx) => (
             <Image
+              key={idx}
               src={image}
               height="15vh"
               className="object-cover aspect-[3/4]"

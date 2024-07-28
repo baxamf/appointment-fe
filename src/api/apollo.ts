@@ -35,7 +35,6 @@ const authLink = setContext((_, { headers }) => ({
 const errorLink = onError(({ graphQLErrors, operation, forward }) => {
   if (graphQLErrors) {
     for (const err of graphQLErrors) {
-      console.log(err);
       switch (err.extensions.code) {
         case "UNAUTHENTICATED": {
           const token = StorageService.getAccessToken();
@@ -43,6 +42,8 @@ const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 
           if (!token || isRefreshOperation) {
             apolloClient.clearStore();
+
+            StorageService.removeAccessToken();
             // window.location.href = "/login";
             return;
           }

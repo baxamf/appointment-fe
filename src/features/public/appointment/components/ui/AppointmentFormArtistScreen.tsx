@@ -37,7 +37,7 @@ export default function AppointmentFormArtistScreen({
           )}
         </Typography.Title>
 
-        <Typography.Paragraph type="secondary">
+        <Typography.Paragraph className="w-[30vw]" type="secondary">
           {service.description}
         </Typography.Paragraph>
 

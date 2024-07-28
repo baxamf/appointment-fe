@@ -26,6 +26,7 @@ const documents = {
     "\n    query GetAdminStaffInfo($staffId: Int!) {\n        getUser(userId: $staffId) {\n            email\n            createdAt\n            profile {\n                firstName\n                lastName\n                nickName\n                specialization\n                phone\n                avatar\n                bio\n            }\n            socials {\n                id\n                title\n                link\n            }\n        }\n    } \n": types.GetAdminStaffInfoDocument,
     "\n    mutation CreateStaff(\n        $createUserInput: CreateUserInput!\n        $createUserProfileInput: CreateUserProfileInput!\n    ) {\n        createUser(\n            createUserInput: $createUserInput\n            createUserProfileInput: $createUserProfileInput\n        ) {\n            id\n        }\n    }    \n": types.CreateStaffDocument,
     "\n  mutation Login($loginInput: LoginInput!) {\n    login(loginInput: $loginInput) {\n      accessToken\n      user {\n        role\n      }\n    }\n  }\n": types.LoginDocument,
+    "\n  query Logout {\n      logout {\n          message\n      }\n  }  \n": types.LogoutDocument,
     "\n    mutation CreateAppointment(\n        $createAppointmentInput: CreateAppointmentInput!\n        $customerDataInput: CustomerDataInput!\n    ) {\n        createAppointment(\n            createAppointmentInput: $createAppointmentInput\n            customerDataInput: $customerDataInput\n        ) {\n            id\n            targetTime\n        }\n    }    \n": types.CreateAppointmentDocument,
     "\n    query GetStaffForAppointment($getStaffInput: GetStaffInput) {\n        getStaff(getStaffInput: $getStaffInput) {\n            id\n            profile {\n                firstName\n                lastName\n                nickName\n                specialization\n                phone\n                avatar\n                bio\n            }\n        }\n    }    \n": types.GetStaffForAppointmentDocument,
     "\n    query GetStaffServicesForAppointment(\n        $getStaffServicesInput: GetStaffServicesInput\n    ) {\n        getStaffServices(getStaffServicesInput: $getStaffServicesInput) {\n            id\n            title\n            description\n            image\n            price\n            duration\n            user {\n                id\n                profile {\n                    firstName\n                    lastName\n                    nickName\n                    phone\n                    avatar\n                }\n            }\n        }\n    }    \n": types.GetStaffServicesForAppointmentDocument,
@@ -104,6 +105,10 @@ export function gql(source: "\n    mutation CreateStaff(\n        $createUserInp
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation Login($loginInput: LoginInput!) {\n    login(loginInput: $loginInput) {\n      accessToken\n      user {\n        role\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation Login($loginInput: LoginInput!) {\n    login(loginInput: $loginInput) {\n      accessToken\n      user {\n        role\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query Logout {\n      logout {\n          message\n      }\n  }  \n"): (typeof documents)["\n  query Logout {\n      logout {\n          message\n      }\n  }  \n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

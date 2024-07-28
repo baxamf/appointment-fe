@@ -12,7 +12,7 @@ export interface Store {
 
 interface StoreContext {
   store: Store;
-  setUser: (user: TUser) => void;
+  setUser: (user: Store["user"]) => void;
 }
 
 export const StoreContext = React.createContext<StoreContext>(null!);
@@ -22,7 +22,7 @@ export default function StoreProvider({ children }: { children: JSX.Element }) {
 
   const [store, setStore] = useState<Store>({ user });
 
-  const setUser = (user: TUser) => {
+  const setUser = (user: Store["user"]) => {
     setStore({ ...store, user });
   };
 

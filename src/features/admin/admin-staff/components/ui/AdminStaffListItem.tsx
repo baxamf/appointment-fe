@@ -13,7 +13,7 @@ export default function AdminStaffListItem({
   return (
     <Card
       hoverable
-      className="flex-1 basis-[max(20vw,300px)] px-[2vw] py-[1vh] text-left"
+      className="flex-1 basis-[max(20vw,300px)] px-[2vw] py-[1vh] text-left hover:shadow-3xl transition"
       onClick={navigateToDetail}
     >
       <Flex className="flex-col gap-[2vh]">
