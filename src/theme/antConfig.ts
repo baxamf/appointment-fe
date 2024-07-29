@@ -50,7 +50,6 @@ export const darkTheme: ThemeConfig = {
       paddingInline: 40,
       paddingBlockLG: 24,
       paddingInlineLG: 40,
-      fontWeightStrong: 900,
     },
     Layout: {
       headerBg: "transparent",
@@ -66,10 +65,10 @@ export const darkTheme: ThemeConfig = {
   token: {
     fontSize: 16,
     fontFamily: "Inter",
-    colorText: "#EEEEEE",
+    colorText: "#fdf6ef",
     colorTextSecondary: "#481E14",
-    colorTextBase: "#fff",
-    colorLink: "#EEEEEE",
+    colorTextBase: "#fdf6ef",
+    colorLink: "#fdf6ef",
     colorBgBase: "#0C0C0C",
     colorBgContainer: "#0C0C0C",
     colorPrimary: "#9B3922",

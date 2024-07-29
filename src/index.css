@@ -36,10 +36,13 @@ ol[class] {
 }
 
 input,
-button,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  font-weight: bold;
 }
 
 img {

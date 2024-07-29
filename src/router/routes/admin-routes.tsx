@@ -5,6 +5,10 @@ import AdminLayout from "../../layouts/AdminLayout";
 import { UserRole } from "../../api/__generated__/graphql";
 import { RoutePaths } from "../enums";
 
+const AdminAppointmentsPage = lazy(
+  () => import("../../features/admin/appointments/pages/AdminAppointmentsPage")
+);
+
 const AdminServices = lazy(
   () => import("../../features/admin/admin-services/AdminServices")
 );
@@ -24,7 +28,11 @@ export default function AdminRoutes(): RouteObject[] {
       children: [
         {
           index: true,
-          element: <Navigate to={RoutePaths.ADMIN_SERVICES} />,
+          element: <Navigate to={RoutePaths.ADMIN_APPOINTMENTS} />,
+        },
+        {
+          path: "appointments/*",
+          element: <AdminAppointmentsPage />,
         },
         {
           path: "services/*",

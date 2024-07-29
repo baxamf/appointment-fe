@@ -1,4 +1,5 @@
 export enum RoutePaths {
+  ADMIN_APPOINTMENTS = "/admin/appointments",
   ADMIN_SERVICES = "/admin/services",
   ADMIN_SERVICES_CREATE = "/admin/services/create",
   ADMIN_STAFF = "/admin/staff",

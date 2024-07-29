@@ -7,6 +7,10 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 const items: MenuItem[] = [
   {
+    label: <Link to={RoutePaths.ADMIN_APPOINTMENTS}>Appointments</Link>,
+    key: RoutePaths.ADMIN_APPOINTMENTS,
+  },
+  {
     label: <Link to={RoutePaths.ADMIN_SERVICES}>Services</Link>,
     key: RoutePaths.ADMIN_SERVICES,
   },
@@ -24,10 +28,7 @@ export default function AdminNav() {
       mode="inline"
       items={items}
       selectedKeys={selectedKeys}
-      style={{
-        textAlign: "right",
-        fontWeight: "bold",
-      }}
+      className="text-right font-bold"
     />
   );
 }
