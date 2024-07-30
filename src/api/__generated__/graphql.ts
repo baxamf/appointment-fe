@@ -21,12 +21,12 @@ export type Scalars = {
 export type Appointment = {
   __typename?: 'Appointment';
   createdAt: Scalars['DateTime']['output'];
-  customer: UserResponse;
+  customer: User;
   customerId: Scalars['Int']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
   images?: Maybe<Array<Scalars['String']['output']>>;
-  staff: UserResponse;
+  staff: User;
   staffId: Scalars['Int']['output'];
   staffService: StaffService;
   staffServiceId: Scalars['Int']['output'];
@@ -46,7 +46,7 @@ export type Auth = {
   /** jwt access token */
   accessToken: Scalars['String']['output'];
   /** user */
-  user: UserResponse;
+  user: User;
 };
 
 export type CompanyService = {
@@ -114,6 +114,15 @@ export type CreateUserSocialInput = {
   title: Scalars['String']['input'];
 };
 
+export type CreateUserWorkingDayInput = {
+  day: Scalars['Int']['input'];
+  endHour: Scalars['Int']['input'];
+  endMinute: Scalars['Int']['input'];
+  startHour: Scalars['Int']['input'];
+  startMinute: Scalars['Int']['input'];
+  userId: Scalars['Int']['input'];
+};
+
 export type CustomerDataInput = {
   email: Scalars['String']['input'];
   firstName: Scalars['String']['input'];
@@ -153,23 +162,25 @@ export type Mutation = {
   cancelAppointment: Appointment;
   createAppointment: Appointment;
   createCompanyService: CompanyService;
-  createMyProfile: UserProfile;
   createMySocial: UserSocial;
   createServiceTag: ServiceTag;
   createStaffService: StaffService;
-  createUser: UserResponse;
+  createUser: User;
+  createUserWorkingDay: UserWorkingDay;
   /** Login user */
   login: Auth;
   removeCompanyService: CompanyService;
   removeMySocial: UserSocial;
   removeServiceTag: ServiceTag;
   removeStaffService: StaffService;
+  removeUserWorkingDay: UserWorkingDay;
   updateAppointment: Appointment;
   updateCompanyService: CompanyService;
   updateMyProfile: UserProfile;
   updateMySocial: UserSocial;
   updateServiceTag: ServiceTag;
   updateStaffService: StaffService;
+  updateUserWorkingDay: UserWorkingDay;
 };
 
 
@@ -186,11 +197,6 @@ export type MutationCreateAppointmentArgs = {
 
 export type MutationCreateCompanyServiceArgs = {
   createCompanyServiceInput: CreateCompanyServiceInput;
-};
-
-
-export type MutationCreateMyProfileArgs = {
-  createUserProfileInput: CreateUserProfileInput;
 };
 
 
@@ -216,6 +222,11 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationCreateUserWorkingDayArgs = {
+  createUserWorkingDayInput: CreateUserWorkingDayInput;
+};
+
+
 export type MutationLoginArgs = {
   loginInput: LoginInput;
 };
@@ -238,6 +249,11 @@ export type MutationRemoveServiceTagArgs = {
 
 export type MutationRemoveStaffServiceArgs = {
   staffServiceId: Scalars['Int']['input'];
+};
+
+
+export type MutationRemoveUserWorkingDayArgs = {
+  userWorkingDayId: Scalars['Int']['input'];
 };
 
 
@@ -273,6 +289,12 @@ export type MutationUpdateStaffServiceArgs = {
   updateStaffServiceInput: UpdateStaffServiceInput;
 };
 
+
+export type MutationUpdateUserWorkingDayArgs = {
+  updateUserWorkingDayInput: UpdateUserWorkingDayInput;
+  userWorkingDayId: Scalars['Int']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   /** Get all appointments by filter params */
@@ -281,17 +303,19 @@ export type Query = {
   getCompanyServiceTags: Array<ServiceTag>;
   getCompanyServices: Array<CompanyService>;
   /** Get my user data */
-  getMe: UserResponse;
+  getMe: User;
   /** Get my appointments */
   getMyAppointments: Array<Appointment>;
   getMyStaffServices: Array<StaffService>;
   getServiceTags: Array<ServiceTag>;
   /** Get staff */
-  getStaff: Array<UserResponse>;
+  getStaff: Array<User>;
   getStaffService: StaffService;
   getStaffServices: Array<StaffService>;
   /** Get user by id */
-  getUser: UserResponse;
+  getUser: User;
+  /** Get staff working days */
+  getUserWorkingDays: Array<UserWorkingDay>;
   /** Logout user */
   logout: MessageResponse;
   /** Refresh access token */
@@ -338,6 +362,11 @@ export type QueryGetUserArgs = {
   userId: Scalars['Int']['input'];
 };
 
+
+export type QueryGetUserWorkingDaysArgs = {
+  userId?: InputMaybe<Scalars['Float']['input']>;
+};
+
 export type ServiceTag = {
   __typename?: 'ServiceTag';
   id: Scalars['Int']['output'];
@@ -356,7 +385,7 @@ export type StaffService = {
   serviceId: Scalars['Int']['output'];
   tags?: Maybe<Array<ServiceTag>>;
   title?: Maybe<Scalars['String']['output']>;
-  user: UserResponse;
+  user: User;
   userId: Scalars['Int']['output'];
 };
 
@@ -410,6 +439,25 @@ export type UpdateUserSocialInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type UpdateUserWorkingDayInput = {
+  day: Scalars['Int']['input'];
+  endHour: Scalars['Int']['input'];
+  endMinute: Scalars['Int']['input'];
+  startHour: Scalars['Int']['input'];
+  startMinute: Scalars['Int']['input'];
+};
+
+export type User = {
+  __typename?: 'User';
+  createdAt: Scalars['DateTime']['output'];
+  email: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  profile?: Maybe<UserProfile>;
+  role: UserRole;
+  socials?: Maybe<Array<UserSocial>>;
+  workingDays?: Maybe<UserWorkingDay>;
+};
+
 export type UserProfile = {
   __typename?: 'UserProfile';
   avatar?: Maybe<Scalars['String']['output']>;
@@ -420,16 +468,6 @@ export type UserProfile = {
   nickName?: Maybe<Scalars['String']['output']>;
   phone: Scalars['String']['output'];
   specialization?: Maybe<Scalars['String']['output']>;
-};
-
-export type UserResponse = {
-  __typename?: 'UserResponse';
-  createdAt: Scalars['DateTime']['output'];
-  email: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
-  profile?: Maybe<UserProfile>;
-  role: UserRole;
-  socials?: Maybe<Array<UserSocial>>;
 };
 
 /** User roles */
@@ -445,6 +483,17 @@ export type UserSocial = {
   link: Scalars['String']['output'];
   order: Scalars['Int']['output'];
   title: Scalars['String']['output'];
+  userId: Scalars['Int']['output'];
+};
+
+export type UserWorkingDay = {
+  __typename?: 'UserWorkingDay';
+  day: Scalars['Int']['output'];
+  endHour: Scalars['Int']['output'];
+  endMinute: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  startHour: Scalars['Int']['output'];
+  startMinute: Scalars['Int']['output'];
   userId: Scalars['Int']['output'];
 };
 
@@ -513,14 +562,14 @@ export type RemoveServiceTagMutation = { __typename?: 'Mutation', removeServiceT
 export type GetAdminStaffQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAdminStaffQuery = { __typename?: 'Query', getStaff: Array<{ __typename?: 'UserResponse', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, specialization?: string | null, phone: string, avatar?: string | null } | null, socials?: Array<{ __typename?: 'UserSocial', id: number, title: string, link: string }> | null }> };
+export type GetAdminStaffQuery = { __typename?: 'Query', getStaff: Array<{ __typename?: 'User', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, specialization?: string | null, phone: string, avatar?: string | null } | null, socials?: Array<{ __typename?: 'UserSocial', id: number, title: string, link: string }> | null }> };
 
 export type GetAdminStaffInfoQueryVariables = Exact<{
   staffId: Scalars['Int']['input'];
 }>;
 
 
-export type GetAdminStaffInfoQuery = { __typename?: 'Query', getUser: { __typename?: 'UserResponse', email: string, createdAt: any, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, specialization?: string | null, phone: string, avatar?: string | null, bio?: string | null } | null, socials?: Array<{ __typename?: 'UserSocial', id: number, title: string, link: string }> | null } };
+export type GetAdminStaffInfoQuery = { __typename?: 'Query', getUser: { __typename?: 'User', email: string, createdAt: any, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, specialization?: string | null, phone: string, avatar?: string | null, bio?: string | null } | null, socials?: Array<{ __typename?: 'UserSocial', id: number, title: string, link: string }> | null } };
 
 export type CreateStaffMutationVariables = Exact<{
   createUserInput: CreateUserInput;
@@ -528,21 +577,36 @@ export type CreateStaffMutationVariables = Exact<{
 }>;
 
 
-export type CreateStaffMutation = { __typename?: 'Mutation', createUser: { __typename?: 'UserResponse', id: number } };
+export type CreateStaffMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: number } };
+
+export type CreateStaffWorkingDayMutationVariables = Exact<{
+  createUserWorkingDayInput: CreateUserWorkingDayInput;
+}>;
+
+
+export type CreateStaffWorkingDayMutation = { __typename?: 'Mutation', createUserWorkingDay: { __typename?: 'UserWorkingDay', id: number } };
+
+export type UpdateStaffWorkingDayMutationVariables = Exact<{
+  userWorkingDayId: Scalars['Int']['input'];
+  updateUserWorkingDayInput: UpdateUserWorkingDayInput;
+}>;
+
+
+export type UpdateStaffWorkingDayMutation = { __typename?: 'Mutation', updateUserWorkingDay: { __typename?: 'UserWorkingDay', id: number } };
 
 export type GetAllAppointmentsQueryVariables = Exact<{
   getAppointmentFilterInput?: InputMaybe<GetAppointmentFilterInput>;
 }>;
 
 
-export type GetAllAppointmentsQuery = { __typename?: 'Query', getAllAppointments: Array<{ __typename?: 'Appointment', id: number, status: AppointmentStatus, targetTime: any, customer: { __typename?: 'UserResponse', profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, phone: string } | null }, staff: { __typename?: 'UserResponse', profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, specialization?: string | null, phone: string, avatar?: string | null } | null }, staffService: { __typename?: 'StaffService', service: { __typename?: 'CompanyService', title: string } } }> };
+export type GetAllAppointmentsQuery = { __typename?: 'Query', getAllAppointments: Array<{ __typename?: 'Appointment', id: number, status: AppointmentStatus, targetTime: any, customer: { __typename?: 'User', profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, phone: string } | null }, staff: { __typename?: 'User', profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, specialization?: string | null, phone: string, avatar?: string | null } | null }, staffService: { __typename?: 'StaffService', service: { __typename?: 'CompanyService', title: string } } }> };
 
 export type LoginMutationVariables = Exact<{
   loginInput: LoginInput;
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', accessToken: string, user: { __typename?: 'UserResponse', role: UserRole } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', accessToken: string, user: { __typename?: 'User', role: UserRole } } };
 
 export type LogoutQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -562,14 +626,14 @@ export type GetStaffForAppointmentQueryVariables = Exact<{
 }>;
 
 
-export type GetStaffForAppointmentQuery = { __typename?: 'Query', getStaff: Array<{ __typename?: 'UserResponse', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, specialization?: string | null, phone: string, avatar?: string | null, bio?: string | null } | null }> };
+export type GetStaffForAppointmentQuery = { __typename?: 'Query', getStaff: Array<{ __typename?: 'User', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, specialization?: string | null, phone: string, avatar?: string | null, bio?: string | null } | null }> };
 
 export type GetStaffServicesForAppointmentQueryVariables = Exact<{
   getStaffServicesInput?: InputMaybe<GetStaffServicesInput>;
 }>;
 
 
-export type GetStaffServicesForAppointmentQuery = { __typename?: 'Query', getStaffServices: Array<{ __typename?: 'StaffService', id: number, title?: string | null, description?: string | null, image?: string | null, price?: number | null, duration: number, user: { __typename?: 'UserResponse', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, phone: string, avatar?: string | null } | null } }> };
+export type GetStaffServicesForAppointmentQuery = { __typename?: 'Query', getStaffServices: Array<{ __typename?: 'StaffService', id: number, title?: string | null, description?: string | null, image?: string | null, price?: number | null, duration: number, user: { __typename?: 'User', id: number, profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, nickName?: string | null, phone: string, avatar?: string | null } | null } }> };
 
 export type GetPublicCompanyServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -581,7 +645,7 @@ export type GetMyStaffAppointmentsQueryVariables = Exact<{
 }>;
 
 
-export type GetMyStaffAppointmentsQuery = { __typename?: 'Query', getMyAppointments: Array<{ __typename?: 'Appointment', id: number, status: AppointmentStatus, targetTime: any, description?: string | null, images?: Array<string> | null, staffService: { __typename?: 'StaffService', title?: string | null }, customer: { __typename?: 'UserResponse', profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, phone: string } | null } }> };
+export type GetMyStaffAppointmentsQuery = { __typename?: 'Query', getMyAppointments: Array<{ __typename?: 'Appointment', id: number, status: AppointmentStatus, targetTime: any, description?: string | null, images?: Array<string> | null, staffService: { __typename?: 'StaffService', title?: string | null }, customer: { __typename?: 'User', profile?: { __typename?: 'UserProfile', firstName: string, lastName?: string | null, phone: string } | null } }> };
 
 export type GetMyStaffServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -628,6 +692,8 @@ export const RemoveServiceTagDocument = {"kind":"Document","definitions":[{"kind
 export const GetAdminStaffDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAdminStaff"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStaff"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"nickName"}},{"kind":"Field","name":{"kind":"Name","value":"specialization"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}},{"kind":"Field","name":{"kind":"Name","value":"socials"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}}]}}]}}]} as unknown as DocumentNode<GetAdminStaffQuery, GetAdminStaffQueryVariables>;
 export const GetAdminStaffInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAdminStaffInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staffId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staffId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"nickName"}},{"kind":"Field","name":{"kind":"Name","value":"specialization"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}}]}},{"kind":"Field","name":{"kind":"Name","value":"socials"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}}]}}]}}]} as unknown as DocumentNode<GetAdminStaffInfoQuery, GetAdminStaffInfoQueryVariables>;
 export const CreateStaffDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateStaff"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createUserInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createUserProfileInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserProfileInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createUserInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createUserInput"}}},{"kind":"Argument","name":{"kind":"Name","value":"createUserProfileInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createUserProfileInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateStaffMutation, CreateStaffMutationVariables>;
+export const CreateStaffWorkingDayDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateStaffWorkingDay"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createUserWorkingDayInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserWorkingDayInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUserWorkingDay"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createUserWorkingDayInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createUserWorkingDayInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateStaffWorkingDayMutation, CreateStaffWorkingDayMutationVariables>;
+export const UpdateStaffWorkingDayDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateStaffWorkingDay"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userWorkingDayId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateUserWorkingDayInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateUserWorkingDayInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUserWorkingDay"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"userWorkingDayId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userWorkingDayId"}}},{"kind":"Argument","name":{"kind":"Name","value":"updateUserWorkingDayInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateUserWorkingDayInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateStaffWorkingDayMutation, UpdateStaffWorkingDayMutationVariables>;
 export const GetAllAppointmentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllAppointments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getAppointmentFilterInput"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"GetAppointmentFilterInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAllAppointments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getAppointmentFilterInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getAppointmentFilterInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"targetTime"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"staff"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"specialization"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"staffService"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"service"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllAppointmentsQuery, GetAllAppointmentsQueryVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"role"}}]}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
 export const LogoutDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Logout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<LogoutQuery, LogoutQueryVariables>;

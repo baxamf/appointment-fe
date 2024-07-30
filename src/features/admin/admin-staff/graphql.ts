@@ -57,3 +57,27 @@ export const CREATE_STAFF = gql(`
         }
     }    
 `);
+
+export const CREATE_STAFF_WORKING_DAY = gql(`
+    mutation CreateStaffWorkingDay(
+        $createUserWorkingDayInput: CreateUserWorkingDayInput!
+    ) {
+        createUserWorkingDay(createUserWorkingDayInput: $createUserWorkingDayInput) {
+            id
+        }
+    }
+`);
+
+export const UPDATE_STAFF_WORKING_DAY = gql(`
+    mutation UpdateStaffWorkingDay(
+        $userWorkingDayId: Int!
+        $updateUserWorkingDayInput: UpdateUserWorkingDayInput!
+    ) {
+        updateUserWorkingDay(
+            userWorkingDayId: $userWorkingDayId
+            updateUserWorkingDayInput: $updateUserWorkingDayInput
+        ) {
+            id
+        }
+    }    
+`);

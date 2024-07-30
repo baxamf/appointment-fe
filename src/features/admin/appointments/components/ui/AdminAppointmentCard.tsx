@@ -47,7 +47,7 @@ export default function AdminAppointmentCard({
                 " "
               )}
               <div>
-                <PhoneFilled className="ml-5 mr-1" />
+                <PhoneFilled className="mr-1" />
                 {customer.profile?.phone}
               </div>
             </Typography.Title>
