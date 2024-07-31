@@ -12,6 +12,10 @@ export default function AdminStaffInfoScreen(
 
     return (
       <Card className="w-full px-[4vw] py-[2vh]">
+        <Typography.Title type="secondary" className="mb-[4vh]" level={2}>
+          Details
+        </Typography.Title>
+
         <Flex className="flex-wrap gap-x-[4vw] gap-y-[2vh] text-left">
           <Flex className="flex-1 basis-[20vw]">
             <Image

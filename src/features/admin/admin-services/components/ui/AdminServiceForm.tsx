@@ -87,12 +87,13 @@ export default function AdminServiceForm({
 
       <Form.Item className="mt-[2vh] flex-1 basis-full">
         <Button
+          ghost
           size="large"
           type="primary"
           htmlType="submit"
           disabled={submitDisabled || !formik.dirty}
         >
-          Save changes
+          Save service
         </Button>
       </Form.Item>
 

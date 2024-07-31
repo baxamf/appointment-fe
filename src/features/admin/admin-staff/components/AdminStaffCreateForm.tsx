@@ -107,13 +107,14 @@ export default function AdminStaffCreateForm() {
 
         <Form.Item>
           <Button
+            ghost
             className="mt-[2vh]"
             size="large"
             type="primary"
             htmlType="submit"
             disabled={createStaffLoading || !formik.isValid || !formik.dirty}
           >
-            Add new staff
+            Add staff
           </Button>
         </Form.Item>
 

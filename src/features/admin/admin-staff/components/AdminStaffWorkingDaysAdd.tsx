@@ -24,5 +24,5 @@ export default function AdminStaffWorkingDaysAdd() {
 
   if (errorMessage) return <ErrorPage message={errorMessage} />;
 
-  return <AdminStaffWorkingDayForm {...formik} />;
+  return <AdminStaffWorkingDayForm {...{ formik }} />;
 }

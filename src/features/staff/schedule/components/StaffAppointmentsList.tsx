@@ -22,6 +22,7 @@ export default function StaffAppointmentsList() {
     return (
       <Flex className="flex-col gap-[2vh]">
         <DatePicker
+          allowClear={false}
           size="large"
           className="w-48 py-2.5"
           onChange={getAppointments}

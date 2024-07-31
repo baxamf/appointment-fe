@@ -23,6 +23,7 @@ export default function AdminAppointmentsList() {
       <Flex className="flex-wrap gap-[2vw]">
         <div className="w-full">
           <DatePicker
+            allowClear={false}
             size="large"
             className="w-48 py-2.5"
             onChange={getAppointments}

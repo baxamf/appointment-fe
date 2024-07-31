@@ -58,6 +58,19 @@ export const CREATE_STAFF = gql(`
     }    
 `);
 
+export const GET_STAFF_WORKING_DAYS = gql(`
+    query GetStaffWorkingDays($userId: Int!) {
+        getUserWorkingDays(userId: $userId) {
+            id
+            day
+            startHour
+            startMinute
+            endHour
+            endMinute
+        }
+    }
+`);
+
 export const CREATE_STAFF_WORKING_DAY = gql(`
     mutation CreateStaffWorkingDay(
         $createUserWorkingDayInput: CreateUserWorkingDayInput!
@@ -77,6 +90,14 @@ export const UPDATE_STAFF_WORKING_DAY = gql(`
             userWorkingDayId: $userWorkingDayId
             updateUserWorkingDayInput: $updateUserWorkingDayInput
         ) {
+            id
+        }
+    }    
+`);
+
+export const REMOVE_STAFF_WORKING_DAY = gql(`
+    mutation RemoveStaffWorkingDay($userWorkingDayId: Int!) {
+        removeUserWorkingDay(userWorkingDayId: $userWorkingDayId) {
             id
         }
     }    

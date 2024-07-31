@@ -3,6 +3,8 @@ import { StorageService } from "./StorageService";
 import { UserRole } from "../api/__generated__/graphql";
 
 export type TUser = {
+  userId: number;
+  email: string;
   role: UserRole;
 };
 export interface Store {

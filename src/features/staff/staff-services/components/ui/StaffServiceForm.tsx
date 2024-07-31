@@ -159,6 +159,7 @@ export default function StaffServiceForm({
 
       <Form.Item className="w-full">
         <Button
+          ghost
           type="primary"
           htmlType="submit"
           disabled={submitDisabled || !formik.isValid || !formik.dirty}

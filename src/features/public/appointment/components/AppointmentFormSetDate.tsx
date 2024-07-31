@@ -23,8 +23,10 @@ export default function AppointmentFormSetDate() {
         }
       >
         <DatePicker
+          allowClear={false}
           className="w-full py-2.5"
           minDate={dayjs()}
+          showSecond={false}
           showTime
           name="createAppointmentInput.targetTime"
           onBlur={() =>

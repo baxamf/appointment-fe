@@ -7,7 +7,7 @@ export default function AdminStaffCreate() {
       <Card className="px-[4vw] py-[2vh] flex-1">
         <Flex className="flex-col flex-wrap gap-[4vh]">
           <Typography.Title type="secondary" level={2}>
-            Staff details
+            Details
           </Typography.Title>
 
           <AdminStaffCreateForm />
