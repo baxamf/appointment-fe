@@ -42,7 +42,6 @@ export const UPDATE_MY_STAFF_SERVICE = gql(`
             serviceId
             title
             description
-            image
             price
             duration
         }

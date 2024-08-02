@@ -20,14 +20,13 @@ export default function AdminServiceEditForm({
     initialValues: {
       title,
       description,
-      image,
     },
     onSubmit: submitFormHandler,
   });
 
   return (
     <FormikProvider value={formik}>
-      <AdminServiceForm {...formData} />
+      <AdminServiceForm {...{ ...formData, image, formik }} />
     </FormikProvider>
   );
 }

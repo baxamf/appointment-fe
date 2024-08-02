@@ -21,7 +21,9 @@ export function useUpdateMyStaffService() {
     });
 
     if (data?.updateStaffService) {
-      actions.resetForm({ values: data.updateStaffService });
+      actions.resetForm({
+        values: data.updateStaffService,
+      });
     }
   };
 

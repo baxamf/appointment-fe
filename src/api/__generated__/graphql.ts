@@ -16,6 +16,8 @@ export type Scalars = {
   Float: { input: number; output: number; }
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: { input: any; output: any; }
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: { input: any; output: any; }
 };
 
 export type Appointment = {
@@ -62,7 +64,7 @@ export type CompanyService = {
 
 export type CreateAppointmentInput = {
   description?: InputMaybe<Scalars['String']['input']>;
-  images?: InputMaybe<Array<Scalars['String']['input']>>;
+  images?: InputMaybe<Array<Scalars['Upload']['input']>>;
   staffId: Scalars['Int']['input'];
   staffServiceId: Scalars['Int']['input'];
   targetTime: Scalars['DateTime']['input'];
@@ -70,7 +72,7 @@ export type CreateAppointmentInput = {
 
 export type CreateCompanyServiceInput = {
   description: Scalars['String']['input'];
-  image: Scalars['String']['input'];
+  image: Scalars['Upload']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   title: Scalars['String']['input'];
 };
@@ -84,7 +86,7 @@ export type CreateStaffServiceInput = {
   /** Service duration in minutes */
   duration: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Upload']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   /** Service price per duration */
   price?: InputMaybe<Scalars['Int']['input']>;
@@ -99,7 +101,7 @@ export type CreateUserInput = {
 };
 
 export type CreateUserProfileInput = {
-  avatar?: InputMaybe<Scalars['String']['input']>;
+  avatar?: InputMaybe<Scalars['Upload']['input']>;
   bio?: InputMaybe<Scalars['String']['input']>;
   firstName: Scalars['String']['input'];
   lastName?: InputMaybe<Scalars['String']['input']>;
@@ -392,7 +394,7 @@ export type StaffService = {
 export type UpdateAppointmentInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['Int']['input'];
-  images?: InputMaybe<Array<Scalars['String']['input']>>;
+  images?: InputMaybe<Array<Scalars['Upload']['input']>>;
   staffId?: InputMaybe<Scalars['Int']['input']>;
   staffServiceId?: InputMaybe<Scalars['Int']['input']>;
   targetTime?: InputMaybe<Scalars['DateTime']['input']>;
@@ -400,7 +402,7 @@ export type UpdateAppointmentInput = {
 
 export type UpdateCompanyServiceInput = {
   description?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Upload']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -414,7 +416,7 @@ export type UpdateStaffServiceInput = {
   /** Service duration in minutes */
   duration?: InputMaybe<Scalars['Int']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Upload']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   /** Service price per duration */
   price?: InputMaybe<Scalars['Int']['input']>;
@@ -423,7 +425,7 @@ export type UpdateStaffServiceInput = {
 };
 
 export type UpdateUserProfileInput = {
-  avatar?: InputMaybe<Scalars['String']['input']>;
+  avatar?: InputMaybe<Scalars['Upload']['input']>;
   bio?: InputMaybe<Scalars['String']['input']>;
   firstName?: InputMaybe<Scalars['String']['input']>;
   lastName?: InputMaybe<Scalars['String']['input']>;
@@ -527,7 +529,7 @@ export type UpdateCompanyServiceMutationVariables = Exact<{
 }>;
 
 
-export type UpdateCompanyServiceMutation = { __typename?: 'Mutation', updateCompanyService: { __typename?: 'CompanyService', id: number, title: string, description: string, image: string, order: number } };
+export type UpdateCompanyServiceMutation = { __typename?: 'Mutation', updateCompanyService: { __typename?: 'CompanyService', title: string, description: string, order: number } };
 
 export type GetCompanyServiceTagsQueryVariables = Exact<{
   companyServiceId: Scalars['Int']['input'];
@@ -679,7 +681,7 @@ export type UpdateMyStaffServiceMutationVariables = Exact<{
 }>;
 
 
-export type UpdateMyStaffServiceMutation = { __typename?: 'Mutation', updateStaffService: { __typename?: 'StaffService', serviceId: number, title?: string | null, description?: string | null, image?: string | null, price?: number | null, duration: number } };
+export type UpdateMyStaffServiceMutation = { __typename?: 'Mutation', updateStaffService: { __typename?: 'StaffService', serviceId: number, title?: string | null, description?: string | null, price?: number | null, duration: number } };
 
 export type GetCompanyServicesForStaffServiceCreateQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -698,7 +700,7 @@ export const RefreshDocument = {"kind":"Document","definitions":[{"kind":"Operat
 export const GetAdminCompanyServicesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAdminCompanyServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCompanyServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"order"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<GetAdminCompanyServicesQuery, GetAdminCompanyServicesQueryVariables>;
 export const GetAdminCompanyServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAdminCompanyService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCompanyService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"companyServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"order"}}]}}]}}]} as unknown as DocumentNode<GetAdminCompanyServiceQuery, GetAdminCompanyServiceQueryVariables>;
 export const CreateCompanyServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateCompanyService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createCompanyServiceInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateCompanyServiceInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCompanyService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createCompanyServiceInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createCompanyServiceInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateCompanyServiceMutation, CreateCompanyServiceMutationVariables>;
-export const UpdateCompanyServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCompanyService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCompanyServiceInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCompanyServiceInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCompanyService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCompanyServiceInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCompanyServiceInput"}}},{"kind":"Argument","name":{"kind":"Name","value":"companyServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"order"}}]}}]}}]} as unknown as DocumentNode<UpdateCompanyServiceMutation, UpdateCompanyServiceMutationVariables>;
+export const UpdateCompanyServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCompanyService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCompanyServiceInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCompanyServiceInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCompanyService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCompanyServiceInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCompanyServiceInput"}}},{"kind":"Argument","name":{"kind":"Name","value":"companyServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"order"}}]}}]}}]} as unknown as DocumentNode<UpdateCompanyServiceMutation, UpdateCompanyServiceMutationVariables>;
 export const GetCompanyServiceTagsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCompanyServiceTags"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCompanyServiceTags"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"companyServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<GetCompanyServiceTagsQuery, GetCompanyServiceTagsQueryVariables>;
 export const CreateServiceTagDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateServiceTag"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createServiceTagInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateServiceTagInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createServiceTag"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createServiceTagInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createServiceTagInput"}}},{"kind":"Argument","name":{"kind":"Name","value":"companyServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"companyServiceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateServiceTagMutation, CreateServiceTagMutationVariables>;
 export const UpdateServiceTagDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateServiceTag"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"serviceTagId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateServiceTagInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateServiceTagInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateServiceTag"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"serviceTagId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"serviceTagId"}}},{"kind":"Argument","name":{"kind":"Name","value":"updateServiceTagInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateServiceTagInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateServiceTagMutation, UpdateServiceTagMutationVariables>;
@@ -720,6 +722,6 @@ export const GetPublicCompanyServicesDocument = {"kind":"Document","definitions"
 export const GetMyStaffAppointmentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMyStaffAppointments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getAppointmentFilterInput"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"GetAppointmentFilterInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getMyAppointments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getAppointmentFilterInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getAppointmentFilterInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"targetTime"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"images"}},{"kind":"Field","name":{"kind":"Name","value":"staffService"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetMyStaffAppointmentsQuery, GetMyStaffAppointmentsQueryVariables>;
 export const GetMyStaffServicesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMyStaffServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getMyStaffServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}},{"kind":"Field","name":{"kind":"Name","value":"service"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<GetMyStaffServicesQuery, GetMyStaffServicesQueryVariables>;
 export const GetMyStaffServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMyStaffService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStaffService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"staffServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"serviceId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}}]}}]}}]} as unknown as DocumentNode<GetMyStaffServiceQuery, GetMyStaffServiceQueryVariables>;
-export const UpdateMyStaffServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateMyStaffService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateStaffServiceInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateStaffServiceInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateStaffService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"staffServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"updateStaffServiceInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateStaffServiceInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"serviceId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}}]}}]}}]} as unknown as DocumentNode<UpdateMyStaffServiceMutation, UpdateMyStaffServiceMutationVariables>;
+export const UpdateMyStaffServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateMyStaffService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateStaffServiceInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateStaffServiceInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateStaffService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"staffServiceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staffServiceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"updateStaffServiceInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateStaffServiceInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"serviceId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}}]}}]}}]} as unknown as DocumentNode<UpdateMyStaffServiceMutation, UpdateMyStaffServiceMutationVariables>;
 export const GetCompanyServicesForStaffServiceCreateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCompanyServicesForStaffServiceCreate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCompanyServices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]}}]} as unknown as DocumentNode<GetCompanyServicesForStaffServiceCreateQuery, GetCompanyServicesForStaffServiceCreateQueryVariables>;
 export const CreateStaffServiceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateStaffService"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createStaffServiceInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateStaffServiceInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createStaffService"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createStaffServiceInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createStaffServiceInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateStaffServiceMutation, CreateStaffServiceMutationVariables>;

@@ -2,10 +2,10 @@ import {
   ApolloClient,
   ApolloLink,
   FetchResult,
-  HttpLink,
   InMemoryCache,
   Observable,
 } from "@apollo/client";
+import createUploadLink from "apollo-upload-client/createUploadLink.mjs";
 import { removeTypenameFromVariables } from "@apollo/client/link/remove-typename";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
@@ -22,7 +22,7 @@ export const REFRESH = gql(`
 
 const removeTypenameLink = removeTypenameFromVariables();
 
-const httpLink = new HttpLink({ uri: import.meta.env.VITE_API_URL });
+const httpLink = createUploadLink({ uri: import.meta.env.VITE_API_URL });
 
 const authLink = setContext((_, { headers }) => ({
   headers: {

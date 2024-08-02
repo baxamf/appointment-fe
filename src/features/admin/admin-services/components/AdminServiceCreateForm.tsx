@@ -11,7 +11,7 @@ export default function AdminServiceCreateForm() {
     initialValues: {
       title: "",
       description: "",
-      image: "",
+      image: undefined,
     },
     validationSchema: createCompanyServiceValidationSchema,
     onSubmit: submitFormHandler,
@@ -19,7 +19,7 @@ export default function AdminServiceCreateForm() {
 
   return (
     <FormikProvider value={formik}>
-      <AdminServiceForm {...formData} />
+      <AdminServiceForm {...{ ...formData, formik }} />
     </FormikProvider>
   );
 }

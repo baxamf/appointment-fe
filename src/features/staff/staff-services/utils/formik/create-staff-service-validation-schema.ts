@@ -7,7 +7,7 @@ export const createStaffServiceValidationSchema = yup.object({
     .required("Duration is required")
     .positive("Duration must be a positive number"),
   id: yup.number().optional(),
-  image: yup.string().optional().url("Image must be a valid URL (optional)"),
+  image: yup.string().optional(),
   order: yup.number().optional(),
   price: yup
     .number()

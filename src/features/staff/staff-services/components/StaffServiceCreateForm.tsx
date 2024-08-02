@@ -30,7 +30,6 @@ export default function StaffServiceCreateForm({
     initialValues: {
       title: "",
       description: "",
-      image: "",
       price: 0,
       duration: 60,
       serviceId: options[0].value as number,
@@ -49,7 +48,7 @@ export default function StaffServiceCreateForm({
         <StaffServiceFormLayout>
           <StaffServiceParentService {...companyService} />
 
-          <StaffServiceForm {...{ ...formProps, options }} />
+          <StaffServiceForm {...{ ...formProps, formik, options }} />
         </StaffServiceFormLayout>
       </FormikProvider>
     );

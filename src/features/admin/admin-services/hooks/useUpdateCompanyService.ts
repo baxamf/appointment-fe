@@ -22,9 +22,7 @@ export function useUpdateCompanyService(): FormMutationHookReturnType<UpdateComp
     });
 
     if (data?.updateCompanyService) {
-      const { title, description, image } = data.updateCompanyService;
-
-      actions.resetForm({ values: { title, description, image } });
+      actions.resetForm({ values: data.updateCompanyService });
     }
   };
 

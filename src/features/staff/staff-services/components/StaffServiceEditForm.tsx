@@ -21,14 +21,14 @@ type StaffServiceEditFormProps = {
 };
 
 export default function StaffServiceEditForm({
-  staffService,
+  staffService: { image, ...service },
   options,
   companyServices,
 }: StaffServiceEditFormProps) {
   const { updateMyStaffService, ...formProps } = useUpdateMyStaffService();
 
   const formik = useFormik<UpdateStaffServiceInput>({
-    initialValues: staffService,
+    initialValues: service,
     onSubmit: updateMyStaffService,
   });
 
@@ -43,7 +43,7 @@ export default function StaffServiceEditForm({
         <StaffServiceFormLayout>
           <StaffServiceParentService {...companyService} />
 
-          <StaffServiceForm {...{ ...formProps, options }} />
+          <StaffServiceForm {...{ ...formProps, formik, image, options }} />
         </StaffServiceFormLayout>
       </FormikProvider>
     );

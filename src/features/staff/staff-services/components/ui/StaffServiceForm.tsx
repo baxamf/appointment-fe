@@ -8,32 +8,32 @@ import {
   Select,
   Image,
   Typography,
+  Upload,
 } from "antd";
-import { useFormikContext } from "formik";
+import { FormikContextType } from "formik";
 import {
   CreateStaffServiceInput,
   UpdateStaffServiceInput,
 } from "../../../../../api/__generated__/graphql";
 import FormErrorMessage from "../../../../../common/components/errors/FormErrorMessage";
 import { DefaultOptionType } from "antd/es/select";
+import { acceptImages } from "../../../../../common/constants/accept-image-upload-types";
+import { useState } from "react";
+import { blobToImgSrc } from "../../../../../common/utils/blob-to-img-source";
 
-type StaffServiceFormProps = {
+type StaffServiceFormProps<T> = {
   options: DefaultOptionType[];
   error: boolean;
   errorMessage?: string;
   submitDisabled: boolean;
+  image?: string | null;
+  formik: FormikContextType<T>;
 };
 
-export default function StaffServiceForm({
-  options,
-  error,
-  errorMessage,
-  submitDisabled,
-}: StaffServiceFormProps) {
-  const formik = useFormikContext<
-    CreateStaffServiceInput | UpdateStaffServiceInput
-  >();
-  type StaffServiceFormInputType = typeof formik.initialValues;
+export default function StaffServiceForm<
+  T extends CreateStaffServiceInput | UpdateStaffServiceInput
+>({ options, error, errorMessage, image, formik }: StaffServiceFormProps<T>) {
+  const [preview, setPreview] = useState(image);
 
   return (
     <Form
@@ -50,7 +50,7 @@ export default function StaffServiceForm({
 
       <Flex className="flex-wrap gap-[4vw]">
         <Flex className="flex-col gap-[2vh] flex-1 basis-[30vw]">
-          <Form.Item<StaffServiceFormInputType>
+          <Form.Item<T>
             label="service"
             validateStatus={formik.errors.serviceId && "error"}
           >
@@ -66,7 +66,7 @@ export default function StaffServiceForm({
             <FormErrorMessage name="serviceId" />
           </Form.Item>
 
-          <Form.Item<StaffServiceFormInputType>
+          <Form.Item<T>
             label="title"
             validateStatus={formik.errors.title && "error"}
           >
@@ -79,7 +79,7 @@ export default function StaffServiceForm({
             <FormErrorMessage name="title" />
           </Form.Item>
 
-          <Form.Item<StaffServiceFormInputType>
+          <Form.Item<T>
             label="description"
             validateStatus={formik.errors.description && "error"}
           >
@@ -96,7 +96,7 @@ export default function StaffServiceForm({
           </Form.Item>
 
           <Flex className="gap-[2vw]">
-            <Form.Item<StaffServiceFormInputType>
+            <Form.Item<T>
               label="duration"
               validateStatus={formik.errors.duration && "error"}
             >
@@ -113,7 +113,7 @@ export default function StaffServiceForm({
               <FormErrorMessage name="duration" />
             </Form.Item>
 
-            <Form.Item<StaffServiceFormInputType>
+            <Form.Item<T>
               label="price"
               validateStatus={formik.errors.price && "error"}
             >
@@ -131,27 +131,45 @@ export default function StaffServiceForm({
         </Flex>
 
         <Flex className="flex-col gap-[4vh] flex-1 basis-[15vw]">
-          <Form.Item<StaffServiceFormInputType>
+          <Form.Item<T>
             label="image"
             validateStatus={formik.errors.description && "error"}
           >
-            <Input.TextArea
+            <Upload
               name="image"
-              spellCheck="false"
-              autoSize={true}
-              value={formik.values.image || ""}
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-            />
+              customRequest={(info) => formik.setFieldValue("image", info.file)}
+              showUploadList={false}
+              maxCount={1}
+              accept={acceptImages}
+              onChange={async (info) => {
+                const file = info.file.originFileObj as Blob;
+                const preview = await blobToImgSrc(file);
+                setPreview(preview);
+              }}
+            >
+              <Button>Upload</Button>
+            </Upload>
+
+            {formik.values.image && (
+              <Button
+                className="ml-[1vw]"
+                onClick={() => {
+                  formik.setFieldValue("image", undefined);
+                  setPreview(image);
+                }}
+              >
+                Reset
+              </Button>
+            )}
 
             <FormErrorMessage name="image" />
           </Form.Item>
 
-          {!!formik.values.image && (
+          {!!preview && (
             <Image
-              src={formik.values.image || ""}
+              src={preview || ""}
               width="100%"
-              className="object-cover aspect-[4/3]"
+              className="object-cover aspect-[16/10]"
             />
           )}
         </Flex>
@@ -162,7 +180,7 @@ export default function StaffServiceForm({
           ghost
           type="primary"
           htmlType="submit"
-          disabled={submitDisabled || !formik.isValid || !formik.dirty}
+          disabled={formik.isSubmitting || !formik.isValid || !formik.dirty}
         >
           Save service
         </Button>

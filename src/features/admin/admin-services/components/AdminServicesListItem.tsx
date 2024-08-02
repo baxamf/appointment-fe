@@ -17,7 +17,7 @@ export default function AdminServicesListItem({
     <Card
       hoverable
       onClick={navigateToDetail}
-      className="px-[4vw] py-[2vh] text-left hover:shadow-3xl transition"
+      className="px-[4vw] py-[2vh] w-full text-left hover:shadow-3xl transition"
     >
       <Flex className="flex-wrap gap-x-[4vw] ">
         <div className="flex-grow-[2] basis-[25vw] ">

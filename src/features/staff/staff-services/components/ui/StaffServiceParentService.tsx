@@ -15,7 +15,7 @@ export default function StaffServiceParentService({
         Parent Service
       </Typography.Title>
 
-      <Flex className="flex-wrap gap-[4vw]">
+      <Flex className="flex-wrap gap-x-[4vw]">
         <div className="flex-1 basis-[30vw] text-left">
           <Divider orientation="left">title</Divider>
           <Typography.Title className="mb-4" level={4}>
@@ -30,11 +30,7 @@ export default function StaffServiceParentService({
 
         <div className="flex-1 basis-[15vw]">
           <Divider>image</Divider>
-          <Image
-            src={image}
-            width="100%"
-            className="object-cover aspect-[16/10]"
-          />
+          <Image src={image} className="object-cover aspect-[16/10]" />
         </div>
       </Flex>
     </Flex>

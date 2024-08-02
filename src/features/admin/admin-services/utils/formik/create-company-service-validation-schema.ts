@@ -9,7 +9,5 @@ export const createCompanyServiceValidationSchema = Yup.object().shape({
     .required("Description is required")
     .min(10, "Description must be at least 10 characters long")
     .trim(),
-  image: Yup.string()
-    .required("Image is required")
-    .url("Image must be a valid URL"),
+  image: Yup.string().required("Image is required"),
 });

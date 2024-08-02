@@ -46,10 +46,8 @@ export const UPDATE_COMPANY_SERVICE = gql(`
             updateCompanyServiceInput: $updateCompanyServiceInput
             companyServiceId: $companyServiceId
         ) {
-            id
             title
             description
-            image
             order
         }
     }   
