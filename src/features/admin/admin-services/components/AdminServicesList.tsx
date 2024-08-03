@@ -1,4 +1,3 @@
-import { Flex } from "antd";
 import Loading from "../../../../common/components/loading/Loading";
 import ErrorPage from "../../../../pages/Error";
 import { useGetAdminCompanyServices } from "../hooks/useGetAdminCompanyServices";
@@ -16,12 +15,12 @@ export default function AdminServicesList() {
 
   if (adminServices)
     return (
-      <Flex className="flex-wrap gap-[4vh]">
+      <div className="grid gap-[4vh]">
         {adminServices?.map((service) => (
           <AdminServicesListItem key={service.id} {...service} />
         ))}
 
         <AddAdminServiceCard />
-      </Flex>
+      </div>
     );
 }

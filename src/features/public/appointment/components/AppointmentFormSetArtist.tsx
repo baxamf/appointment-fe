@@ -22,7 +22,8 @@ export default function AppointmentFormSetArtist() {
     return (
       <Carousel
         ref={carouselRef}
-        arrows
+        arrows={staffServices.length > 1}
+        dots={staffServices.length > 1}
         dotPosition="left"
         effect="fade"
         infinite

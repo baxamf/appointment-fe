@@ -1,4 +1,4 @@
-import { Flex, Form, Input, Image, Button, Alert, Upload } from "antd";
+import { Form, Input, Image, Button, Alert, Upload } from "antd";
 import FormErrorMessage from "../../../../../common/components/errors/FormErrorMessage";
 import { FormikContextType } from "formik";
 import {
@@ -23,67 +23,75 @@ export default function AdminServiceForm<
   return (
     <Form
       name="basic"
-      className="flex flex-wrap gap-x-[4vw] gap-y-[2vh]"
+      className="grid w-2/3 gap-[2vh]"
       initialValues={formik.initialValues}
       onSubmitCapture={formik.handleSubmit}
       autoComplete="off"
       layout="vertical"
     >
-      <Flex className="flex-col gap-[2vh] flex-1 basis-[25vw]">
-        <Form.Item<T>
-          label="title"
-          validateStatus={formik.errors.title && "error"}
-        >
-          <Input.TextArea
-            name="title"
-            autoSize={true}
-            value={formik.values.title || ""}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
+      <Form.Item<T>
+        label="title"
+        validateStatus={formik.errors.title && "error"}
+      >
+        <Input.TextArea
+          className="leading-6"
+          name="title"
+          autoSize={true}
+          value={formik.values.title || ""}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+        />
+        <FormErrorMessage name="title" />
+      </Form.Item>
+      <Form.Item<T>
+        label="description"
+        validateStatus={formik.errors.description && "error"}
+      >
+        <Input.TextArea
+          className="leading-6"
+          name="description"
+          autoSize={true}
+          value={formik.values.description || ""}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+        />
+        <FormErrorMessage name="description" />
+      </Form.Item>
+      <Form.Item<T>
+        label="image"
+        validateStatus={formik.errors.description && "error"}
+      >
+        {preview ? (
+          <Image
+            height="25vh"
+            src={preview || ""}
+            className="object-cover aspect-[16/10]"
           />
-          <FormErrorMessage name="title" />
-        </Form.Item>
+        ) : (
+          <div className="grid place-content-center h-[25vh] aspect-[16/10] border-dashed border-secondary border">
+            No image
+          </div>
+        )}
 
-        <Form.Item<T>
-          label="description"
-          validateStatus={formik.errors.description && "error"}
+        <Upload
+          className="block"
+          name="image"
+          customRequest={(info) => formik.setFieldValue("image", info.file)}
+          showUploadList={false}
+          maxCount={1}
+          accept={acceptImages}
+          onChange={async (info) => {
+            const file = info.file.originFileObj as Blob;
+            const preview = await blobToImgSrc(file);
+            setPreview(preview);
+          }}
         >
-          <Input.TextArea
-            className="leading-6"
-            name="description"
-            autoSize={true}
-            value={formik.values.description || ""}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-          />
-          <FormErrorMessage name="description" />
-        </Form.Item>
-      </Flex>
-
-      <Flex className="flex-col gap-[2vh] flex-1 basis-[20vw]">
-        <Form.Item<T>
-          label="image"
-          validateStatus={formik.errors.description && "error"}
-        >
-          <Upload
-            name="image"
-            customRequest={(info) => formik.setFieldValue("image", info.file)}
-            showUploadList={false}
-            maxCount={1}
-            accept={acceptImages}
-            onChange={async (info) => {
-              const file = info.file.originFileObj as Blob;
-              const preview = await blobToImgSrc(file);
-              setPreview(preview);
-            }}
-          >
-            <Button>Upload</Button>
-          </Upload>
-
-          {formik.initialValues.image !== formik.values.image && (
+          <Button className="mt-[2vh]">Upload</Button>
+          {formik.values.image && (
             <Button
               className="ml-[1vw]"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 formik.setFieldValue("image", undefined);
                 setPreview(image);
               }}
@@ -91,18 +99,10 @@ export default function AdminServiceForm<
               Reset
             </Button>
           )}
+        </Upload>
 
-          <FormErrorMessage name="image" />
-        </Form.Item>
-
-        {!!preview && (
-          <Image
-            src={preview || ""}
-            width="100%"
-            className="object-cover aspect-[4/3]"
-          />
-        )}
-      </Flex>
+        <FormErrorMessage name="image" />
+      </Form.Item>
 
       <Form.Item className="mt-[2vh] flex-1 basis-full">
         <Button
@@ -115,7 +115,6 @@ export default function AdminServiceForm<
           Save service
         </Button>
       </Form.Item>
-
       {errorMessage && <Alert message={errorMessage} type="error" />}
     </Form>
   );

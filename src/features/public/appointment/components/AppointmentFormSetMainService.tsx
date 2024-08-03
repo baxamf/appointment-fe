@@ -22,7 +22,8 @@ export default function AppointmentFormSetMainService() {
     return (
       <Carousel
         ref={carouselRef}
-        arrows
+        arrows={companyServices.length > 1}
+        dots={companyServices.length > 1}
         dotPosition="left"
         effect="fade"
         infinite

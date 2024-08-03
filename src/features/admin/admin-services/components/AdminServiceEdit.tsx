@@ -1,4 +1,4 @@
-import { Card, Flex, Typography } from "antd";
+import { Card, Flex } from "antd";
 import Loading from "../../../../common/components/loading/Loading";
 import { useGetAdminCompanyService } from "../hooks/useGetAdminCompanyService";
 import AdminServiceEditForm from "./AdminServiceEditForm";
@@ -17,19 +17,11 @@ export default function AdminServiceEdit() {
   if (adminService)
     return (
       <Flex className="flex-wrap gap-[4vh]">
-        <Card className="px-[4vw] py-[2vh]">
-          <Typography.Title type="secondary" className="mb-[4vh]" level={2}>
-            Details
-          </Typography.Title>
-
+        <Card className="px-[4vw] py-[2vh] flex-1 basis-full">
           <AdminServiceEditForm {...adminService} />
         </Card>
 
         <Card className="px-[4vw] py-[2vh] flex-1 ">
-          <Typography.Title type="secondary" className="mb-[4vh]" level={2}>
-            Tags
-          </Typography.Title>
-
           <AdminServiceEditTags />
         </Card>
       </Flex>

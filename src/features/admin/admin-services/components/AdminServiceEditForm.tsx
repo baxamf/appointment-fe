@@ -5,6 +5,7 @@ import {
 } from "../../../../api/__generated__/graphql";
 import { useUpdateCompanyService } from "../hooks/useUpdateCompanyService";
 import AdminServiceForm from "./ui/AdminServiceForm";
+import { Typography } from "antd";
 
 type AdminServiceEditFormProps =
   GetAdminCompanyServiceQuery["getCompanyService"];
@@ -26,6 +27,10 @@ export default function AdminServiceEditForm({
 
   return (
     <FormikProvider value={formik}>
+      <Typography.Title type="secondary" className="mb-[4vh]" level={2}>
+        Details
+      </Typography.Title>
+
       <AdminServiceForm {...{ ...formData, image, formik }} />
     </FormikProvider>
   );

@@ -1,12 +1,11 @@
-import { Flex } from "antd";
 import AdminStaffInfo from "../components/AdminStaffInfo";
 import AdminStaffWorkingDays from "../components/AdminStaffWorkingDays";
 
 export default function AdminStaffDetailsPage() {
   return (
-    <Flex gap="2vw" wrap>
+    <div className="grid gap-[4vw]">
       <AdminStaffInfo />
       <AdminStaffWorkingDays />
-    </Flex>
+    </div>
   );
 }

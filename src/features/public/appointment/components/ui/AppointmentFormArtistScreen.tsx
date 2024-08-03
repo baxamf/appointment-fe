@@ -17,19 +17,14 @@ export default function AppointmentFormArtistScreen({
   ...service
 }: AppointmentFormArtistScreenProps) {
   return (
-    <Flex
-      className="gap-[5vw] flex-wrap justify-center px-10 py-20"
-      onWheel={onWheel}
-    >
-      <div>
-        <Image
-          src={user.profile?.avatar || ""}
-          height="60vh"
-          className="object-cover"
-        />
-      </div>
+    <Flex className="gap-[5vw] px-10 py-20" onWheel={onWheel}>
+      <Image
+        src={user.profile?.avatar || ""}
+        height="60vh"
+        className="flex-1 object-cover aspect-[10/16]"
+      />
 
-      <Flex className="flex-col gap-[2vh] flex-1 basis-[400px] text-left">
+      <Flex className="flex-col gap-[2vh] basis-2/3 text-left">
         <Typography.Title level={2}>
           {[user.profile?.firstName, user.profile?.lastName].join(" ")}
           {!!user.profile?.nickName && (
@@ -37,7 +32,7 @@ export default function AppointmentFormArtistScreen({
           )}
         </Typography.Title>
 
-        <Typography.Paragraph className="w-[30vw]" type="secondary">
+        <Typography.Paragraph className="w-2/3" type="secondary">
           {service.description}
         </Typography.Paragraph>
 

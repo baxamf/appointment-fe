@@ -32,7 +32,6 @@ export default function AdminStaffCreateForm() {
           validateStatus={formik.errors.createUserInput?.email && "error"}
         >
           <Input
-            required
             name="createUserInput.email"
             value={formik.values.createUserInput.email || ""}
             onBlur={formik.handleBlur}
@@ -62,10 +61,9 @@ export default function AdminStaffCreateForm() {
             formik.errors.createUserProfileInput?.phone && "error"
           }
         >
-          <Input.TextArea
+          <Input
             name="createUserProfileInput.phone"
             spellCheck="false"
-            autoSize={true}
             value={formik.values.createUserProfileInput.phone || ""}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -80,10 +78,9 @@ export default function AdminStaffCreateForm() {
             formik.errors.createUserProfileInput?.specialization && "error"
           }
         >
-          <Input.TextArea
+          <Input
             name="createUserProfileInput.specialization"
             spellCheck="false"
-            autoSize={true}
             value={formik.values.createUserProfileInput.specialization || ""}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}

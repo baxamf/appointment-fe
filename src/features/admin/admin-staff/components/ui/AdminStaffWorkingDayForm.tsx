@@ -1,5 +1,5 @@
 import { Button, Form, Select, TimePicker } from "antd";
-import { DeleteFilled } from "@ant-design/icons";
+import { CloseSquareFilled } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { workingDays } from "../../utils/constants/working-days";
 import { FormikContextType } from "formik";
@@ -74,9 +74,9 @@ export default function AdminStaffWorkingDayForm<
       {remove && (
         <Button
           className="px-6"
-          icon={<DeleteFilled />}
+          icon={<CloseSquareFilled />}
           onClick={remove}
-          type="dashed"
+          type="text"
           danger
         ></Button>
       )}

@@ -1,6 +1,6 @@
 import React from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Alert, Flex, Input, Tag, theme } from "antd";
+import { Alert, Flex, Input, Tag, theme, Typography } from "antd";
 import { useCompanyServiceTagApi } from "../hooks/useCompanyServiceTagApi";
 import Loading from "../../../../common/components/loading/Loading";
 import { useCompanyServiceTagControls } from "../hooks/useCompanyServiceTagControls";
@@ -20,6 +20,13 @@ export default function AdminServiceEditTags() {
   if (tags)
     return (
       <Flex className="flex-wrap gap-[2vh]">
+        <Typography.Title
+          type="secondary"
+          className="mb-[2vh] basis-full"
+          level={2}
+        >
+          Tags
+        </Typography.Title>
         {tags.map<React.ReactNode>((tag) => {
           if (edit.inputTagId === tag.id) {
             return (

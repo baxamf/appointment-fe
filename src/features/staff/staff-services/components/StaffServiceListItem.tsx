@@ -20,7 +20,7 @@ export default function StaffServiceListItem({
     <Card
       hoverable
       onClick={navigateToDetail}
-      className="flex-1 px-[4vw] py-[2vh] text-center"
+      className="flex-1 px-[4vw] py-[2vh] text-center hover:shadow-3xl transition"
     >
       <Flex className="flex-wrap gap-[4vw]">
         <div className="basis-full">

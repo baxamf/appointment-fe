@@ -20,6 +20,7 @@ export default function AdminStaffInfoScreen(
           <Flex className="flex-1 basis-[20vw]">
             <Image
               src={profile?.avatar || ""}
+              height="65vh"
               fallback="https://images.pexels.com/photos/4459231/pexels-photo-4459231.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               className="object-cover aspect-[3/4]"
             />

@@ -614,6 +614,11 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz#b6c75a56a1947cc916ea058772d666a2c8932f31"
   integrity sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==
 
+"@darkroom.engineering/tempus@^0.0.46":
+  version "0.0.46"
+  resolved "https://registry.yarnpkg.com/@darkroom.engineering/tempus/-/tempus-0.0.46.tgz#3d958807503e4055fcc4a1aeeff83ca0546c62f0"
+  integrity sha512-s5vav3KMHYezvUCl4ee5epg0oimF6M8C9gAaKxFnFaTvX2q3ywFDryIv6XLd0mRFUt3S1uHDJqKaiEcs2ZVSvw==
+
 "@emotion/hash@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
@@ -3308,6 +3313,13 @@ keyv@^4.5.3:
   integrity sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==
   dependencies:
     json-buffer "3.0.1"
+
+lenis@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/lenis/-/lenis-1.1.9.tgz#27d61daf614f8456a95d8b62d65fe61a7e625119"
+  integrity sha512-xU2UU1J8mJCiWBSfiMWsC/kPbQMIadSsJiEu3mVqptXGnwo/FUnfp8xCyiOJEvBwzqx4XDdB6TKYFn83y871vA==
+  dependencies:
+    "@darkroom.engineering/tempus" "^0.0.46"
 
 levn@^0.4.1:
   version "0.4.1"

@@ -11,7 +11,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  scroll-behavior: smooth;
+  box-sizing: border-box;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,12 +19,16 @@
   scrollbar-width: none;
 }
 
-body {
+* > {
+  box-sizing: border-box;
+}
+
+/* body {
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
 a {
   text-decoration: inherit;

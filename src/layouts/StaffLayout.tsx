@@ -14,7 +14,7 @@ export default function StaffLayout() {
         <StaffNav />
       </Layout.Sider>
 
-      <Layout.Content className="ml-[2vw]">
+      <Layout.Content className="ml-[2vw] pb-[4vw]">
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
