@@ -1,1 +1,1 @@
-export const acceptImages = "image/png, image/jpeg, image/jpg, image/webp";
+export const ACCEPT_IMAGES = "image/png, image/jpeg, image/jpg, image/webp";

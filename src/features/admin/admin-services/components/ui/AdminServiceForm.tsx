@@ -7,7 +7,7 @@ import {
 } from "../../../../../api/__generated__/graphql";
 import { FormCommonProps } from "../../../../../common/types/form";
 import { useState } from "react";
-import { acceptImages } from "../../../../../common/constants/accept-image-upload-types";
+import { ACCEPT_IMAGES } from "../../../../../common/constants/accept-image-upload-types";
 import { blobToImgSrc } from "../../../../../common/utils/blob-to-img-source";
 
 type AdminServiceFormProps<T> = {
@@ -79,7 +79,7 @@ export default function AdminServiceForm<
           customRequest={(info) => formik.setFieldValue("image", info.file)}
           showUploadList={false}
           maxCount={1}
-          accept={acceptImages}
+          accept={ACCEPT_IMAGES}
           onChange={async (info) => {
             const file = info.file.originFileObj as Blob;
             const preview = await blobToImgSrc(file);

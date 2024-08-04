@@ -52,6 +52,14 @@ export const GET_STAFF_SERVICES_FOR_APPOINTMENT = gql(`
                     phone
                     avatar
                 }
+                workingDays {
+                    id
+                    day
+                    startHour
+                    startMinute
+                    endHour
+                    endMinute
+                }
             }
         }
     }    

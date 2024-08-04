@@ -1,6 +1,8 @@
 import { Button, Flex, Image, Typography } from "antd";
+import { ClockCircleFilled } from "@ant-design/icons";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 import { GetStaffServicesForAppointmentQuery } from "../../../../../api/__generated__/graphql";
+import WorkingDaysList from "./WorkingDaysList";
 
 type AppointmentFormArtistScreenProps =
   GetStaffServicesForAppointmentQuery["getStaffServices"][0] & {
@@ -36,31 +38,28 @@ export default function AppointmentFormArtistScreen({
           {service.description}
         </Typography.Paragraph>
 
-        <Flex className="gap-[2vh] flex-wrap items-center text-center">
-          <Typography.Title
-            type="secondary"
-            className="flex-1 basis-full"
-            level={4}
-          >
-            {service.title}
-          </Typography.Title>
-
+        <Flex className="gap-[2vw] flex-wrap">
           <div>
             <Image
               src={service.image || ""}
-              height="20vh"
+              height="25vh"
               className="object-cover"
             />
           </div>
 
-          <div className="flex-1">
-            <Typography.Title level={4}>
-              {service.duration + "min"}
+          <div className="grid gap-[1vh] content-start">
+            <Typography.Title className="text-secondary" level={4}>
+              {service.title}
             </Typography.Title>
-          </div>
 
-          <div className="flex-1">
-            <Typography.Title level={4}>{"$" + service.price}</Typography.Title>
+            <Typography.Title level={4}>
+              <ClockCircleFilled className="mr-1" />
+              {[service.duration + "min", "$" + service.price].join(" - ")}
+            </Typography.Title>
+
+            {user?.workingDays?.length && (
+              <WorkingDaysList {...{ workingDays: user.workingDays }} />
+            )}
           </div>
         </Flex>
 
