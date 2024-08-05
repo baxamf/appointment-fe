@@ -1,30 +1,30 @@
-# React + TypeScript + Vite
+# Appointment app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an Appointment app's client side.
 
-Currently, two official plugins are available:
+This app has main purpose to give ability to customers make an appointment with one of business's artists.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+There are three different layouts:
 
-## Expanding the ESLint configuration
+- Public, where customers can get info about services, artists etc, choose artist and make an appointment.
+- Admin, where business owner or administrator can manage services and staff aka artists, get appointments statistics.
+- Staff, where artists can get their working schedule, appointments and customer's info
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Before start client you have to expand backend side:
 
-- Configure the top-level `parserOptions` property like this:
+- clone [appointment-be](https://github.com/baxamf/appointment-be)
+- inside appointment-be folder execute yarn to install packages
+- execute docker-compose up (docker and docker-compose has to be installed in system)
+- yarn start
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+After backend has been started, inside appointment-fe folder run yarn dev
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Admin credentials:
+
+- email: admin@mail.com
+- password: password
+
+Staff credentials:
+
+- email: staff@mail.com
+- password: password
