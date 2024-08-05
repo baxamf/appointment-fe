@@ -1,7 +1,7 @@
 import { DatePicker, Flex } from "antd";
 import dayjs from "dayjs";
 import Loading from "../../../../common/components/loading/Loading";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import { useGetAllAppointments } from "../hooks/useGetAllAppointments";
 import AdminAppointmentCard from "./ui/AdminAppointmentCard";
 

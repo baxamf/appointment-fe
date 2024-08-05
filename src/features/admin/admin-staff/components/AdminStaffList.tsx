@@ -1,6 +1,6 @@
 import { Flex } from "antd";
 import Loading from "../../../../common/components/loading/Loading";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import AdminStaffListItem from "./ui/AdminStaffListItem";
 import { useGetAdminStaff } from "../hooks/useGetAdminStaff";
 import AddStaffListCard from "./ui/AddStaffListCard";

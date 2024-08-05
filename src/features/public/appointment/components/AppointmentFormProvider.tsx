@@ -6,7 +6,7 @@ import {
   appointmentInitialValues,
   appointmentValidationSchema,
 } from "../utils/formik/appointment-formik-values";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 
 export default function AppointmentFormProvider() {
   const { onSubmit, errorMessage } = useCreateAppointment();

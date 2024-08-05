@@ -1,6 +1,6 @@
 import { useGetMyStaffService } from "../hooks/useGetMyStaffService";
 import Loading from "../../../../common/components/loading/Loading";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import StaffServiceEditForm from "./StaffServiceEditForm";
 import { useGetCompanyServicesForStaffServiceCreate } from "../hooks/useGetCompanyServicesForStaffServiceCreate";
 

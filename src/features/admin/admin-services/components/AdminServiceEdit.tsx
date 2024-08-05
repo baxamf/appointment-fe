@@ -3,7 +3,7 @@ import Loading from "../../../../common/components/loading/Loading";
 import { useGetAdminCompanyService } from "../hooks/useGetAdminCompanyService";
 import AdminServiceEditForm from "./AdminServiceEditForm";
 import AdminServiceEditTags from "./AdminServiceEditTags";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 
 export default function AdminServiceEdit() {
   const { adminService, adminServiceError, adminServiceLoading } =

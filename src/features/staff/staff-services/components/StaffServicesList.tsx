@@ -1,6 +1,6 @@
 import { Flex } from "antd";
 import Loading from "../../../../common/components/loading/Loading";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import { useGetMyStaffServices } from "../hooks/useGetMyStaffServices";
 import StaffServiceListItem from "./StaffServiceListItem";
 import AddStaffServiceCard from "./ui/AddStaffServiceCard";

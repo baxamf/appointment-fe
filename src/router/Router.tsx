@@ -6,7 +6,7 @@ import StaffRoutes from "./routes/staff-routes";
 import Loading from "../common/components/loading/Loading";
 
 const Login = lazy(() => import("../features/auth/pages/Login"));
-const ErrorPage = lazy(() => import("../pages/Error"));
+const ErrorPage = lazy(() => import("../common/pages/Error"));
 
 export default function Router() {
   return createBrowserRouter([

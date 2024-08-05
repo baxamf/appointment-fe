@@ -1,5 +1,5 @@
 import Loading from "../../../../common/components/loading/Loading";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import { useGetCompanyServicesForStaffServiceCreate } from "../hooks/useGetCompanyServicesForStaffServiceCreate";
 import StaffServiceCreateForm from "./StaffServiceCreateForm";
 

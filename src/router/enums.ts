@@ -14,4 +14,6 @@ export enum RoutePaths {
   ABOUT = "/about",
   ARTISTS = "/artists",
   APPOINTMENT = "/appointment",
+
+  LOGIN = "/login",
 }

@@ -4,7 +4,7 @@ import {
   UpdateUserWorkingDayInput,
 } from "../../../../api/__generated__/graphql";
 
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import AdminStaffWorkingDayForm from "./ui/AdminStaffWorkingDayForm";
 import { useMutateStaffWorkingDay } from "../hooks/useMutateStaffWorkingDay";
 

@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { CreateUserWorkingDayInput } from "../../../../api/__generated__/graphql";
 import { useAddStaffWorkingDay } from "../hooks/useAddStaffWorkingDay";
 import { useParams } from "react-router-dom";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import AdminStaffWorkingDayForm from "./ui/AdminStaffWorkingDayForm";
 
 export default function AdminStaffWorkingDaysAdd() {

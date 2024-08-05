@@ -1,9 +1,9 @@
 import { PropsWithChildren, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeftOutlined, HomeFilled } from "@ant-design/icons";
-import Loading from "../common/components/loading/Loading";
+import Loading from "../components/loading/Loading";
 import { Button, Flex, Layout, Typography } from "antd";
-import ButtonLink from "../common/components/buttons/ButtonLink";
+import ButtonLink from "../components/buttons/ButtonLink";
 
 type ErrorPageProps = {
   message: string;

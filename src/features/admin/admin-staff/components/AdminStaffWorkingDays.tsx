@@ -2,7 +2,7 @@ import { Card, Divider, Flex, Typography } from "antd";
 import AdminStaffWorkingDaysAdd from "./AdminStaffWorkingDaysAdd";
 import { useGetStaffWorkingDays } from "../hooks/useGetStaffWorkingDays";
 import Loading from "../../../../common/components/loading/Loading";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import AdminStaffWorkingDaysUpdate from "./AdminStaffWorkingDaysUpdate";
 
 export default function AdminStaffWorkingDays() {

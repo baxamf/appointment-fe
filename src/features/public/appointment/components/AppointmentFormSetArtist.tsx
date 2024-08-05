@@ -1,6 +1,6 @@
 import { useGetStaffServiceForAppointment } from "../hooks/useGetStaffServicesForAppointment";
 import Loading from "../../../../common/components/loading/Loading";
-import ErrorPage from "../../../../pages/Error";
+import ErrorPage from "../../../../common/pages/Error";
 import { Carousel } from "antd";
 import { useCarousel } from "../../common/hooks/useCarousel";
 import { useAppointmentFormControls } from "../hooks/useAppointmentFormControls";
