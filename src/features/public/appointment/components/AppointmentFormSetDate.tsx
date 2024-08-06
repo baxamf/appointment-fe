@@ -1,126 +1,68 @@
-import { Button, DatePicker, Form, Input } from "antd";
-import { CaretLeftOutlined } from "@ant-design/icons";
-import { useFormikContext } from "formik";
+import { Alert, Button, DatePicker, Flex } from "antd";
+import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { CreateAppointmentMutationVariables } from "../../../../api/__generated__/graphql";
 import FormErrorMessage from "../../../../common/components/errors/FormErrorMessage";
+import { useGetAppointmentAvailableTimes } from "../hooks/useGetAppointmentAvailableTimes";
+import { useAppointmentFormControls } from "../hooks/useAppointmentFormControls";
+import AppointmentFormTargetTimesList from "./ui/AppointmentFormTargetTimesList";
+import { useState } from "react";
 
 export default function AppointmentFormSetDate() {
-  const formik = useFormikContext<CreateAppointmentMutationVariables>();
+  const { resetArtist, setTargetTime, staffWorkingDays } =
+    useAppointmentFormControls();
+  const { getTargetTimes, targetTimes, loading, errorMessage } =
+    useGetAppointmentAvailableTimes();
+  const [timeOption, setTimeOption] = useState<Date | null>(null);
 
   return (
-    <Form
-      className="grid gap-5 min-w-[400px]"
-      initialValues={formik.initialValues}
-      onSubmitCapture={formik.handleSubmit}
-      autoComplete="off"
-      layout="vertical"
-    >
-      <Form.Item<CreateAppointmentMutationVariables>
-        label="appointment date"
-        validateStatus={
-          formik.errors.createAppointmentInput?.targetTime && "error"
-        }
-      >
+    <div className="h-[60vh] grid gap-10">
+      <div className="relative">
         <DatePicker
           allowClear={false}
           className="w-full py-2.5"
           minDate={dayjs()}
-          showSecond={false}
-          showTime
-          name="createAppointmentInput.targetTime"
-          onBlur={() =>
-            formik.setFieldTouched("createAppointmentInput.targetTime", true)
-          }
+          disabled={loading}
+          disabledDate={(day) => !staffWorkingDays.includes(day.get("day"))}
           onChange={(date) => {
-            formik.setFieldValue("createAppointmentInput.targetTime", date);
+            setTimeOption(null);
+            getTargetTimes(date);
           }}
         />
         <FormErrorMessage name="createAppointmentInput.targetTime" />
-      </Form.Item>
+        {errorMessage && (
+          <Alert
+            className="absolute right-0 mt-1"
+            message={errorMessage}
+            type="error"
+          />
+        )}
+      </div>
 
-      <Form.Item<CreateAppointmentMutationVariables>
-        label="email"
-        validateStatus={formik.errors.customerDataInput?.email && "error"}
-      >
-        <Input
-          name="customerDataInput.email"
-          id="customerDataInput.email"
-          value={formik.values.customerDataInput.email || ""}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-        />
-        <FormErrorMessage name="customerDataInput.email" />
-      </Form.Item>
+      <AppointmentFormTargetTimesList
+        {...{ targetTimes, timeOption, setTimeOption }}
+      />
 
-      <Form.Item<CreateAppointmentMutationVariables>
-        label="name"
-        validateStatus={formik.errors.customerDataInput?.firstName && "error"}
-      >
-        <Input
-          name="customerDataInput.firstName"
-          value={formik.values.customerDataInput.firstName || ""}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-        />
-        <FormErrorMessage name="customerDataInput.firstName" />
-      </Form.Item>
-
-      <Form.Item<CreateAppointmentMutationVariables>
-        label="phone"
-        validateStatus={formik.errors.customerDataInput?.phone && "error"}
-      >
-        <Input
-          name="customerDataInput.phone"
-          spellCheck="false"
-          value={formik.values.customerDataInput.phone || ""}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-        />
-
-        <FormErrorMessage name="customerDataInput.phone" />
-      </Form.Item>
-
-      <Form.Item<CreateAppointmentMutationVariables>
-        label="description"
-        validateStatus={
-          formik.errors.createAppointmentInput?.description && "error"
-        }
-      >
-        <Input.TextArea
-          className="leading-5"
-          name="createAppointmentInput.description"
-          spellCheck="false"
-          autoSize={true}
-          value={formik.values.createAppointmentInput.description || ""}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-        />
-
-        <FormErrorMessage name="createAppointmentInput.description" />
-      </Form.Item>
-
-      <Button
-        type="text"
-        icon={<CaretLeftOutlined />}
-        iconPosition="start"
-        className="w-max"
-        onClick={() => formik.resetForm()}
-      >
-        Choose another artist
-      </Button>
-
-      <Form.Item>
+      <Flex className="gap-[2vw] self-end">
         <Button
-          className="mt-5"
-          size="large"
-          type="primary"
-          htmlType="submit"
-          disabled={formik.isSubmitting || !formik.isValid}
+          type="text"
+          icon={<CaretLeftOutlined />}
+          iconPosition="start"
+          className="w-max"
+          onClick={resetArtist}
         >
-          Make an appointment
+          Choose another artist
         </Button>
-      </Form.Item>
-    </Form>
+
+        <Button
+          type="primary"
+          icon={<CaretRightOutlined />}
+          iconPosition="end"
+          disabled={!timeOption}
+          onClick={() => setTargetTime(timeOption)}
+        >
+          Enter your contact info
+        </Button>
+      </Flex>
+    </div>
   );
 }

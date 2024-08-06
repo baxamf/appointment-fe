@@ -19,17 +19,6 @@
   scrollbar-width: none;
 }
 
-* > {
-  box-sizing: border-box;
-}
-
-/* body {
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
-
 a {
   text-decoration: inherit;
 }

@@ -61,6 +61,9 @@ export const darkTheme: ThemeConfig = {
       itemMarginBottom: 0,
       labelColor: "rgb(72, 30, 20)",
     },
+    Card: {
+      colorBgContainer: "transparent",
+    },
   },
   token: {
     fontSize: 16,

@@ -1,15 +1,21 @@
 import { Button, Flex, Image, Typography } from "antd";
 import { ClockCircleFilled } from "@ant-design/icons";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
-import { GetStaffServicesForAppointmentQuery } from "../../../../../api/__generated__/graphql";
 import WorkingDaysList from "./WorkingDaysList";
+import {
+  StaffServicesForAppointment,
+  StaffWorkingDaysForAppointment,
+} from "../../types";
 
-type AppointmentFormArtistScreenProps =
-  GetStaffServicesForAppointmentQuery["getStaffServices"][0] & {
-    onWheel: (event: React.WheelEvent<HTMLDivElement>) => void;
-    resetMainService: () => void;
-    setArtist: (staffId: number, staffServiceId: number) => void;
-  };
+type AppointmentFormArtistScreenProps = StaffServicesForAppointment & {
+  onWheel: (event: React.WheelEvent<HTMLDivElement>) => void;
+  resetMainService: () => void;
+  setArtist: (
+    staffId: number,
+    staffServiceId: number,
+    workingDays: StaffWorkingDaysForAppointment
+  ) => void;
+};
 
 export default function AppointmentFormArtistScreen({
   onWheel,
@@ -57,9 +63,7 @@ export default function AppointmentFormArtistScreen({
               {[service.duration + "min", "$" + service.price].join(" - ")}
             </Typography.Title>
 
-            {user?.workingDays?.length && (
-              <WorkingDaysList {...{ workingDays: user.workingDays }} />
-            )}
+            <WorkingDaysList {...{ workingDays: user.workingDays }} />
           </div>
         </Flex>
 
@@ -77,7 +81,7 @@ export default function AppointmentFormArtistScreen({
             type="primary"
             icon={<CaretRightOutlined />}
             iconPosition="end"
-            onClick={() => setArtist(user.id, service.id)}
+            onClick={() => setArtist(user.id, service.id, user.workingDays)}
           >
             Select time
           </Button>

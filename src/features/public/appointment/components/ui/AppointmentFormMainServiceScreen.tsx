@@ -1,12 +1,11 @@
 import { Button, Flex, Image, Typography } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
-import { GetPublicCompanyServicesQuery } from "../../../../../api/__generated__/graphql";
+import { MainServicesForAppointment } from "../../types";
 
-type AppointmentFormMainServiceScreenProps =
-  GetPublicCompanyServicesQuery["getCompanyServices"][0] & {
-    onWheel: (event: React.WheelEvent<HTMLDivElement>) => void;
-    setMainService: (serviceId: number) => void;
-  };
+type AppointmentFormMainServiceScreenProps = MainServicesForAppointment & {
+  onWheel: (event: React.WheelEvent<HTMLDivElement>) => void;
+  setMainService: (serviceId: number) => void;
+};
 
 export default function AppointmentFormMainServiceScreen({
   id,

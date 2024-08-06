@@ -64,3 +64,15 @@ export const GET_STAFF_SERVICES_FOR_APPOINTMENT = gql(`
         }
     }    
 `);
+
+export const GET_APPOINTMENT_AVAILABLE_TIMES = gql(`
+    query GetAppointmentAvailableTimes(
+        $getAppointmentAvailableTimesInput: GetAppointmentAvailableTimesInput!
+    ) {
+        getAppointmentAvailableTimes(
+            getAppointmentAvailableTimesInput: $getAppointmentAvailableTimesInput
+        ) {
+            targetTime
+        }
+    }    
+`);

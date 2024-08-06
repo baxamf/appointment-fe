@@ -9,6 +9,9 @@ const Artists = lazy(() => import("../../features/public/artists/Artists"));
 const Appointment = lazy(
   () => import("../../features/public/appointment/Appointment")
 );
+const SuccessAppointment = lazy(
+  () => import("../../common/pages/SuccessAppointment")
+);
 
 export default function PublicRoutes(): RouteObject[] {
   return [
@@ -35,6 +38,10 @@ export default function PublicRoutes(): RouteObject[] {
         {
           path: "appointment",
           element: <Appointment />,
+        },
+        {
+          path: "appointment/success",
+          element: <SuccessAppointment />,
         },
       ],
     },

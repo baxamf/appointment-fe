@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 type AppointmentContext = {
   serviceId: number | null;
+  staffWorkingDays: number[];
   setMainService: (serviceId: number) => void;
+  setStaffWorkingDays: (workingDays: number[]) => void;
   resetMainService: () => void;
 };
 
@@ -16,10 +18,13 @@ export default function AppointmentProvider({
   children: JSX.Element;
 }) {
   const [serviceId, setServiceId] = useState<number | null>(null!);
+  const [staffWorkingDays, setStaffWorkingDays] = useState<number[]>([]);
 
   const context = {
     serviceId,
+    staffWorkingDays,
     setMainService: setServiceId,
+    setStaffWorkingDays,
     resetMainService: () => setServiceId(null),
   };
 

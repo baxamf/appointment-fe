@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { useCreateAppointment } from "../hooks/useCreateAppointment";
 
-import AppointmentForm from "./AppointmentForm";
+import AppointmentFormView from "./AppointmentFormView";
 import {
   appointmentInitialValues,
   appointmentValidationSchema,
@@ -18,7 +18,7 @@ export default function AppointmentFormProvider() {
       onSubmit={onSubmit}
     >
       <>
-        <AppointmentForm />
+        <AppointmentFormView />
         {errorMessage && <ErrorPage message={errorMessage} />}
       </>
     </Formik>
