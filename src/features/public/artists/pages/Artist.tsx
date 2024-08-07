@@ -1,6 +1,12 @@
 import { useParams } from "react-router-dom";
+import PageTransition from "../../../../common/components/transitions/PageTransition";
 
 export default function Artist() {
   const { artistId } = useParams();
-  return <h1>Artist {artistId}</h1>;
+  return (
+    <>
+      <PageTransition />
+      <h1>Artist {artistId}</h1>
+    </>
+  );
 }

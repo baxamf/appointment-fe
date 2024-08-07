@@ -10,7 +10,7 @@ export enum RoutePaths {
   STAFF_SERVICES_CREATE = "/staff/services/create",
 
   HOME = "/",
-  SERVICES = "/services",
+  SERVICES = "/services/",
   ABOUT = "/about",
   ARTISTS = "/artists",
   APPOINTMENT = "/appointment",

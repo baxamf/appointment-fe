@@ -3,7 +3,7 @@ import { Suspense, lazy } from "react";
 import AdminRoutes from "./routes/admin-routes";
 import PublicRoutes from "./routes/public-routes";
 import StaffRoutes from "./routes/staff-routes";
-import Loading from "../common/components/loading/Loading";
+import PageTransition from "../common/components/transitions/PageTransition";
 
 const Login = lazy(() => import("../features/auth/pages/Login"));
 const ErrorPage = lazy(() => import("../common/pages/Error"));
@@ -16,7 +16,7 @@ export default function Router() {
     {
       path: "login",
       element: (
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<PageTransition />}>
           <Login />
         </Suspense>
       ),
@@ -24,7 +24,7 @@ export default function Router() {
     {
       path: "/*",
       element: (
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<PageTransition />}>
           <ErrorPage message="Something goes wrong" />
         </Suspense>
       ),

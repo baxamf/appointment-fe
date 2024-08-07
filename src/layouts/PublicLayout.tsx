@@ -3,13 +3,13 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import PublicHeader from "../common/components/headers/PublicHeader";
 import PublicFooter from "../common/components/footers/PublicFooter";
-import Loading from "../common/components/loading/Loading";
 import blobBg from "../assets/svg/blobBg.svg";
+import PageTransition from "../common/components/transitions/PageTransition";
 
 export default function PublicLayout() {
   return (
     <Layout
-      className="w-screen min-h-screen px-[10vw] text-center bg-cover"
+      className="w-screen min-h-screen px-[10vw] text-center bg-no-repeat"
       style={{
         backgroundImage: `url(${blobBg})`,
       }}
@@ -17,7 +17,7 @@ export default function PublicLayout() {
       <PublicHeader />
 
       <Layout.Content className="grid">
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<PageTransition />}>
           <Outlet />
         </Suspense>
       </Layout.Content>

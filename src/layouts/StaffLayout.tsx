@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import Loading from "../common/components/loading/Loading";
 import { Layout } from "antd";
 import AdminHeader from "../common/components/headers/AdminHeader";
 import StaffNav from "../common/components/nav/StaffNav";
+import PageTransition from "../common/components/transitions/PageTransition";
 
 export default function StaffLayout() {
   return (
@@ -15,7 +15,7 @@ export default function StaffLayout() {
       </Layout.Sider>
 
       <Layout.Content className="ml-[2vw] pb-[4vw]">
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<PageTransition />}>
           <Outlet />
         </Suspense>
       </Layout.Content>

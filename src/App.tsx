@@ -6,6 +6,7 @@ import { darkTheme } from "./theme/antConfig";
 import { StyleProvider } from "@ant-design/cssinjs";
 import NoiseFrame from "./common/components/noise/NoiseFrame";
 import ReactLenis from "lenis/react";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <ConfigProvider theme={darkTheme}>
         <NoiseFrame />
         <ReactLenis root options={{ lerp: 0.075, duration: 2 }}>
-          <RouterProvider router={router()} />
+          <AnimatePresence mode="wait">
+            <RouterProvider router={router()} />
+          </AnimatePresence>
         </ReactLenis>
       </ConfigProvider>
     </StyleProvider>

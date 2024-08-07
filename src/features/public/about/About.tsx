@@ -1,3 +1,10 @@
+import PageTransition from "../../../common/components/transitions/PageTransition";
+
 export default function About() {
-  return <h1>About</h1>;
+  return (
+    <>
+      <PageTransition />
+      <h1>About</h1>
+    </>
+  );
 }

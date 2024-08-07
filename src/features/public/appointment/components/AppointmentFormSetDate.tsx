@@ -6,6 +6,7 @@ import { useGetAppointmentAvailableTimes } from "../hooks/useGetAppointmentAvail
 import { useAppointmentFormControls } from "../hooks/useAppointmentFormControls";
 import AppointmentFormTargetTimesList from "./ui/AppointmentFormTargetTimesList";
 import { useState } from "react";
+import PageTransition from "../../../../common/components/transitions/PageTransition";
 
 export default function AppointmentFormSetDate() {
   const { resetArtist, setTargetTime, staffWorkingDays } =
@@ -16,6 +17,8 @@ export default function AppointmentFormSetDate() {
 
   return (
     <div className="h-[60vh] grid gap-10">
+      <PageTransition />
+
       <div className="relative">
         <DatePicker
           allowClear={false}

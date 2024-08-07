@@ -1,3 +1,10 @@
+import PageTransition from "../../../../common/components/transitions/PageTransition";
+
 export default function ArtistsPage() {
-  return <h1>ArtistsPage</h1>;
+  return (
+    <>
+      <PageTransition />
+      <h1>ArtistsPage</h1>
+    </>
+  );
 }
