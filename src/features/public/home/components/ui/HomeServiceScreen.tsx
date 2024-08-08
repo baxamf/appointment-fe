@@ -11,22 +11,21 @@ export default function HomeServiceScreen({
   toService,
 }: HomeServiceScreenProps) {
   return (
-    <div className="grid grid-cols-2 min-h-screen mb-[50vh] text-left">
+    <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-[10vw] text-left">
       <Image
         onClick={toService}
         src={service.image}
         preview={false}
         height="100%"
-        width="auto"
         className="object-cover cursor-pointer"
       />
 
-      <div className="grid ml-[10vw]">
-        <Typography.Title className="sticky top-1/3" level={2}>
+      <div className="grid ">
+        <Typography.Title className="sticky top-[calc(50%-10vh)]" level={2}>
           {service.title}
         </Typography.Title>
         <Typography.Paragraph
-          className="sticky top-1/3 place-self-start"
+          className="sticky top-1/2 place-self-start"
           type="secondary"
         >
           {service.description}

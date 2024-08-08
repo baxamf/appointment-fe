@@ -16,24 +16,27 @@ export default function HomeServices() {
 
   if (services)
     return (
-      <div className="min-h-screen grid">
+      <div className="grid">
         <Typography.Title
           type="secondary"
-          className="mb-[10vh] uppercase text-secondary"
+          className="mb-[15vh] uppercase text-7xl text-left shadow-lg shadow-colorBg"
           level={2}
         >
           Services
         </Typography.Title>
 
-        {services.map((service) => (
-          <HomeServiceScreen
-            key={service.id}
-            {...{
-              service,
-              toService: () => navigate(`${RoutePaths.SERVICES + service.id}`),
-            }}
-          />
-        ))}
+        <div className="grid gap-[50vh]">
+          {services.map((service) => (
+            <HomeServiceScreen
+              key={service.id}
+              {...{
+                service,
+                toService: () =>
+                  navigate(`${RoutePaths.SERVICES + service.id}`),
+              }}
+            />
+          ))}
+        </div>
       </div>
     );
 }

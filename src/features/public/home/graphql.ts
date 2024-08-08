@@ -13,3 +13,18 @@ export const GET_HOME_COMPANY_SERVICES = gql(`
         }
     }
 `);
+
+export const GET_HOME_STAFF = gql(`
+    query GetHomeStaff {
+        getStaff {
+            id
+            profile {
+                firstName
+                lastName
+                nickName
+                avatar
+                bio
+            }
+        }
+    }    
+`);

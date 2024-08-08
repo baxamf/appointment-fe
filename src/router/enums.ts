@@ -12,7 +12,7 @@ export enum RoutePaths {
   HOME = "/",
   SERVICES = "/services/",
   ABOUT = "/about",
-  ARTISTS = "/artists",
+  ARTISTS = "/artists/",
   APPOINTMENT = "/appointment",
   APPOINTMENT_SUCCESS = "/appointment/success",
 
