@@ -17,15 +17,15 @@ export default function HomeServiceScreen({
         src={service.image}
         preview={false}
         height="100%"
-        className="object-cover cursor-pointer"
+        className="object-cover cursor-pointer min-h-[100vh]"
       />
 
-      <div className="grid ">
+      <div className="grid">
         <Typography.Title className="sticky top-[calc(50%-10vh)]" level={2}>
           {service.title}
         </Typography.Title>
         <Typography.Paragraph
-          className="sticky top-1/2 place-self-start"
+          className="sticky top-1/2 place-self-start text-2xl"
           type="secondary"
         >
           {service.description}

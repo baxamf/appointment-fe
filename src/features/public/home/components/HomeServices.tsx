@@ -19,7 +19,7 @@ export default function HomeServices() {
       <div className="grid">
         <Typography.Title
           type="secondary"
-          className="mb-[15vh] uppercase text-7xl text-left shadow-lg shadow-colorBg"
+          className="mb-[15vh] py-3 uppercase text-7xl text-left shadow-lg shadow-colorBg"
           level={2}
         >
           Services

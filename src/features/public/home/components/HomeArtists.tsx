@@ -38,23 +38,23 @@ export default function HomeArtists() {
               <Image
                 src={artist.profile?.avatar || ""}
                 preview={false}
-                height="75vh"
+                height="100vh"
                 className="object-cover cursor-pointer"
                 onClick={() => navigate(`${RoutePaths.ARTISTS + artist.id}`)}
               />
 
               <div className="grid text-left gap-[2vh]">
-                <Typography.Title className="w-max" level={2}>
+                <Typography.Title className="w-max text-5xl" level={2}>
                   {!!artist.profile &&
                     [artist.profile.firstName, artist.profile.lastName].join(
                       " "
                     )}
                   {!!artist.profile?.nickName && (
-                    <span className="text-secondary">{` «${artist.profile.nickName}»`}</span>
+                    <div className="text-secondary mt-2">{` «${artist.profile.nickName}»`}</div>
                   )}
                 </Typography.Title>
 
-                <Typography.Paragraph type="secondary">
+                <Typography.Paragraph className="text-2xl" type="secondary">
                   {!!artist.profile && artist.profile.bio}
                 </Typography.Paragraph>
               </div>
