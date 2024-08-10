@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <div className="grid gap-[33vh] py-[10vh] text-left">
         <PageTransition />
         {services.map((service) => (
-          <div key={service.id} className="grid gap-[5vh]">
+          <div key={service.id} className="grid gap-[10vh]">
             <Typography.Title>{service.title}</Typography.Title>
 
             <div className="grid grid-cols-2 gap-[5vw]">

@@ -20,12 +20,12 @@ export default function HomeServiceScreen({
         className="object-cover cursor-pointer min-h-[100vh]"
       />
 
-      <div className="grid">
-        <Typography.Title className="sticky top-[calc(50%-10vh)]" level={2}>
+      <div>
+        <Typography.Title className="mb-[2vh]" level={2}>
           {service.title}
         </Typography.Title>
         <Typography.Paragraph
-          className="sticky top-1/2 place-self-start text-2xl"
+          className="sticky top-[22vh] text-2xl"
           type="secondary"
         >
           {service.description}
