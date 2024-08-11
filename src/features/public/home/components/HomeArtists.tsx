@@ -11,7 +11,10 @@ export default function HomeArtists() {
   const { artists, loading, errorMessage } = useGetHomeStaff();
   const navigate = useNavigate();
   const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: targetRef });
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    layoutEffect: false,
+  });
   const x = useTransform(scrollYProgress, [0, 1], ["100%", "-45%"]);
 
   if (loading) return <Loading />;
@@ -23,7 +26,7 @@ export default function HomeArtists() {
       <div className="grid overflow-hidden mt-[25vh]">
         <Typography.Title
           type="secondary"
-          className="mb-[15vh] uppercase text-7xl text-left shadow-lg shadow-colorBg"
+          className="mb-[15vh] py-3 uppercase text-[15vw] opacity-15 text-left"
           level={2}
         >
           Artists
@@ -32,6 +35,7 @@ export default function HomeArtists() {
         <div ref={targetRef} className="grid gap-[25vh]">
           {artists.map((artist, index) => (
             <motion.div
+              key={artist.id}
               className="grid grid-cols-2 gap-[10vw] items-center"
               style={{ x, translateX: index * 400 }}
             >

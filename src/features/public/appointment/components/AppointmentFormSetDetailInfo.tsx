@@ -1,12 +1,16 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Image, Upload } from "antd";
 import { CaretLeftOutlined } from "@ant-design/icons";
 import { CreateAppointmentMutationVariables } from "../../../../api/__generated__/graphql";
 import FormErrorMessage from "../../../../common/components/errors/FormErrorMessage";
 import { useAppointmentFormControls } from "../hooks/useAppointmentFormControls";
 import PageTransition from "../../../../common/components/transitions/PageTransition";
+import { useState } from "react";
+import { ACCEPT_IMAGES } from "../../../../common/constants/accept-image-upload-types";
+import { blobToImgSrc } from "../../../../common/utils/blob-to-img-source";
 
 export default function AppointmentFormSetDetailInfo() {
   const { formik, resetTargetTime } = useAppointmentFormControls();
+  const [preview, setPreview] = useState<string | null>(null);
 
   return (
     <>
@@ -78,6 +82,60 @@ export default function AppointmentFormSetDetailInfo() {
           />
 
           <FormErrorMessage name="createAppointmentInput.description" />
+        </Form.Item>
+
+        <Form.Item<CreateAppointmentMutationVariables>
+          label="image"
+          validateStatus={
+            formik.errors.createAppointmentInput?.images && "error"
+          }
+        >
+          {!!preview && (
+            <div className="flex h-[10vh]">
+              <Image
+                src={preview || ""}
+                className="object-cover aspect-[16/10] h-full"
+              />
+
+              <Button
+                className="ml-[1vw]"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  formik.setFieldValue(
+                    "createAppointmentInput.images",
+                    undefined
+                  );
+                  setPreview(null);
+                }}
+              >
+                Reset
+              </Button>
+            </div>
+          )}
+
+          <Upload
+            className="block text-left"
+            name="createAppointmentInput.images"
+            customRequest={(info) =>
+              formik.setFieldValue("createAppointmentInput.images", [info.file])
+            }
+            showUploadList={false}
+            maxCount={1}
+            accept={ACCEPT_IMAGES}
+            onChange={async (info) => {
+              const file = info.file.originFileObj as Blob;
+              const preview = await blobToImgSrc(file);
+              setPreview(preview);
+            }}
+          >
+            {!preview && (
+              <div className="grid place-content-center h-[10vh] aspect-[16/10] border-dashed border-secondary border cursor-pointer">
+                Upload
+              </div>
+            )}
+          </Upload>
+
+          <FormErrorMessage name="image" />
         </Form.Item>
 
         <Button

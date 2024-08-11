@@ -59,7 +59,7 @@ export default function AdminServiceForm<
       </Form.Item>
       <Form.Item<T>
         label="image"
-        validateStatus={formik.errors.description && "error"}
+        validateStatus={formik.errors.image && "error"}
       >
         {preview ? (
           <Image
