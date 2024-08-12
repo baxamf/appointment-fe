@@ -1,5 +1,5 @@
 import { Button, Form, Input, Image, Upload } from "antd";
-import { CaretLeftOutlined } from "@ant-design/icons";
+import { CaretLeftOutlined, CloseSquareFilled } from "@ant-design/icons";
 import { CreateAppointmentMutationVariables } from "../../../../api/__generated__/graphql";
 import FormErrorMessage from "../../../../common/components/errors/FormErrorMessage";
 import { useAppointmentFormControls } from "../hooks/useAppointmentFormControls";
@@ -91,25 +91,25 @@ export default function AppointmentFormSetDetailInfo() {
           }
         >
           {!!preview && (
-            <div className="flex h-[10vh]">
+            <div className="flex h-[10vh] gap-[1vw]">
               <Image
                 src={preview || ""}
                 className="object-cover aspect-[16/10] h-full"
               />
 
               <Button
-                className="ml-[1vw]"
-                onClick={(e) => {
-                  e.stopPropagation();
+                className="px-6"
+                icon={<CloseSquareFilled />}
+                onClick={() => {
                   formik.setFieldValue(
                     "createAppointmentInput.images",
                     undefined
                   );
                   setPreview(null);
                 }}
-              >
-                Reset
-              </Button>
+                type="text"
+                danger
+              />
             </div>
           )}
 

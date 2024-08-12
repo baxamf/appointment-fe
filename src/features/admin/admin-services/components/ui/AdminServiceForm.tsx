@@ -1,4 +1,5 @@
 import { Form, Input, Image, Button, Alert, Upload } from "antd";
+import { CloseSquareFilled } from "@ant-design/icons";
 import FormErrorMessage from "../../../../../common/components/errors/FormErrorMessage";
 import { FormikContextType } from "formik";
 import {
@@ -61,15 +62,23 @@ export default function AdminServiceForm<
         label="image"
         validateStatus={formik.errors.image && "error"}
       >
-        {preview ? (
-          <Image
-            height="25vh"
-            src={preview || ""}
-            className="object-cover aspect-[16/10]"
-          />
-        ) : (
-          <div className="grid place-content-center h-[25vh] aspect-[16/10] border-dashed border-secondary border">
-            No image
+        {!!preview && (
+          <div className="flex h-[25vh] gap-[1vw]">
+            <Image
+              src={preview || ""}
+              className="object-cover aspect-[16/10] h-full"
+            />
+
+            <Button
+              className="px-6"
+              icon={<CloseSquareFilled />}
+              onClick={() => {
+                formik.setFieldValue("image", null);
+                setPreview(null);
+              }}
+              type="text"
+              danger
+            />
           </div>
         )}
 
@@ -86,18 +95,24 @@ export default function AdminServiceForm<
             setPreview(preview);
           }}
         >
-          <Button className="mt-[2vh]">Upload</Button>
-          {formik.values.image && (
-            <Button
-              className="ml-[1vw]"
-              onClick={(e) => {
-                e.stopPropagation();
-                formik.setFieldValue("image", undefined);
-                setPreview(image);
-              }}
-            >
-              Reset
-            </Button>
+          {!preview && (
+            <div className="flex gap-[1vw]">
+              <div className="grid place-content-center h-[25vh] aspect-[16/10] border-dashed border-secondary border cursor-pointer">
+                Upload
+              </div>
+
+              {image && image != preview && (
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    formik.setFieldValue("image", undefined);
+                    setPreview(image);
+                  }}
+                >
+                  Reset
+                </Button>
+              )}
+            </div>
           )}
         </Upload>
 

@@ -78,7 +78,7 @@ export default function AdminStaffWorkingDayForm<
           onClick={remove}
           type="text"
           danger
-        ></Button>
+        />
       )}
     </Form>
   );
