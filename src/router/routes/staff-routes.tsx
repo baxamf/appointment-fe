@@ -11,6 +11,9 @@ const StaffServices = lazy(
 const StaffSchedulePage = lazy(
   () => import("../../features/staff/schedule/pages/StaffSchedulePage")
 );
+const StaffProfile = lazy(
+  () => import("../../features/staff/profile/pages/StaffProfile")
+);
 
 export default function StaffRoutes(): RouteObject[] {
   return [
@@ -33,6 +36,10 @@ export default function StaffRoutes(): RouteObject[] {
         {
           path: "schedule/*",
           element: <StaffSchedulePage />,
+        },
+        {
+          path: "profile",
+          element: <StaffProfile />,
         },
       ],
     },

@@ -11,6 +11,10 @@ const items: MenuItem[] = [
     key: RoutePaths.STAFF_SCHEDULE,
   },
   {
+    label: <Link to={RoutePaths.STAFF_PROFILE}>Profile</Link>,
+    key: RoutePaths.STAFF_PROFILE,
+  },
+  {
     label: <Link to={RoutePaths.STAFF_SERVICES}>Services</Link>,
     key: RoutePaths.STAFF_SERVICES,
   },
