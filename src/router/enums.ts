@@ -6,6 +6,7 @@ export enum RoutePaths {
   ADMIN_CREATE_STAFF = "/admin/staff/create",
 
   STAFF_SCHEDULE = "/staff/schedule",
+  STAFF_APPOINTMENTS = "/staff/appointments",
   STAFF_PROFILE = "/staff/profile",
   STAFF_SERVICES = "/staff/services",
   STAFF_SERVICES_CREATE = "/staff/services/create",

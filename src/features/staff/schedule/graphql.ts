@@ -1,25 +1,14 @@
 import { gql } from "../../../api/__generated__";
 
-export const GET_MY_STAFF_APPOINTMENTS = gql(`
-    query GetMyStaffAppointments(
-        $getAppointmentFilterInput: GetAppointmentFilterInput
-    ) {
-        getMyAppointments(getAppointmentFilterInput: $getAppointmentFilterInput) {
+export const GET_MY_SCHEDULE = gql(`
+    query GetMySchedule {
+        getMySchedule {
             id
-            status
-            targetTime
-            description
-            images
-            staffService {
-                title
-            }
-            customer {
-                profile {
-                    firstName
-                    lastName
-                    phone
-                }
-            }
+            day
+            startHour
+            startMinute
+            endHour
+            endMinute
         }
-    } 
+    }    
 `);

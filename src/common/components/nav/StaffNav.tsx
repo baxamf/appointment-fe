@@ -7,6 +7,10 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 const items: MenuItem[] = [
   {
+    label: <Link to={RoutePaths.STAFF_APPOINTMENTS}>Appointments</Link>,
+    key: RoutePaths.STAFF_APPOINTMENTS,
+  },
+  {
     label: <Link to={RoutePaths.STAFF_SCHEDULE}>Schedule</Link>,
     key: RoutePaths.STAFF_SCHEDULE,
   },

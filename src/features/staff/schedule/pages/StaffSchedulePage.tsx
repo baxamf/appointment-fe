@@ -1,5 +1,5 @@
-import StaffAppointmentsList from "../components/StaffAppointmentsList";
+import StaffSchedule from "../components/StaffSchedule";
 
 export default function StaffSchedulePage() {
-  return <StaffAppointmentsList />;
+  return <StaffSchedule />;
 }

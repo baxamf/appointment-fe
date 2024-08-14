@@ -8,11 +8,14 @@ import { RoutePaths } from "../enums";
 const StaffServices = lazy(
   () => import("../../features/staff/staff-services/StaffServices")
 );
-const StaffSchedulePage = lazy(
-  () => import("../../features/staff/schedule/pages/StaffSchedulePage")
+const StaffAppointmentsPage = lazy(
+  () => import("../../features/staff/appointments/pages/StaffAppointmentsPage")
 );
 const StaffProfile = lazy(
   () => import("../../features/staff/profile/pages/StaffProfile")
+);
+const StaffSchedulePage = lazy(
+  () => import("../../features/staff/schedule/pages/StaffSchedulePage")
 );
 
 export default function StaffRoutes(): RouteObject[] {
@@ -27,15 +30,19 @@ export default function StaffRoutes(): RouteObject[] {
       children: [
         {
           index: true,
-          element: <Navigate to={RoutePaths.STAFF_SCHEDULE} />,
+          element: <Navigate to={RoutePaths.STAFF_APPOINTMENTS} />,
+        },
+        {
+          path: "appointments/*",
+          element: <StaffAppointmentsPage />,
+        },
+        {
+          path: "schedule",
+          element: <StaffSchedulePage />,
         },
         {
           path: "services/*",
           element: <StaffServices />,
-        },
-        {
-          path: "schedule/*",
-          element: <StaffSchedulePage />,
         },
         {
           path: "profile",
