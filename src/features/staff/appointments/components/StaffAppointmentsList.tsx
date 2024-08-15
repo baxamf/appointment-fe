@@ -1,5 +1,4 @@
 import { DatePicker, Flex } from "antd";
-import dayjs from "dayjs";
 import Loading from "../../../../common/components/loading/Loading";
 import ErrorPage from "../../../../common/pages/Error";
 import { useGetMyStaffAppointments } from "../hooks/useGetMyStaffAppointments";
@@ -7,6 +6,7 @@ import StaffAppointmentCard from "./ui/StaffAppointmentCard";
 
 export default function StaffAppointmentsList() {
   const {
+    targetTime,
     appointments,
     appointmentLoading,
     appointmentErrorMessage,
@@ -26,7 +26,7 @@ export default function StaffAppointmentsList() {
           size="large"
           className="w-48 py-2.5"
           onChange={getAppointments}
-          defaultValue={dayjs()}
+          defaultValue={targetTime}
         />
 
         {appointments.map((appointment) => (

@@ -2,10 +2,11 @@ import { Calendar } from "antd";
 import dayjs from "dayjs";
 import Loading from "../../../../common/components/loading/Loading";
 import ErrorPage from "../../../../common/pages/Error";
-import { useGetMySchedule } from "../hooks/useGetMySchedule";
+import { useMySchedule } from "../hooks/useMySchedule";
 
 export default function StaffSchedule() {
-  const { workingDays, schedule, loading, errorMessage } = useGetMySchedule();
+  const { schedule, loading, errorMessage, onSelect, disabledDate } =
+    useMySchedule();
 
   if (loading) return <Loading />;
 
@@ -14,7 +15,8 @@ export default function StaffSchedule() {
   if (schedule)
     return (
       <Calendar
-        disabledDate={(day) => !workingDays?.includes(day.get("day"))}
+        onSelect={onSelect}
+        disabledDate={disabledDate}
         cellRender={(current) => {
           const currentDay = current.get("day");
           const workingDay = schedule?.find(({ day }) => day == currentDay);

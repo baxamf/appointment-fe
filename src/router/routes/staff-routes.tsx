@@ -4,6 +4,7 @@ import RouteGuard from "../RouteGuard";
 import StaffLayout from "../../layouts/StaffLayout";
 import { UserRole } from "../../api/__generated__/graphql";
 import { RoutePaths } from "../enums";
+import StaffProvider from "../../store/StaffProvider";
 
 const StaffServices = lazy(
   () => import("../../features/staff/staff-services/StaffServices")
@@ -23,14 +24,16 @@ export default function StaffRoutes(): RouteObject[] {
     {
       element: (
         <RouteGuard role={UserRole.Staff}>
-          <StaffLayout />
+          <StaffProvider>
+            <StaffLayout />
+          </StaffProvider>
         </RouteGuard>
       ),
       path: "staff/*",
       children: [
         {
           index: true,
-          element: <Navigate to={RoutePaths.STAFF_APPOINTMENTS} />,
+          element: <Navigate to={RoutePaths.STAFF_SCHEDULE} />,
         },
         {
           path: "appointments/*",
